@@ -1,22 +1,18 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import NavbarComponent from "../components/navbar/NavbarComponent";
-import LoginPage from "./login/LoginPage";
-import { useAuthContext } from "../components/contexts/AuthContext";
-import SignupPage from "./signup/SignupPage";
-import DashboardPage from "./dashboard/DashboardPage";
-import LoadingComponent from "../components/loading/LoadingComponent";
-import AdminDashboardPage from "./admin-dashboard/AdminDashboardPage";
+import { Route, Routes } from "react-router-dom";
 
 function MainRouter() {
-    const { authData, isAuthLoading } = useAuthContext();
+    //    const { authData, isAuthLoading } = useAuthContext();
 
     return (
         <>
-            
+            <Routes>
+                <Route />
+            </Routes>
         </>
-    )
+    );
 
+    /*
     return (
         <>
             <NavbarComponent />
@@ -57,6 +53,7 @@ function MainRouter() {
             )}
         </>
     );
+    */
 }
 
 export default MainRouter;
