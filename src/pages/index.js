@@ -1,5 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import HomePage from "./home/HomePage";
+import RegisterPage from "./register/RegisterPage";
+import SupportPage from "./support/SupportPage";
 
 function MainRouter() {
     //    const { authData, isAuthLoading } = useAuthContext();
@@ -7,7 +10,10 @@ function MainRouter() {
     return (
         <>
             <Routes>
-                <Route />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<HomePage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/support" element={<SupportPage />} />
             </Routes>
         </>
     );

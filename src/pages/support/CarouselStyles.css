@@ -1,0 +1,18 @@
+.slide {
+  min-width: fit-content !important;
+
+  width: 140px;
+  height: 325px;
+
+  margin-top: 100px !important;
+}
+
+.slide.selected {
+  margin-top: 0px !important;
+}
+
+.slider {
+  gap: 50px;
+
+  margin-left: 30% !important;
+}
