@@ -3,22 +3,26 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import RegisterPage from "./register/RegisterPage";
 import SupportPage from "./support/SupportPage";
+import ConfirmationPage from "./confirmation/ConfirmationPage";
+import ExplorePage from "./explore/ExplorePage";
 
 function MainRouter() {
-    //    const { authData, isAuthLoading } = useAuthContext();
+  //    const { authData, isAuthLoading } = useAuthContext();
 
-    return (
-        <>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/login" element={<HomePage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/support" element={<SupportPage />} />
-            </Routes>
-        </>
-    );
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/confirmation" element={<ConfirmationPage />} />
+        <Route path="/support" element={<SupportPage />} />
+        <Route path="/explore" element={<ExplorePage />} />
+      </Routes>
+    </>
+  );
 
-    /*
+  /*
     return (
         <>
             <NavbarComponent />

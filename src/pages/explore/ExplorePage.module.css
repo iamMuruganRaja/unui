@@ -1,0 +1,193 @@
+.main_container {
+  background: url("https://images.unsplash.com/photo-1607851552752-146106c26e37?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+
+  width: 100vw;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: bottom;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  align-items: center;
+
+  padding: 50px 0px;
+
+  gap: 20px;
+}
+
+.card_container {
+  width: 280px;
+  height: 290px;
+
+  background: #8bbf6999;
+  border-radius: 15px;
+
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.top_container {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+}
+
+.card_image {
+  width: 102px;
+  height: 98px;
+}
+
+.card_details_section {
+  width: 233px;
+  height: 206px;
+
+  background: #ffffff;
+  opacity: 0.9;
+  box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: stretch;
+
+  padding: 20px;
+}
+
+.card_details_horizontal {
+  flex: 1;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+}
+
+.round_img {
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+}
+
+.card_footer {
+  padding: 0px 40px;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.card_pill_button {
+  width: 56.86px;
+  height: 15.79px;
+
+  background: #6ca943;
+  border-radius: 10px;
+
+  border: none;
+  outline: none;
+
+  font-family: "Biryani";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 14px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.card_icons_container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.bottom_carousel {
+  align-self: stretch;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.carousel_card {
+  width: 106px;
+
+  background: #b2c990;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel_image {
+  width: 90px;
+  height: 119px;
+}
+
+.bottom_footer {
+  padding: 6px;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.bottom_pill {
+  font-family: "Biryani";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5px;
+  line-height: 9px;
+
+  text-align: center;
+
+  color: #ffffff;
+
+  width: 36.53px;
+  height: 9.21px;
+
+  background: #6ca943;
+  border-radius: 10px;
+
+  outline: none;
+  border: none;
+}
+
+.white_pill {
+  width: 56.86px;
+  height: 15.79px;
+
+  background: #ffffff;
+  border-radius: 10px;
+
+  font-family: "Biryani";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 14px;
+  text-align: center;
+
+  color: #30513e;
+
+  outline: none;
+  border: none;
+}
