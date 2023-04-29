@@ -1,4 +1,6 @@
 .navbar {
+  z-index: 2;
+
   position: fixed;
 
   width: 100vw;
@@ -17,8 +19,6 @@
   top: 0px;
   left: 0px;
 
-  z-index: 1;
-
   background-color: #30513e;
 
   display: flex;
@@ -31,7 +31,8 @@
 }
 
 .hamburger_icon_container {
-  z-index: 2;
+  z-index: 3;
+
   border-radius: 4px;
 
   outline: none;
@@ -41,4 +42,8 @@
 .nav_link {
   color: white;
   text-decoration: none;
+
+  outline: none;
+  border: none;
+  background: none;
 }

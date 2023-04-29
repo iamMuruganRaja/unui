@@ -39,6 +39,16 @@ const AuthProvider = ({ children }) => {
     })();
   }, []);
 
+  const isUserDataFilled = (userData) => {
+    if (!userData.first_name) return false;
+    if (!userData.last_name) return false;
+    if (!userData.role) return false;
+    if (!userData.genre) return false;
+    if (!userData.social_media_link) return false;
+
+    return true;
+  };
+
   const handleVerifyOtp = useCallback(async (otp, otp_uuid) => {
     setIsAuthLoading(true);
 
@@ -59,7 +69,11 @@ const AuthProvider = ({ children }) => {
 
     const eventId = localStorage.getItem("event_id");
 
-    if (!!eventId) navigate(`/confirm/${eventId}`);
+    if (isUserDataFilled(user)) return navigate("/profile");
+
+    if (!!eventId) return navigate(`/confirm/${eventId}`);
+
+    return navigate("/upcoming");
   }, []);
 
   return (

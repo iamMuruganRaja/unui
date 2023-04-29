@@ -1,3 +1,199 @@
-.top_hero {
+.main_container {
+  position: fixed;
+
+  top: 0px;
+  left: 0px;
+
+  width: 100vw;
+  padding-top: 32vh;
+}
+
+.page_title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+
+  text-align: center;
+
+  color: #30513e;
+}
+
+.card_carousel {
+  padding: 40px 20px;
+
+  display: flex;
+  flex-direction: row;
+
+  gap: 20px;
+
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+
+.card_outer_container {
+  min-width: 258px;
+  max-width: 258px;
+  height: 262px;
+
+  background: #30513e;
+  border-radius: 30px;
+
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card_inner_container {
+  flex: 1;
+
   width: 100%;
+
+  background: #ffffff;
+  opacity: 0.9;
+  box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: stretch;
+
+  padding: 20px;
+}
+
+.card_footer {
+  margin: 10px;
+  margin-top: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.participant_count {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 7px;
+  line-height: 9px;
+
+  color: #ffffff;
+  position: relative;
+}
+
+.participants {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.participant_icon {
+  width: 15px;
+  height: 15px;
+
+  border-radius: 50%;
+
+  position: relative;
+}
+
+.register_btn {
+  width: 67px;
+  height: 20px;
+
+  background: #ffffff;
+  border-radius: 5px;
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 11px;
+
+  text-align: center;
+
+  color: #30513e;
+
+  outline: none;
+  border: none;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card_details_horizontal {
+  flex: 1;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.round_img {
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+}
+
+.highlights_title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+
+  color: #30513e;
+}
+
+.highlight_carousel {
+  display: flex;
+  flex-direction: row;
+
+  flex-wrap: nowrap;
+  gap: 20px;
+
+  overflow-x: scroll;
+
+  padding: 20px;
+}
+
+.highlight_img {
+  border-radius: 20px;
+  width: 120px;
+  height: 120px;
+}
+
+.details_text {
+  font-family: "Philosopher";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 17px;
+
+  color: #000000;
+}
+
+.card_carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.card_carousel {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.highlight_carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.highlight_carousel {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

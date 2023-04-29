@@ -30,24 +30,25 @@ function MainRouter() {
         <LoadingComponent />
       ) : (
         <>
-          {authData.isAuthenticated ? (
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/support" element={<SupportPage />} />
-              <Route path="/explore" element={<ExplorePage />} />
-              <Route path="/upcoming" element={<UpcomingPage />} />
-              <Route path="/confirm/:eventId" element={<ConfirmationPage />} />
-              <Route path="*" element={<Navigate to="/" replace={true} />} />
-            </Routes>
-          ) : (
-            <Routes>
-              <Route path="/register" element={<RegisterPage />} />
-              <Route
-                path="*"
-                element={<Navigate to="/register" replace={true} />}
-              />
-            </Routes>
-          )}
+          <Routes>
+            {authData.isAuthenticated ? (
+              <>
+                <Route path="/support" element={<SupportPage />} />
+                <Route path="/explore" element={<ExplorePage />} />
+                <Route path="/event" element={<ConfirmationPage />} />
+                <Route path="*" element={<Navigate to="/" replace={true} />} />
+              </>
+            ) : (
+              <>
+                <Route path="/register" element={<RegisterPage />} />
+                <Route
+                  path="*"
+                  element={<Navigate to="/register" replace={true} />}
+                />
+              </>
+            )}
+            <Route path="/" element={<UpcomingPage />} />
+          </Routes>
         </>
       )}
     </>

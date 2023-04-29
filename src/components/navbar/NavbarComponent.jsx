@@ -6,12 +6,13 @@ import { useAuthContext } from "../contexts/AuthContext";
 
 import classes from "./NavbarComponent.module.css";
 import { Link } from "react-router-dom";
+import { logoutUser } from "../../utils/storage.utils";
 
 function NavbarComponent() {
   const { isAuthLoading, authData } = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
 
-  if (isAuthLoading || !authData.isAuthenticated) return <></>;
+  if (isAuthLoading) return <></>;
 
   const toggleSidebar = () => {
     setIsOpen((i) => !i);
@@ -29,18 +30,43 @@ function NavbarComponent() {
 
       <motion.div
         className={classes.sidebar}
+        initial={{ x: window.innerWidth }}
         animate={{ x: isOpen ? 0 : window.innerWidth }}
         transition={{ bounce: 0 }}
       >
-        <Link className={classes.nav_link}>HOME</Link>
-        <Link className={classes.nav_link}>ABOUT US</Link>
-        <Link className={classes.nav_link}>UPCOMING EVENTS</Link>
-        <Link className={classes.nav_link}>GALLERY</Link>
-        <Link className={classes.nav_link}>ROLES</Link>
-        <Link className={classes.nav_link}>GROW TOGETHER</Link>
-        <Link className={classes.nav_link}>RECENT HIGHLIGHTS</Link>
-        <Link className={classes.nav_link}>REQUESTS</Link>
-        <Link className={classes.nav_link}>SIGN-IN/REGISTER</Link>
+        <Link className={classes.nav_link} to="/">
+          HOME
+        </Link>
+        <Link className={classes.nav_link} to="/">
+          ABOUT US
+        </Link>
+        <Link className={classes.nav_link} to="/">
+          UPCOMING EVENTS
+        </Link>
+        <Link className={classes.nav_link} to="/">
+          GALLERY
+        </Link>
+        <Link className={classes.nav_link} to="/">
+          ROLES
+        </Link>
+        <Link className={classes.nav_link} to="/">
+          GROW TOGETHER
+        </Link>
+        <Link className={classes.nav_link} to="/">
+          RECENT HIGHLIGHTS
+        </Link>
+        <Link className={classes.nav_link} to="/">
+          REQUESTS
+        </Link>
+        {authData.isAuthenticated ? (
+          <button className={classes.nav_link} onClick={logoutUser}>
+            LOGOUT
+          </button>
+        ) : (
+          <Link to="/register" className={classes.nav_link}>
+            SIGN-IN/REGISTER
+          </Link>
+        )}
       </motion.div>
     </div>
   );

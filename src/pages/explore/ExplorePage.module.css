@@ -191,3 +191,13 @@
   outline: none;
   border: none;
 }
+
+.details_text {
+  font-family: "Philosopher";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 17px;
+
+  color: #000000;
+}
