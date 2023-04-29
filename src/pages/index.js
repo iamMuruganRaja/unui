@@ -9,6 +9,9 @@ import UpcomingPage from "./upcoming/UpcomingPage";
 import { useAuthContext } from "../components/contexts/AuthContext";
 import NavbarComponent from "../components/navbar/NavbarComponent";
 import LoadingComponent from "../components/loading/LoadingComponent";
+import EditProfilePage from "./edit-profile/EditProfile";
+import ParticipantsPage from "./participants/ParticipantsPage";
+import SchedulePage from "./schedule/SchedulePage";
 
 function MainRouter() {
   const { authData, isAuthLoading } = useAuthContext();
@@ -34,7 +37,13 @@ function MainRouter() {
             {authData.isAuthenticated ? (
               <>
                 <Route path="/support" element={<SupportPage />} />
-                <Route path="/explore" element={<ExplorePage />} />
+                <Route path="/edit-profile" element={<EditProfilePage />} />
+                <Route path="/details/:eventId" element={<ExplorePage />} />
+                <Route
+                  path="/participants/:eventId"
+                  element={<ParticipantsPage />}
+                />
+                <Route path="/schedule/:eventId" element={<SchedulePage />} />
                 <Route path="/event" element={<ConfirmationPage />} />
                 <Route path="*" element={<Navigate to="/" replace={true} />} />
               </>

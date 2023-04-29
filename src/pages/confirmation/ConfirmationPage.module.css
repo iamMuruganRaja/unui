@@ -148,3 +148,14 @@
   outline: none;
   border: none;
 }
+
+.card_details_item {
+  display: flex;
+  flex-direction: row;
+
+  gap: 20px;
+}
+
+.card_details_key {
+  width: 80px;
+}

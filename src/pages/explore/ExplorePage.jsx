@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import confirmHero from "../../assets/confirm-hero.svg";
-import checkCircle from "../../assets/check-circle.svg";
-import confirmDownload from "../../assets/confirm-download.svg";
-import confirmEdit from "../../assets/confirm-edit.svg";
-import confirmShare from "../../assets/confirm-share.svg";
-import cardLogo from "../../assets/card-logo.svg";
 import cardIcon from "../../assets/card-icon.png";
 import confirmCards from "../../assets/confirm_cards.png";
 import carouselCtx from "../../assets/confirm_carousel_icons.svg";
 
 import classes from "./ExplorePage.module.css";
+import { Link, useParams } from "react-router-dom";
+import { getEvent } from "../../services/events.services";
+import dayjs from "dayjs";
 
 const ExplorePage = () => {
+  const [eventDetails, setEventDetails] = useState(null);
+
+  const { eventId } = useParams();
+
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await getEvent(eventId);
+
+      if (!!error) return;
+
+      setEventDetails(data.data);
+    })();
+  }, [eventId]);
+
   return (
     <div className={classes.main_container}>
       <img src={confirmHero} />
@@ -21,23 +33,25 @@ const ExplorePage = () => {
           <div className={classes.card_details_horizontal}>
             <img src={cardIcon} className={classes.round_img} />
             <p className={classes.details_text}>
-              Date:
+              Date: {dayjs(eventDetails?.start_time).format("DD-MM-YY")}
               <br />
-              Time:
-              <br /> Theme:
+              Time: {dayjs(eventDetails?.start_time).format("hh:mm a")}
+              <br /> Theme: {eventDetails?.genre}
             </p>
           </div>
           <div className={classes.card_details_horizontal}>
-            <p className={classes.details_text}>
-              Join in with Host, (h/n) in a session filled with (theme)
-            </p>
+            <p className={classes.details_text}>{eventDetails?.description}</p>
             <img src={cardIcon} className={classes.round_img} />
           </div>
         </div>
         <div className={classes.card_footer}>
-          <button className={classes.white_pill}>Schedule</button>
-          <button className={classes.white_pill}>Participants</button>
-          <button className={classes.white_pill}>Connect</button>
+          <Link to={`/schedule/${eventId}`} className={classes.white_pill}>
+            Schedule
+          </Link>
+          <Link to={`/participants/${eventId}`} className={classes.white_pill}>
+            Participants
+          </Link>
+          <Link className={classes.white_pill}>Connect</Link>
         </div>
       </div>
       <div className={classes.bottom_carousel}>

@@ -49,31 +49,39 @@ const UpcomingPage = () => {
               </div>
               <div className={classes.card_footer}>
                 <div className={classes.participants}>
-                  <img
-                    className={classes.participant_icon}
-                    src={participants}
-                    style={{ left: 0 }}
-                  />
-                  <img
-                    className={classes.participant_icon}
-                    src={participants}
-                    style={{ left: -5 }}
-                  />
-                  <img
-                    className={classes.participant_icon}
-                    src={participants}
-                    style={{ left: -10 }}
-                  />
-                  <img
-                    className={classes.participant_icon}
-                    src={participants}
-                    style={{ left: -15 }}
-                  />
+                  {event.event_participants.length > 0 && (
+                    <img
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: 0 }}
+                    />
+                  )}
+                  {event.event_participants.length > 1 && (
+                    <img
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: -5 }}
+                    />
+                  )}
+                  {event.event_participants.length > 2 && (
+                    <img
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: -10 }}
+                    />
+                  )}
+                  {event.event_participants.length > 3 && (
+                    <img
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: -15 }}
+                    />
+                  )}
                   <p
                     className={classes.participant_count}
-                    style={{ left: -10 }}
+                    style={{ left: 10 - 5 * event.event_participants.length }}
                   >
-                    10 Participants
+                    {event.event_participants.length} Participants
                   </p>
                 </div>
                 <Link

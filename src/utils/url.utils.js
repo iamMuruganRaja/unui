@@ -16,4 +16,4 @@ export const GET_EVENT_URL = `${BASE_URL}/events/$ID`;
 
 export const GET_ALL_EVENTS = `${BASE_URL}/events`;
 
-export const GET_USER_PROFILE = `${BASE_URL}/user_profiles/update`;
+export const UPDATE_USER_PROFILE = `${BASE_URL}/user_profiles/update`;

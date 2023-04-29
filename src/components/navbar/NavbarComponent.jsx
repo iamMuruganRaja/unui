@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import hamburgerIcon from "../../assets/hamburger.svg";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 import { useAuthContext } from "../contexts/AuthContext";
 
@@ -11,6 +12,12 @@ import { logoutUser } from "../../utils/storage.utils";
 function NavbarComponent() {
   const { isAuthLoading, authData } = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   if (isAuthLoading) return <></>;
 

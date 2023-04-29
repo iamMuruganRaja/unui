@@ -38,11 +38,13 @@ const RegisterPage = () => {
           placeholder="Whatsapp Phone Number"
           value={form.phone}
           onChange={(e) => setKey("phone", e.target.value)}
+          type="number"
         />
       )}
       {hash && (
         <OtpInput
           value={form.otp}
+          inputType="number"
           onChange={(e) => setKey("otp", e)}
           numInputs={6}
           renderSeparator={<span>&nbsp;&nbsp;</span>}
@@ -56,25 +58,6 @@ const RegisterPage = () => {
           }}
         />
       )}
-      {/*<TextInput placeholder="First Name" />
-      <TextInput placeholder="Last Name" />
-      <TextInput placeholder="Social Media Link" />
-      <DropdownInput
-        options={["Host", "Performer", "Audience"]}
-        placeholder="Select role"
-        handleSelect={handleSelect}
-        selectedValue={selectedValue}
-      />
-      <SwitchInput
-        label="Save my Information"
-        isChecked={form.shouldSaveInformation}
-        toggleCheck={() =>
-          setKey("shouldSaveInformation", !form.shouldSaveInformation)
-        }
-      />
-      <SwitchInput label="I agree to Terms and Conditions" />
-      <DateInput placeholder="Availability to host" />
-          */}
       <div style={{ width: 267, paddingLeft: 10 }}>
         {!hash ? (
           <SubmitButton title="Send OTP" onClick={handleSendOtp} />
