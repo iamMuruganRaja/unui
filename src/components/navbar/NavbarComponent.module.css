@@ -1,0 +1,44 @@
+.navbar {
+  position: fixed;
+
+  width: 100vw;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sidebar {
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  z-index: 1;
+
+  background-color: #30513e;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 60px 0px;
+}
+
+.hamburger_icon_container {
+  z-index: 2;
+  border-radius: 4px;
+
+  outline: none;
+  border: none;
+}
+
+.nav_link {
+  color: white;
+  text-decoration: none;
+}

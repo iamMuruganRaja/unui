@@ -1,0 +1,201 @@
+
+POSTMAN documentation link
+
+https://documenter.getpostman.com/view/18935046/2s93eR3uwy
+
+
+
+
+//Sample requuest and response
+//------------------------------------------
+//login or sign up
+//POST http://localhost:3000/signup_or_login
+//REQUEST
+{
+    "data": {
+        "phone": "8789603733"
+    }
+}
+//RESPONSE
+{
+    "status": true,
+    "data": {
+        "message": "otp_sent",
+        "otp_uuid": "413fb0f1-9425-46a8-ac27-fa931dea6e76"
+    }
+}
+
+//------------------------------------------
+
+//otp verification
+
+// POST  http://localhost:3000/verify_otp
+
+//REQUEST
+
+{
+    "data": {
+        
+        "otp_uuid": "413fb0f1-9425-46a8-ac27-fa931dea6e76",
+        "otp": "499627"
+        
+
+    }
+}
+//RESPONSE
+ // otp verification fails
+
+{
+    "status": false,
+    "errors": [
+        "OTP verification failed."
+    ]
+}
+
+
+// otp verification fails multiple times and account gets locked
+{
+    "status": false,
+    "errors": [
+        "Account locked. Please try again after 1 hour."
+    ]
+}
+
+//------------------------------------------
+
+//event registration 
+
+
+
+
+//POST http://localhost:3000/event_participants
+
+//REQUEST
+
+{
+   "data":{"role":"host",
+"link":"some_tul",
+"status":"host",
+"event_id":"8dcdc209-143a-4ef5-8b2c-eb1099941fe9"
+}
+  }
+
+// RESPONSE
+//------------------------------------------
+//when event not found
+{
+    "error": {
+        "title": "event not found",
+        "detail": "event not found"
+    }
+}
+
+//when event registration sucessful
+
+{
+    "status": 200,
+    "data": {},
+    "message": "Your participation is confirmed"
+}
+
+
+//when already registered
+
+{
+    "status": 200,
+    "data": {},
+    "message": "Your participation is already confirmed"
+}
+
+
+
+//------------------------------------------
+
+// get specific event details
+// GET http://localhost:3000/events/8dcdc209-143a-4ef5-8b2c-eb1099941fe9
+// RESPONSE
+
+{
+    "data": {
+        "uuid": "8dcdc209-143a-4ef5-8b2c-eb1099941fe9",
+        "description": "logn event description",
+        "end_time": "2023-05-01 23:30:00 UTC",
+        "event_assets": [],
+        "event_participants": [
+            {
+                "uuid": "89c46bda-86ca-496d-8074-01b75cb18a05",
+                "actual_slot_end_time": null,
+                "actual_slot_start_time": null,
+                "link": null,
+                "role": "host",
+                "slot_end_time": null,
+                "slot_start_time": null,
+                "status": "host"
+            }
+        ],
+        "genre": "comedy",
+        "name": "some event name",
+        "platform": "zoom",
+        "start_time": "2023-05-01 21:00:00 UTC"
+    }
+}
+
+//------------------------------------------
+
+// get all event details
+GET http://localhost:3000/events
+
+// RESPONSE
+{
+    "data": [
+        {
+            "uuid": "8dcdc209-143a-4ef5-8b2c-eb1099941fe9",
+            "description": "logn event description",
+            "end_time": "2023-05-01 23:30:00 UTC",
+            "event_assets": [],
+            "event_participants": [
+                {
+                    "uuid": "89c46bda-86ca-496d-8074-01b75cb18a05",
+                    "actual_slot_end_time": null,
+                    "actual_slot_start_time": null,
+                    "link": null,
+                    "role": "host",
+                    "slot_end_time": null,
+                    "slot_start_time": null,
+                    "status": "host"
+                }
+            ],
+            "genre": "comedy",
+            "name": "some event name",
+            "platform": "zoom",
+            "start_time": "2023-05-01 21:00:00 UTC"
+        }
+    ]
+}
+
+
+//---------------------------------------------------------
+//update user profile
+
+//PUT http://localhost:3000/user_profiles/update
+//REQUEST
+
+{
+    "data": {
+        "language": {},
+        "slots": {},
+        "genre": "comedy_new",
+        "remarks": "comedy_new1",
+        "role": "host",
+        "first_name": "Abhishek",
+        "last_name": "Kumar",
+        "social_media_link": "some_url"
+    }
+}
+
+// RESPONSE
+{
+    "status": 200,
+    "data": {},
+    "message": "user profile update succesful"
+}

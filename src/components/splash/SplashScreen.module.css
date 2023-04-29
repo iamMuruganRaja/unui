@@ -1,32 +1,18 @@
 .main_container {
-    position: fixed;
-    top: 0px;
-    left: 0px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.green_circle {
-    min-width: 68px;
-    min-height: 68px;
-
-    border-radius: 50%;
-
-    background-color: #30513E;
-    
-    padding: 4px;
-}
-
-.white_circle {
-    padding: 10px;
-
-    border-radius: 50%;
-
-    background-color: #ffffff;
+.gif {
+  width: 100%;
+  height: 100%;
 }

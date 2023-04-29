@@ -1,11 +1,19 @@
-const BASE_URL = process.env.REACT_API_URL || "http://localhost:8000";
+const BASE_URL =
+  process.env.REACT_API_URL ||
+  "https://19296028-bd19-458b-95f4-a715f739ba4a.mock.pstmn.io";
 
 // AUTH
 
-const BASE_AUTH_URL = `${BASE_URL}/auth`;
+export const REGISTER_URL = `${BASE_URL}/signup_or_login`;
 
-export const LOGIN_URL = `${BASE_AUTH_URL}/login`;
+export const VERIFY_OTP_URL = `${BASE_URL}/verify_otp`;
 
-export const SIGNUP_URL = `${BASE_AUTH_URL}/register`;
+export const GET_USER_DATA = `${BASE_URL}/get_user_data`;
 
-export const GET_AUTH_DATA = `${BASE_AUTH_URL}`;
+export const REGISTER_EVENT = `${BASE_URL}/event_participants`;
+
+export const GET_EVENT_URL = `${BASE_URL}/events/$ID`;
+
+export const GET_ALL_EVENTS = `${BASE_URL}/events`;
+
+export const GET_USER_PROFILE = `${BASE_URL}/user_profiles/update`;

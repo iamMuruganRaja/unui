@@ -1,23 +1,27 @@
 import { getRequest, postRequest } from "../utils/request.utils";
-import { GET_AUTH_DATA, LOGIN_URL, SIGNUP_URL } from "../utils/url.utils";
+import {
+  GET_USER_DATA,
+  REGISTER_URL,
+  VERIFY_OTP_URL,
+} from "../utils/url.utils";
 
-export const login = (data) => {
-    return postRequest({
-        url: LOGIN_URL,
-        data,
-    });
+export const loginorsignup = (data) => {
+  return postRequest({
+    url: REGISTER_URL,
+    data: { data },
+  });
 };
 
-export const register = (data) => {
-    return postRequest({
-        url: SIGNUP_URL,
-        data,
-    });
+export const verifyOtp = (data) => {
+  return postRequest({
+    url: VERIFY_OTP_URL,
+    data: { data },
+  });
 };
 
-export const getAuth = () => {
-    return getRequest({
-        url: GET_AUTH_DATA,
-        noAuth: true,
-    });
+export const getUserData = () => {
+  return getRequest({
+    url: GET_USER_DATA,
+    noAuth: true,
+  });
 };

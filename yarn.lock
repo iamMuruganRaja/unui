@@ -7587,6 +7587,11 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
+react-otp-input@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-otp-input/-/react-otp-input-3.0.1.tgz#466b0822ed85a7c2101cddbf33a474eacfe3a26d"
+  integrity sha512-oCwDdspeG/YHJnFEB08e/OVoRHRvKgAHGm1viwz9C8SenBQpxiXOizsB660BKMjJ6cgp7TxPZfFxuF+fB29p8g==
+
 react-refresh@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.11.0.tgz#77198b944733f0f1f1a90e791de4541f9f074046"

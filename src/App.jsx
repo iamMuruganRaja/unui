@@ -1,18 +1,17 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+
+import AuthProvider from "./components/contexts/AuthContext";
 import MainRouter from "./pages";
-import SplashScreen from "./components/splash/SplashScreen";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <SplashScreen>
-                {/*<AuthProvider>*/}
-                <MainRouter />
-                {/*</AuthProvider>*/}
-            </SplashScreen>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <MainRouter />
+      </AuthProvider>
+    </BrowserRouter>
+  );
 };
 
 export default App;
