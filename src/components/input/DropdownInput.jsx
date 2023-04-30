@@ -34,7 +34,7 @@ function DropdownInput({
           {...props}
         >
           {selectedValue || placeholder}
-          <img src={downArrow} className={classes.ctx_icon} />
+          <img alt="icon" src={downArrow} className={classes.ctx_icon} />
         </button>
         {options.map((item) => (
           <button

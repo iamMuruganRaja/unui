@@ -5,7 +5,9 @@ export const sendRequest = async (args) => {
   try {
     const { url, headers, noAuth } = args;
 
-    let headerParams;
+    let headerParams = {
+      "ngrok-skip-browser-warning": "unmutex",
+    };
 
     if (noAuth) {
       if (headers) {
@@ -23,6 +25,7 @@ export const sendRequest = async (args) => {
     const response = await axios({
       ...args,
       headers: headerParams,
+      withCredentials: true,
       url,
     });
 

@@ -24,7 +24,7 @@ function SchedulePage() {
 
   return (
     <div className={classes.main_container}>
-      <img src={heroImg} className={classes.hero_img} />
+      <img alt="hero" src={heroImg} className={classes.hero_img} />
 
       <div className={classes.schedule_container}>
         <div className={classes.schedule_row}>

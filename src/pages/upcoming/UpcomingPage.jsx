@@ -4,7 +4,6 @@ import SplashScreen from "../../components/splash/SplashScreen";
 
 import cardIcon from "../../assets/card-icon.png";
 import participants from "../../assets/card-icon.png";
-import splashBg from "../../assets/splash_bg.png";
 
 import classes from "./UpcomingPage.module.css";
 import { getEvents } from "../../services/events.services";
@@ -34,7 +33,11 @@ const UpcomingPage = () => {
             <div className={classes.card_outer_container}>
               <div className={classes.card_inner_container}>
                 <div className={classes.card_details_horizontal}>
-                  <img src={cardIcon} className={classes.round_img} />
+                  <img
+                    alt="icon"
+                    src={cardIcon}
+                    className={classes.round_img}
+                  />
                   <p className={classes.details_text}>
                     Date: {dayjs(event.start_time).format("DD-MM-YY")}
                     <br />
@@ -44,13 +47,18 @@ const UpcomingPage = () => {
                 </div>
                 <div className={classes.card_details_horizontal}>
                   <p className={classes.details_text}>{event.description}</p>
-                  <img src={cardIcon} className={classes.round_img} />
+                  <img
+                    alt="icon"
+                    src={cardIcon}
+                    className={classes.round_img}
+                  />
                 </div>
               </div>
               <div className={classes.card_footer}>
                 <div className={classes.participants}>
                   {event.event_participants.length > 0 && (
                     <img
+                      alt="icon"
                       className={classes.participant_icon}
                       src={participants}
                       style={{ left: 0 }}
@@ -58,6 +66,7 @@ const UpcomingPage = () => {
                   )}
                   {event.event_participants.length > 1 && (
                     <img
+                      alt="icon"
                       className={classes.participant_icon}
                       src={participants}
                       style={{ left: -5 }}
@@ -65,6 +74,7 @@ const UpcomingPage = () => {
                   )}
                   {event.event_participants.length > 2 && (
                     <img
+                      alt="icon"
                       className={classes.participant_icon}
                       src={participants}
                       style={{ left: -10 }}
@@ -72,6 +82,7 @@ const UpcomingPage = () => {
                   )}
                   {event.event_participants.length > 3 && (
                     <img
+                      alt="icon"
                       className={classes.participant_icon}
                       src={participants}
                       style={{ left: -15 }}
@@ -98,10 +109,10 @@ const UpcomingPage = () => {
         <div className={classes.highlights_container}>
           <div className={classes.highlights_title}>Recent Highlights</div>
           <div className={classes.highlight_carousel}>
-            <img src={cardIcon} className={classes.highlight_img} />
-            <img src={cardIcon} className={classes.highlight_img} />
-            <img src={cardIcon} className={classes.highlight_img} />
-            <img src={cardIcon} className={classes.highlight_img} />
+            <img alt="icon" src={cardIcon} className={classes.highlight_img} />
+            <img alt="icon" src={cardIcon} className={classes.highlight_img} />
+            <img alt="icon" src={cardIcon} className={classes.highlight_img} />
+            <img alt="icon" src={cardIcon} className={classes.highlight_img} />
           </div>
         </div>
       </div>

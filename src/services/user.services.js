@@ -5,6 +5,5 @@ export const updateProfile = (data) => {
   return putRequest({
     url: UPDATE_USER_PROFILE,
     data: { data },
-    noAuth: true,
   });
 };

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
-import HomePage from "./home/HomePage";
 import RegisterPage from "./register/RegisterPage";
 import SupportPage from "./support/SupportPage";
 import ConfirmationPage from "./confirmation/ConfirmationPage";

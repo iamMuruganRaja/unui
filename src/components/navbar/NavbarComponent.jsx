@@ -32,7 +32,11 @@ function NavbarComponent() {
         className={classes.hamburger_icon_container}
         onClick={toggleSidebar}
       >
-        <img src={hamburgerIcon} className={classes.hamburger_icon} />
+        <img
+          alt="icon"
+          src={hamburgerIcon}
+          className={classes.hamburger_icon}
+        />
       </button>
 
       <motion.div

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 import "./CarouselStyles.css";
 
 import leftArrow from "../../assets/left-arrow.svg";
@@ -56,7 +55,7 @@ const SupportPage = () => {
   return (
     <div className={classes.main}>
       <nav className={classes.navbar}>
-        <img className={classes.navbar_image} src={navbarLogo} />
+        <img alt="icon" className={classes.navbar_image} src={navbarLogo} />
       </nav>
       <div className={classes.carousel}>
         {selected > 0 ? (
@@ -68,6 +67,7 @@ const SupportPage = () => {
           <div className={classes.carousel_top}>
             {selected > 0 ? (
               <img
+                alt="icon"
                 src={leftArrow}
                 className={classes.leftArrow}
                 onClick={handlePrevious}
@@ -76,10 +76,15 @@ const SupportPage = () => {
               <div className={classes.leftArrow} />
             )}
             <div className={classes.carousel_card}>
-              <img className={classes.card_image} src={CARDS[selected].image} />
+              <img
+                alt="icon"
+                className={classes.card_image}
+                src={CARDS[selected].image}
+              />
             </div>
             {selected < CARDS.length - 1 ? (
               <img
+                alt="icon"
                 src={rightArrow}
                 className={classes.rightArrow}
                 onClick={handleNext}

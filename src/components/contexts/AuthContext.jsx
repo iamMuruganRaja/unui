@@ -6,10 +6,7 @@ import React, {
   useState,
 } from "react";
 import { getUserData, verifyOtp } from "../../services/auth.services";
-import {
-  getAccessTokenFromStorage,
-  saveAccessTokenToStorage,
-} from "../../utils/storage.utils";
+import { getAccessTokenFromStorage } from "../../utils/storage.utils";
 import { useNavigate } from "react-router-dom";
 
 const authContext = createContext();
@@ -42,8 +39,6 @@ const AuthProvider = ({ children }) => {
   const isUserDataFilled = (userData) => {
     if (!userData.first_name) return false;
     if (!userData.last_name) return false;
-    if (!userData.role) return false;
-    if (!userData.genre) return false;
     if (!userData.social_media_link) return false;
 
     return true;
@@ -56,9 +51,7 @@ const AuthProvider = ({ children }) => {
 
     if (!!error) return setIsAuthLoading(false);
 
-    const user = data.data.user;
-
-    saveAccessTokenToStorage(data.data.accessToken);
+    const user = { ...data.data.profile_info, ...data.data };
 
     setAuthData({
       isAuthenticated: true,
@@ -74,6 +67,8 @@ const AuthProvider = ({ children }) => {
     if (!!eventId) return navigate(`/event?event_id=${eventId}`);
 
     return navigate("/");
+
+    // eslint-disable-next-line
   }, []);
 
   return (

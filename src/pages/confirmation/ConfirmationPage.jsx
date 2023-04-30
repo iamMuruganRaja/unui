@@ -15,30 +15,37 @@ import { Link, useSearchParams } from "react-router-dom";
 import { getEvent, registerForEvent } from "../../services/events.services";
 import dayjs from "dayjs";
 import { useAuthContext } from "../../components/contexts/AuthContext";
+import RoleModal from "../../components/modal/RoleModal";
+import { toast } from "react-toastify";
 
 const ConfirmationPage = () => {
   const { authData } = useAuthContext();
 
+  const [isRegistered, setIsRegistered] = useState(false);
   const [eventDetails, setEventDetails] = useState(null);
   const [searchParams] = useSearchParams();
 
+  const handleRegister = async (role) => {
+    const eventId = searchParams.get("event_id");
+
+    const { error } = await registerForEvent({
+      role: role,
+      link: authData.social_media_link,
+      status: authData.role,
+      event_id: eventId,
+    });
+
+    if (!!error) return;
+
+    setIsRegistered(true);
+
+    localStorage.removeItem("event_id");
+  };
+
   useEffect(() => {
     (async () => {
-      const eventId = searchParams.get("event_id");
+      toast.success("Here");
 
-      await registerForEvent({
-        role: authData.role,
-        link: authData.social_media_link,
-        status: authData.role,
-        event_id: eventId,
-      });
-
-      localStorage.removeItem("event_id");
-    })();
-  }, [searchParams]);
-
-  useEffect(() => {
-    (async () => {
       const eventId = searchParams.get("event_id");
 
       const { data, error } = await getEvent(eventId);
@@ -51,12 +58,13 @@ const ConfirmationPage = () => {
 
   return (
     <div className={classes.main_container}>
-      <img src={confirmHero} />
-      <img src={checkCircle} />
+      <RoleModal isOpen={!isRegistered} handleSubmit={handleRegister} />
+      <img alt="icon" src={confirmHero} />
+      <img alt="icon" src={checkCircle} />
       <div className={classes.card_container}>
         <div className={classes.top_container}>
-          <img className={classes.card_image} src={cardIcon} />
-          <img className={classes.card_logo} src={cardLogo} />
+          <img alt="icon" className={classes.card_image} src={cardIcon} />
+          <img alt="icon" className={classes.card_logo} src={cardLogo} />
         </div>
         <div className={classes.card_details_section}>
           <div className={classes.card_details_item}>
@@ -94,36 +102,52 @@ const ConfirmationPage = () => {
             Details
           </Link>
           <div className={classes.card_icons_container}>
-            <img className={classes.card_icon} src={confirmEdit} />
-            <img className={classes.card_icon} src={confirmDownload} />
-            <img className={classes.card_icon} src={confirmShare} />
+            <img alt="icon" className={classes.card_icon} src={confirmEdit} />
+            <img
+              alt="icon"
+              className={classes.card_icon}
+              src={confirmDownload}
+            />
+            <img alt="icon" className={classes.card_icon} src={confirmShare} />
           </div>
         </div>
       </div>
       <div className={classes.bottom_carousel}>
         <div className={classes.carousel_card}>
-          <img src={confirmCards} className={classes.carousel_image} />
+          <img
+            alt="icon"
+            src={confirmCards}
+            className={classes.carousel_image}
+          />
           <div className={classes.bottom_footer}>
             <div className={classes.left_icons}>
-              <img src={carouselCtx} />
+              <img alt="icon" src={carouselCtx} />
             </div>
             <button className={classes.bottom_pill}>RSVP</button>
           </div>
         </div>
         <div className={classes.carousel_card}>
-          <img src={confirmCards} className={classes.carousel_image} />
+          <img
+            alt="icon"
+            src={confirmCards}
+            className={classes.carousel_image}
+          />
           <div className={classes.bottom_footer}>
             <div className={classes.left_icons}>
-              <img src={carouselCtx} />
+              <img alt="icon" src={carouselCtx} />
             </div>
             <button className={classes.bottom_pill}>RSVP</button>
           </div>
         </div>
         <div className={classes.carousel_card}>
-          <img src={confirmCards} className={classes.carousel_image} />
+          <img
+            alt="icon"
+            src={confirmCards}
+            className={classes.carousel_image}
+          />
           <div className={classes.bottom_footer}>
             <div className={classes.left_icons}>
-              <img src={carouselCtx} />
+              <img alt="icon" src={carouselCtx} />
             </div>
             <button className={classes.bottom_pill}>RSVP</button>
           </div>

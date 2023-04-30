@@ -27,11 +27,11 @@ const ExplorePage = () => {
 
   return (
     <div className={classes.main_container}>
-      <img src={confirmHero} />
+      <img alt="icon" src={confirmHero} />
       <div className={classes.card_container}>
         <div className={classes.card_details_section}>
           <div className={classes.card_details_horizontal}>
-            <img src={cardIcon} className={classes.round_img} />
+            <img alt="icon" src={cardIcon} className={classes.round_img} />
             <p className={classes.details_text}>
               Date: {dayjs(eventDetails?.start_time).format("DD-MM-YY")}
               <br />
@@ -41,7 +41,7 @@ const ExplorePage = () => {
           </div>
           <div className={classes.card_details_horizontal}>
             <p className={classes.details_text}>{eventDetails?.description}</p>
-            <img src={cardIcon} className={classes.round_img} />
+            <img alt="icon" src={cardIcon} className={classes.round_img} />
           </div>
         </div>
         <div className={classes.card_footer}>
@@ -56,28 +56,40 @@ const ExplorePage = () => {
       </div>
       <div className={classes.bottom_carousel}>
         <div className={classes.carousel_card}>
-          <img src={confirmCards} className={classes.carousel_image} />
+          <img
+            alt="icon"
+            src={confirmCards}
+            className={classes.carousel_image}
+          />
           <div className={classes.bottom_footer}>
             <div className={classes.left_icons}>
-              <img src={carouselCtx} />
+              <img alt="icon" src={carouselCtx} />
             </div>
             <button className={classes.bottom_pill}>RSVP</button>
           </div>
         </div>
         <div className={classes.carousel_card}>
-          <img src={confirmCards} className={classes.carousel_image} />
+          <img
+            alt="icon"
+            src={confirmCards}
+            className={classes.carousel_image}
+          />
           <div className={classes.bottom_footer}>
             <div className={classes.left_icons}>
-              <img src={carouselCtx} />
+              <img alt="icon" src={carouselCtx} />
             </div>
             <button className={classes.bottom_pill}>RSVP</button>
           </div>
         </div>
         <div className={classes.carousel_card}>
-          <img src={confirmCards} className={classes.carousel_image} />
+          <img
+            alt="icon"
+            src={confirmCards}
+            className={classes.carousel_image}
+          />
           <div className={classes.bottom_footer}>
             <div className={classes.left_icons}>
-              <img src={carouselCtx} />
+              <img alt="icon" src={carouselCtx} />
             </div>
             <button className={classes.bottom_pill}>RSVP</button>
           </div>
