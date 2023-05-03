@@ -18,6 +18,7 @@ function OtpModal({ isOpen, form, setKey, handleSubmit, phone }) {
         </div>
 
         <OTPInput
+          shouldAutoFocus
           value={form.otp}
           inputType="number"
           onChange={(e) => setKey("otp", e)}

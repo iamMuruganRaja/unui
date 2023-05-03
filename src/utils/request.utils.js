@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getAccessTokenFromStorage } from "./storage.utils";
+import { toast } from "react-toastify";
 
 export const sendRequest = async (args) => {
   try {
@@ -31,6 +32,7 @@ export const sendRequest = async (args) => {
 
     return response;
   } catch (error) {
+    toast.error(error.message);
     return { error };
   }
 };

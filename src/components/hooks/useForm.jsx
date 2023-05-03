@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useForm = (initialValues, validate) => {
+const useForm = (initialValues) => {
   const [values, setValues] = useState(initialValues);
 
   const handleChange = (e) => {
@@ -10,10 +10,6 @@ const useForm = (initialValues, validate) => {
   };
 
   const setKey = (key, value) => {
-    if (validate[key] && !!validate[key](value)) {
-      return { [key]: validate[key](value) };
-    }
-
     setValues((prevValues) => ({
       ...prevValues,
       [key]: value,

@@ -7,6 +7,7 @@ import useForm from "../../components/hooks/useForm";
 import { useAuthContext } from "../../components/contexts/AuthContext";
 import { updateProfile } from "../../services/user.services";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const EditProfilePage = () => {
   const { authData } = useAuthContext();
@@ -14,29 +15,20 @@ const EditProfilePage = () => {
 
   const userData = authData.userData;
 
-  const { form, setKey } = useForm(
-    {
-      first_name: userData.first_name || "",
-      last_name: userData.last_name || "",
-      social_media_link: userData.social_media_link || "",
-    },
-    {
-      first_name: () => {},
-      last_name: () => {},
-      social_media_link: () => {},
-    }
-  );
+  const { form, setKey } = useForm({
+    first_name: userData.first_name || "",
+    last_name: userData.last_name || "",
+    social_media_link: userData.social_media_link || "",
+  });
 
   const handleUpdateProfile = async () => {
     const { data, error } = await updateProfile(form);
 
-    if (!!error) return false;
+    if (!!error) return;
 
-    alert(data.message);
+    toast.success(data.message);
 
     const eventId = localStorage.getItem("event_id");
-
-    console.log({ eventId });
 
     if (!!eventId) return navigate(`/event?event_id=${eventId}`);
 

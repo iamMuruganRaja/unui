@@ -5,6 +5,7 @@ import heroImg from "../../assets/schedule-logo.svg";
 import classes from "./ParticipantsPage.module.css";
 import { Link, useParams } from "react-router-dom";
 import { getEvent } from "../../services/events.services";
+import LoadingComponent from "../../components/loading/LoadingComponent";
 
 function ParticipantsPage() {
   const { eventId } = useParams();
@@ -20,6 +21,8 @@ function ParticipantsPage() {
       setEventDetails(data.data);
     })();
   }, [eventId]);
+
+  if (!eventDetails) return <LoadingComponent />;
 
   return (
     <div className={classes.main_container}>

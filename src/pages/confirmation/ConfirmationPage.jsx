@@ -37,6 +37,8 @@ const ConfirmationPage = () => {
 
     if (!!error) return;
 
+    toast.success("Registered for event successfully");
+
     setIsRegistered(true);
 
     localStorage.removeItem("event_id");
@@ -44,8 +46,6 @@ const ConfirmationPage = () => {
 
   useEffect(() => {
     (async () => {
-      toast.success("Here");
-
       const eventId = searchParams.get("event_id");
 
       const { data, error } = await getEvent(eventId);
@@ -55,6 +55,16 @@ const ConfirmationPage = () => {
       setEventDetails(data.data);
     })();
   }, [searchParams]);
+
+  const handleShare = () => {
+    if (!navigator?.share) return;
+
+    navigator.share({
+      url: `https://unmutex.com/event?${eventDetails.uuid}`,
+      title: "Click on link to join to register for the event",
+      text: `Open the link below to join an interesting event, https://unmutex.com/event?${eventDetails.uuid}`,
+    });
+  };
 
   return (
     <div className={classes.main_container}>
@@ -108,7 +118,13 @@ const ConfirmationPage = () => {
               className={classes.card_icon}
               src={confirmDownload}
             />
-            <img alt="icon" className={classes.card_icon} src={confirmShare} />
+            <button className={classes.ctx_btns} onClick={handleShare}>
+              <img
+                alt="icon"
+                className={classes.card_icon}
+                src={confirmShare}
+              />
+            </button>
           </div>
         </div>
       </div>

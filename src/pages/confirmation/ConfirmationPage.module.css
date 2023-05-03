@@ -159,3 +159,10 @@
 .card_details_key {
   width: 80px;
 }
+
+.ctx_btns {
+  background: transparent;
+
+  border: none;
+  outline: none;
+}

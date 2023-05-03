@@ -9,6 +9,7 @@ import classes from "./ExplorePage.module.css";
 import { Link, useParams } from "react-router-dom";
 import { getEvent } from "../../services/events.services";
 import dayjs from "dayjs";
+import LoadingComponent from "../../components/loading/LoadingComponent";
 
 const ExplorePage = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -24,6 +25,8 @@ const ExplorePage = () => {
       setEventDetails(data.data);
     })();
   }, [eventId]);
+
+  if (!eventDetails) return <LoadingComponent />;
 
   return (
     <div className={classes.main_container}>
@@ -51,7 +54,25 @@ const ExplorePage = () => {
           <Link to={`/participants/${eventId}`} className={classes.white_pill}>
             Participants
           </Link>
-          <Link className={classes.white_pill}>Connect</Link>
+          <button
+            className={classes.white_pill}
+            disabled={dayjs().isAfter(
+              dayjs(eventDetails?.start_time).subtract(10, "minutes")
+            )}
+          >
+            Connect
+            {dayjs().isAfter(
+              dayjs(eventDetails?.start_time).subtract(10, "minutes")
+            )
+              ? `(${dayjs().diff(
+                  eventDetails?.start_time,
+                  "days"
+                )}:${dayjs().diff(
+                  eventDetails?.start_time,
+                  "minutes"
+                )}:${dayjs().diff(eventDetails?.start_time, "seconds")})`
+              : ""}
+          </button>
         </div>
       </div>
       <div className={classes.bottom_carousel}>

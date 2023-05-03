@@ -8,6 +8,7 @@ import React, {
 import { getUserData, verifyOtp } from "../../services/auth.services";
 import { getAccessTokenFromStorage } from "../../utils/storage.utils";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const authContext = createContext();
 
@@ -49,7 +50,14 @@ const AuthProvider = ({ children }) => {
 
     const { data, error } = await verifyOtp({ otp, otp_uuid });
 
-    if (!!error) return setIsAuthLoading(false);
+    if (!!error) {
+      return setIsAuthLoading(false);
+    }
+
+    if (data.status === false) {
+      toast.error(data.errors[0]);
+      return setIsAuthLoading(false);
+    }
 
     const user = { ...data.data.profile_info, ...data.data };
 

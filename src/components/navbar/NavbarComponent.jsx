@@ -25,6 +25,7 @@ function NavbarComponent() {
     setIsOpen((i) => !i);
   };
 
+
   return (
     <div className={classes.navbar}>
       <div></div>

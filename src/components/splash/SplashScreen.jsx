@@ -8,7 +8,15 @@ const SplashScreen = ({ children }) => {
   const [isSplashShown, setIsSplashShown] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setIsSplashShown(true), SPLASH_DURATION);
+    setTimeout(
+      () => {
+        localStorage.setItem("isSplashShown", true);
+        setIsSplashShown(true);
+      },
+      localStorage.getItem("isSplashShown") === "true" ? 0 : SPLASH_DURATION
+    );
+
+    console.log(localStorage.getItem("isSplashShown"));
   }, []);
 
   return (
