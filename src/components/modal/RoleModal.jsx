@@ -4,7 +4,7 @@ import classes from "./RoleModal.module.css";
 import SubmitButton from "../buttons/SubmitButton";
 import DropdownInput from "../input/DropdownInput";
 
-function RoleModal({ isOpen, handleSubmit }) {
+function RoleModal({ isOpen, handleSubmit, isButtonLoading }) {
   const [selectedValue, setSelectedValue] = useState("");
 
   if (!isOpen) return <></>;
@@ -27,6 +27,7 @@ function RoleModal({ isOpen, handleSubmit }) {
           title="Register"
           onClick={() => handleSubmit(selectedValue)}
           style={{ alignSelf: "center" }}
+          loading={isButtonLoading}
         />
       </div>
     </div>

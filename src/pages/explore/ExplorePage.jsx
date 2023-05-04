@@ -54,25 +54,17 @@ const ExplorePage = () => {
           <Link to={`/participants/${eventId}`} className={classes.white_pill}>
             Participants
           </Link>
-          <button
+          <a
+            href={eventDetails.link}
+            target="_blank"
+            rel="noreferrer"
             className={classes.white_pill}
             disabled={dayjs().isAfter(
               dayjs(eventDetails?.start_time).subtract(10, "minutes")
             )}
           >
             Connect
-            {dayjs().isAfter(
-              dayjs(eventDetails?.start_time).subtract(10, "minutes")
-            )
-              ? `(${dayjs().diff(
-                  eventDetails?.start_time,
-                  "days"
-                )}:${dayjs().diff(
-                  eventDetails?.start_time,
-                  "minutes"
-                )}:${dayjs().diff(eventDetails?.start_time, "seconds")})`
-              : ""}
-          </button>
+          </a>
         </div>
       </div>
       <div className={classes.bottom_carousel}>

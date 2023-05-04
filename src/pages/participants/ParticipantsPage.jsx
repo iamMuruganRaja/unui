@@ -52,7 +52,14 @@ function ParticipantsPage() {
       </div>
 
       <div className={classes.bottom_buttons}>
-        <Link className={classes.bottom_button}>Connect</Link>
+        <a
+          href={eventDetails.link}
+          target="_blank"
+          rel="noreferrer"
+          className={classes.bottom_button}
+        >
+          Connect
+        </a>
         <Link to={`/schedule/${eventId}`} className={classes.bottom_button}>
           Schedule
         </Link>

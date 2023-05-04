@@ -22,11 +22,14 @@ const ConfirmationPage = () => {
   const { authData } = useAuthContext();
 
   const [isRegistered, setIsRegistered] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
   const [eventDetails, setEventDetails] = useState(null);
   const [searchParams] = useSearchParams();
 
   const handleRegister = async (role) => {
     const eventId = searchParams.get("event_id");
+
+    setIsRegistering(true);
 
     const { error } = await registerForEvent({
       role: role,
@@ -34,6 +37,8 @@ const ConfirmationPage = () => {
       status: authData.role,
       event_id: eventId,
     });
+
+    setIsRegistering(false);
 
     if (!!error) return;
 
@@ -68,7 +73,11 @@ const ConfirmationPage = () => {
 
   return (
     <div className={classes.main_container}>
-      <RoleModal isOpen={!isRegistered} handleSubmit={handleRegister} />
+      <RoleModal
+        isOpen={!isRegistered}
+        handleSubmit={handleRegister}
+        isButtonLoading={isRegistering}
+      />
       <img alt="icon" src={confirmHero} />
       <img alt="icon" src={checkCircle} />
       <div className={classes.card_container}>
