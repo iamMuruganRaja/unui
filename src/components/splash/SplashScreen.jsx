@@ -18,7 +18,7 @@ const SplashScreen = ({ children }) => {
     <div
       className={classes.main_container}
       style={{
-        backgroundImage: `url(https://localhost:3000/splash.gif?seed=${random})`,
+        backgroundImage: `url(${window.location.origin}/splash.gif?seed=${random})`,
       }}
     >
       {isSplashShown && children}

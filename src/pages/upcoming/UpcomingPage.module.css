@@ -1,9 +1,4 @@
 .main_container {
-  position: fixed;
-
-  top: 0px;
-  left: 0px;
-
   width: 100vw;
   padding-top: 32vh;
 }
