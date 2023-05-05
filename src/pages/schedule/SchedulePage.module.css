@@ -25,6 +25,8 @@
   border-radius: 15px;
 
   padding: 10px;
+
+  overflow-y: scroll;
 }
 
 .bottom_buttons {

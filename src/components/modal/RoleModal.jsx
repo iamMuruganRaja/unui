@@ -4,7 +4,7 @@ import classes from "./RoleModal.module.css";
 import SubmitButton from "../buttons/SubmitButton";
 import DropdownInput from "../input/DropdownInput";
 
-function RoleModal({ isOpen, handleSubmit, isButtonLoading }) {
+function RoleModal({ isOpen, handleSubmit, isButtonLoading, isUpdating }) {
   const [selectedValue, setSelectedValue] = useState("");
 
   if (!isOpen) return <></>;
@@ -24,7 +24,7 @@ function RoleModal({ isOpen, handleSubmit, isButtonLoading }) {
         />
 
         <SubmitButton
-          title="Register"
+          title={isUpdating ? "Update" : "Register"}
           onClick={() => handleSubmit(selectedValue)}
           style={{ alignSelf: "center" }}
           loading={isButtonLoading}

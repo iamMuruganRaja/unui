@@ -19,7 +19,7 @@
 
 .card_container {
   width: 280px;
-  height: 290px;
+  height: 330px;
 
   background: #8bbf6999;
   border-radius: 15px;
@@ -201,4 +201,19 @@
   line-height: 17px;
 
   color: #000000;
+}
+
+.top_icon_container {
+    align-self: stretch;
+    padding: 0px 30px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.edit_btn {
+    border: none;
+    background: none;
+    outline: none;
 }

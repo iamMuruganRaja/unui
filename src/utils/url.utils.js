@@ -12,7 +12,7 @@ export const LOGOUT_URL = `${BASE_URL}/logout`;
 
 export const VERIFY_OTP_URL = `${BASE_URL}/verify_otp`;
 
-export const GET_USER_DATA = `${BASE_URL}/user_profiles/update`;
+export const GET_USER_DATA = `${BASE_URL}/user`;
 
 export const REGISTER_EVENT = `${BASE_URL}/event_participants`;
 
