@@ -1,5 +1,7 @@
-import registerHero from "../../assets/profile-hero.svg";
+import registerHero from "../../assets/edit-hero.png";
+import logo from "../../assets/logo-white.svg";
 import TextInput from "../../components/input/TextInput";
+import DropdownInput from "../../components/input/DropdownInput";
 
 import classes from "./EditProfile.module.css";
 import SubmitButton from "../../components/buttons/SubmitButton";
@@ -8,17 +10,21 @@ import { useAuthContext } from "../../components/contexts/AuthContext";
 import { updateProfile } from "../../services/user.services";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Switch from "react-switch";
+import { useState } from "react";
 
 const EditProfilePage = () => {
   const { authData } = useAuthContext();
   const navigate = useNavigate();
 
+  const [areTermsAccepted, setAreTermsAccepted] = useState(false);
+
   const userData = authData.userData;
 
   const { form, setKey } = useForm({
-    first_name: userData.first_name || "",
-    last_name: userData.last_name || "",
+    name: userData.name || "",
     social_media_link: userData.social_media_link || "",
+    role: userData.role || "",
   });
 
   const handleUpdateProfile = async () => {
@@ -38,24 +44,37 @@ const EditProfilePage = () => {
   return (
     <h1 className={classes.main_container}>
       <img src={registerHero} className={classes.hero_image} alt="Hero" />
+      <img src={logo} alt="Hero" />
+      <h4 className={classes.subtitle}>Only one step away...</h4>
       <TextInput
         placeholder="First Name"
         value={form.first_name}
         onChange={(e) => setKey("first_name", e.target.value)}
       />
       <TextInput
-        placeholder="Last Name"
-        value={form.last_name}
-        onChange={(e) => setKey("last_name", e.target.value)}
-      />
-      <TextInput
         placeholder="Social Media Link"
         value={form.social_media_link}
         onChange={(e) => setKey("social_media_link", e.target.value)}
       />
-      <div style={{ width: 267, paddingLeft: 10 }}>
-        <SubmitButton title="Save" onClick={handleUpdateProfile} />
-      </div>
+      <DropdownInput
+        options={["Host", "Performer", "Audience"]}
+        handleSelect={(e) => setKey("role", e)}
+        placeholder="Select Role"
+        selectedValue={form.role}
+      />
+      <p className={classes.terms_conditions}>
+        I accept terms and conditions
+        <Switch
+          onChange={setAreTermsAccepted}
+          checked={areTermsAccepted}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          offColor="#939393"
+          onColor=""
+        />
+      </p>
+
+      <SubmitButton title="Save" onClick={handleUpdateProfile} />
     </h1>
   );
 };

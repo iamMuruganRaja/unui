@@ -1,6 +1,7 @@
 .main_container {
   width: 100vw;
-  padding-top: 32vh;
+
+  padding: 100px 0px 40px 0px;
 }
 
 .page_title {
@@ -12,71 +13,70 @@
 
   text-align: center;
 
-  color: #30513e;
+  color: #2ed365;
 }
 
 .card_carousel {
-  padding: 40px 20px;
+  padding: 20px 0px;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+
+  align-items: center;
 
   gap: 20px;
-
-  flex-wrap: nowrap;
-  overflow-x: scroll;
 }
 
-.card_outer_container {
-  min-width: 258px;
-  max-width: 258px;
-  height: 262px;
+.carousel_card_item {
+  width: 300px;
+  height: 300px;
 
-  background: #30513e;
-  border-radius: 30px;
+  padding: 18px;
 
-  padding: 15px;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.card_inner_container {
-  flex: 1;
-
-  width: 100%;
-
-  background: #ffffff;
-  opacity: 0.9;
-  box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 30px;
+  border-radius: 20px;
+  background-image: url("https://i.ibb.co/HtRrwPV/bg.png");
 
   display: flex;
   flex-direction: column;
 
+  justify-content: space-between;
   align-items: stretch;
-
-  padding: 20px;
 }
 
-.card_footer {
-  margin: 10px;
-  margin-top: 20px;
-
+.top_row {
   display: flex;
   flex-direction: row;
+
   justify-content: space-between;
+  align-items: flex-start;
 }
 
-.participant_count {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 7px;
-  line-height: 9px;
+.bottom_row {
+  display: flex;
+  flex-direction: row;
 
-  color: #ffffff;
-  position: relative;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.name_container {
+  color: #fff;
+  text-align: left;
+  font-size: 20px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.host_container {
+  color: #939393;
+  text-align: left;
+  font-size: 14px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .participants {
@@ -94,101 +94,52 @@
   position: relative;
 }
 
-.register_btn {
-  width: 67px;
-  height: 20px;
-
-  background: #ffffff;
-  border-radius: 5px;
-
-  font-family: "Montserrat";
+.participant_count {
+  color: #fff;
+  font-size: 10px;
+  font-family: Montserrat;
   font-style: normal;
-  font-weight: 400;
-  font-size: 9px;
-  line-height: 11px;
+  font-weight: 600;
+  line-height: normal;
 
-  text-align: center;
-
-  color: #30513e;
-
-  outline: none;
-  border: none;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-left: 4px;
 }
 
-.card_details_horizontal {
-  flex: 1;
-
-  display: flex;
-  flex-direction: row;
-
-  justify-content: space-between;
-  align-items: center;
-}
-
-.round_img {
+.date_box {
   width: 60px;
   height: 60px;
 
-  border-radius: 50%;
-}
+  border-radius: 10px;
+  background: #fffa;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.35);
 
-.highlights_title {
-  font-family: "Montserrat";
+  display: grid;
+  place-items: center;
+
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 29px;
+  line-height: normal;
+}
+
+.register_button {
+  width: 81px;
+  height: 25px;
+
+  border-radius: 10px;
+  background: #fffa;
+
+  color: #fff;
   text-align: center;
-
-  color: #30513e;
-}
-
-.highlight_carousel {
-  display: flex;
-  flex-direction: row;
-
-  flex-wrap: nowrap;
-  gap: 20px;
-
-  overflow-x: scroll;
-
-  padding: 20px;
-}
-
-.highlight_img {
-  border-radius: 20px;
-  width: 120px;
-  height: 120px;
-}
-
-.details_text {
-  font-family: "Philosopher";
+  font-size: 10px;
+  font-family: Montserrat;
   font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 17px;
+  font-weight: 600;
+  line-height: normal;
 
-  color: #000000;
-}
-
-.card_carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.card_carousel {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-.highlight_carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.highlight_carousel {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  display: grid;
+  place-items: center;
 }

@@ -187,7 +187,7 @@
   line-height: 14px;
   text-align: center;
 
-  color: #30513e;
+  color: #2ed365;
 
   outline: none;
   border: none;
@@ -204,16 +204,16 @@
 }
 
 .top_icon_container {
-    align-self: stretch;
-    padding: 0px 30px;
+  align-self: stretch;
+  padding: 0px 30px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .edit_btn {
-    border: none;
-    background: none;
-    outline: none;
+  border: none;
+  background: none;
+  outline: none;
 }

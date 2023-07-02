@@ -24,8 +24,8 @@ function DropdownInput({
   return (
     <div className={classes.main_container}>
       <motion.div
-        initial={{ height: 40 }}
-        animate={{ height: isDropdownOpen ? 160 : 40 }}
+        initial={{ height: 70 }}
+        animate={{ height: isDropdownOpen ? 280 : 70 }}
         className={classes.dropdown_container}
       >
         <button

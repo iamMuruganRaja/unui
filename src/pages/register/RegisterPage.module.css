@@ -1,6 +1,4 @@
 .main_container {
-  background: url("../../assets/register-hero.svg");
-
   min-height: 100vh;
   background-size: contain;
   background-position: top;
@@ -12,7 +10,74 @@
 
   align-items: center;
 
-  padding: 300px 0px 0px 0px;
-
   gap: 20px;
+
+  background-color: #2ed365;
+}
+
+.title {
+  color: #fff;
+  font-size: 32px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.subtitle {
+  color: #fff;
+  font-size: 14px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  gap: 10px;
+}
+
+.button_group {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+}
+
+.button_group_item {
+  background: #d9d9d9;
+  padding: 4px;
+
+  border: 1px solid #000;
+}
+
+.bottom_button {
+  min-width: 167px;
+  height: 50px;
+
+  border: 0px solid #000;
+  border-radius: 30px;
+  background: #8bbf69;
+
+  padding: 0px 20px;
+
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.resend_button {
+  align-self: flex-start;
+  margin-left: 35px;
+
+  background: none;
+  text-decoration: underline;
+  color: white;
+  border: none;
 }

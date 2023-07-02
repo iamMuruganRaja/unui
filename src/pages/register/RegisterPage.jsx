@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+import headphone from "../../assets/headphone.png";
+import logo from "../../assets/logo-white.svg";
+import whatsapp from "../../assets/whatsapp.svg";
+
 import classes from "./RegisterPage.module.css";
 import SubmitButton from "../../components/buttons/SubmitButton";
 import useForm from "../../components/hooks/useForm";
@@ -8,12 +12,13 @@ import { useAuthContext } from "../../components/contexts/AuthContext";
 import OtpModal from "../../components/modal/OtpModal";
 import { toast } from "react-toastify";
 import MobileInput from "../../components/input/MobileInput";
+import OTPInput from "react-otp-input";
 
 const RegisterPage = () => {
   const { verifyOtp } = useAuthContext();
 
   const [isSendingOtp, setIsSendingOtp] = useState(false);
-  const [maskedPhone, setMaskedPhone] = useState("");
+  const [isYesSelected, setIsYesSelected] = useState(null);
   const [hash, setHash] = useState("");
   const { form, setKey } = useForm({ phone: "" });
 
@@ -38,7 +43,6 @@ const RegisterPage = () => {
     if (!data.status) return toast.error(data.errors[0]);
 
     setHash(data.data.otp_uuid);
-    setMaskedPhone(data.data.masked_phone);
   };
 
   const handleVerifyOtp = async () => {
@@ -47,24 +51,72 @@ const RegisterPage = () => {
 
   return (
     <h1 className={classes.main_container}>
-      <MobileInput
-        placeholder="Whatsapp Number"
-        value={form.phone}
-        onChange={(e) => setKey("phone", e.target.value)}
-        type="number"
-      />
-      <SubmitButton
-        title="Get OTP"
-        onClick={handleSendOtp}
-        loading={isSendingOtp}
-      />
-      <OtpModal
-        isOpen={!!hash}
-        phone={maskedPhone}
-        form={form}
-        setKey={setKey}
-        handleSubmit={handleVerifyOtp}
-      />
+      <img src={headphone} />
+      <img src={logo} />
+      <h3 className={classes.title}>Join in the fun!</h3>
+      {!hash ? (
+        <>
+          <MobileInput
+            placeholder="Phone Number"
+            value={form.phone}
+            onChange={(e) => setKey("phone", e.target.value)}
+            type="number"
+          />
+          <div className={classes.subtitle}>
+            <p>Do you have WhatsApp?</p>
+            <img src={whatsapp} className={classes.whatsapp_icon} />
+            <div className={classes.button_group}>
+              <button
+                className={classes.button_group_item}
+                onClick={() => setIsYesSelected(true)}
+                style={isYesSelected ? { backgroundColor: "#939393" } : {}}
+              >
+                Yes
+              </button>
+              <button
+                className={classes.button_group_item}
+                onClick={() => setIsYesSelected(false)}
+                style={
+                  isYesSelected === false ? { backgroundColor: "#939393" } : {}
+                }
+              >
+                No
+              </button>
+            </div>
+          </div>
+          <button onClick={handleSendOtp} className={classes.bottom_button}>
+            {isYesSelected === null
+              ? "Sign in"
+              : isYesSelected
+              ? "Send OTP via WhatsApp"
+              : "Send OTP via SMS"}
+          </button>
+        </>
+      ) : (
+        <>
+          <OTPInput
+            shouldAutoFocus
+            value={form.otp}
+            inputType="number"
+            onChange={(e) => setKey("otp", e)}
+            numInputs={6}
+            renderSeparator={<span>&nbsp;&nbsp;</span>}
+            renderInput={(props) => <input {...props} />}
+            inputStyle={{
+              marginTop: 40,
+              width: 40,
+              height: 40,
+              background: "transparent",
+              border: "none",
+              borderBottom: "1px solid #fff",
+            }}
+          />
+          <button className={classes.resend_button}>Resend OTP</button>
+          <button onClick={handleSendOtp} className={classes.bottom_button}>
+            Enter OTP
+          </button>
+        </>
+      )}
     </h1>
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 import classes from "./LoadingComponent.module.css";
 import { ClipLoader } from "react-spinners";
 
-function LoadingComponent({ fill = true, color = "#30513E", size = 50 }) {
+function LoadingComponent({ fill = true, color = "#2ED365", size = 50 }) {
   return (
     <div
       className={

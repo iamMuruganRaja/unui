@@ -6,11 +6,12 @@ import ConfirmationPage from "./confirmation/ConfirmationPage";
 import ExplorePage from "./explore/ExplorePage";
 import UpcomingPage from "./upcoming/UpcomingPage";
 import { useAuthContext } from "../components/contexts/AuthContext";
-import NavbarComponent from "../components/navbar/NavbarComponent";
 import LoadingComponent from "../components/loading/LoadingComponent";
 import EditProfilePage from "./edit-profile/EditProfile";
 import ParticipantsPage from "./participants/ParticipantsPage";
 import SchedulePage from "./schedule/SchedulePage";
+import TopNav from "../components/navbar/TopNav";
+import BottomNav from "../components/navbar/BottomNav";
 
 function MainRouter() {
   const { authData, isAuthLoading } = useAuthContext();
@@ -27,7 +28,7 @@ function MainRouter() {
 
   return (
     <>
-      <NavbarComponent />
+      <TopNav />
       {isAuthLoading ? (
         <LoadingComponent />
       ) : (
@@ -59,6 +60,7 @@ function MainRouter() {
           </Routes>
         </>
       )}
+      <BottomNav />
     </>
   );
 }

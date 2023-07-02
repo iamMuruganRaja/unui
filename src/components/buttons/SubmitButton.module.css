@@ -1,20 +1,15 @@
 .button_container {
-  width: 146px;
-  height: 39px;
+  width: 167px;
+  height: 50px;
+  flex-shrink: 0;
 
-  background: #30513E;
-  border-radius: 15px;
+  border-radius: 30px;
+  background: #8bbf69;
 
-  font-family: "Montserrat";
+  color: #2ed365;
+  font-size: 16px;
+  font-family: Montserrat;
   font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 12px;
-
-  text-align: center;
-
-  color: #FFFFFF;
-
-  outline: none;
-  border: none;
+  font-weight: 500;
+  line-height: normal;
 }

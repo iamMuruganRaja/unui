@@ -1,79 +1,65 @@
 .main_container {
-  width: 267px;
-  height: 40px;
-
   position: relative;
+
+  width: 314px;
+  height: 70px;
 }
 
 .dropdown_container {
   position: absolute;
+
   top: 0px;
   left: 0px;
 
-  width: 267px;
-
-  border-radius: 15px;
+  width: 314px;
 
   overflow: hidden;
 
   display: inline;
 
   z-index: 1;
+
+  border-radius: 30px;
 }
 
 .input_container {
-  width: 267px;
-  height: 40px;
+  width: 314px;
+  height: 70px;
 
-  background: #b2c990;
-
-  opacity: 0.6;
-
+  background: #fff;
   border: none;
-  outline: none;
 
   position: relative;
 
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 12px;
-
+  color: #2ed365;
   text-align: center;
-
-  color: #16330d;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  font-size: 24px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .option_container {
-  width: 267px;
-  height: 40px;
+  width: 314px;
+  height: 70px;
 
-  outline: none;
+  background: none;
   border: none;
-  display: block;
+  background-color: white;
 
-  opacity: 1;
-
-  background: #b2c990;
-
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 12px;
+  color: #000;
   text-align: center;
-
-  color: #16330d;
+  font-size: 16px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .ctx_icon {
   position: absolute;
-  right: 15px;
-  top: 15px;
+
+  right: 35px;
+  top: 35px;
 }

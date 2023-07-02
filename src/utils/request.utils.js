@@ -32,7 +32,6 @@ export const sendRequest = async (args) => {
 
     return response;
   } catch (error) {
-    toast.error(error.message);
     return { error };
   }
 };

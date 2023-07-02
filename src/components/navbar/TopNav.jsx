@@ -5,11 +5,11 @@ import { useLocation } from "react-router-dom";
 
 import { useAuthContext } from "../contexts/AuthContext";
 
-import classes from "./NavbarComponent.module.css";
+import classes from "./TopNav.module.css";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../../utils/storage.utils";
 
-function NavbarComponent() {
+function TopNav() {
   const { isAuthLoading, authData } = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,7 +24,6 @@ function NavbarComponent() {
   const toggleSidebar = () => {
     setIsOpen((i) => !i);
   };
-
 
   return (
     <div className={classes.navbar}>
@@ -84,4 +83,4 @@ function NavbarComponent() {
   );
 }
 
-export default NavbarComponent;
+export default TopNav;
