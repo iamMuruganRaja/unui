@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-import confirmHero from "../../assets/confirm-hero.svg";
+import participants from "../../assets/card-icon.png";
+import confirmHero from "../../assets/confirm-hero.png";
 import cardIcon from "../../assets/card-icon.png";
-import confirmCards from "../../assets/confirm_cards.png";
-import carouselCtx from "../../assets/confirm_carousel_icons.svg";
-import editIcon from "../../assets/confirm-edit.svg";
 
 import classes from "./ExplorePage.module.css";
 import { Link, useParams } from "react-router-dom";
-import { getEvent } from "../../services/events.services";
+import { getEvent, getEvents } from "../../services/events.services";
 import dayjs from "dayjs";
 import LoadingComponent from "../../components/loading/LoadingComponent";
 
 const ExplorePage = () => {
   const [eventDetails, setEventDetails] = useState(null);
+  const [upcoming, setUpcoming] = useState(null);
 
   const { eventId } = useParams();
 
@@ -27,20 +26,22 @@ const ExplorePage = () => {
     })();
   }, [eventId]);
 
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await getEvents();
+
+      if (!!error) return;
+
+      setUpcoming(data.data);
+    })();
+  }, []);
+
   if (!eventDetails) return <LoadingComponent />;
 
   return (
     <div className={classes.main_container}>
       <img alt="icon" src={confirmHero} />
       <div className={classes.card_container}>
-        <div className={classes.top_icon_container}>
-          <Link
-            to={`/event?event_id=${eventDetails.uuid}`}
-            className={classes.edit_btn}
-          >
-            <img className={classes.edit_icon} src={editIcon} alt="edit" />
-          </Link>
-        </div>
         <div className={classes.card_details_section}>
           <div className={classes.card_details_horizontal}>
             <img alt="icon" src={cardIcon} className={classes.round_img} />
@@ -76,45 +77,72 @@ const ExplorePage = () => {
           </a>
         </div>
       </div>
-      <div className={classes.bottom_carousel}>
-        <div className={classes.carousel_card}>
-          <img
-            alt="icon"
-            src={confirmCards}
-            className={classes.carousel_image}
-          />
-          <div className={classes.bottom_footer}>
-            <div className={classes.left_icons}>
-              <img alt="icon" src={carouselCtx} />
+      <div className={classes.upcoming_container}>
+        <h1>Upcoming Events</h1>
+        <div className={classes.upcoming_carousel}>
+          {upcoming.map((event) => (
+            <div className={classes.carousel_card_item}>
+              <div className={classes.top_row}>
+                <div className={classes.participants}>
+                  {event.event_participants.length > 0 && (
+                    <img
+                      alt="icon"
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: 0 }}
+                    />
+                  )}
+                  {event.event_participants.length > 1 && (
+                    <img
+                      alt="icon"
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: -5 }}
+                    />
+                  )}
+                  {event.event_participants.length > 2 && (
+                    <img
+                      alt="icon"
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: -10 }}
+                    />
+                  )}
+                  {event.event_participants.length > 3 && (
+                    <img
+                      alt="icon"
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: -15 }}
+                    />
+                  )}
+                  <p
+                    className={classes.participant_count}
+                    style={{
+                      left: 10 - 5 * (event.event_participants.length % 4),
+                    }}
+                  >
+                    {event.event_participants.length} Participants
+                  </p>
+                </div>
+                <div className={classes.date_box}>
+                  {dayjs(event.start_time).format("DD MMM")}
+                </div>
+              </div>
+              <div className={classes.bottom_row}>
+                <div className={classes.left_container}>
+                  <h3 className={classes.name_container}>{event.name}</h3>
+                  <h4 className={classes.host_container}>Host: John Doe</h4>
+                </div>
+                <Link
+                  to={`/event?event_id=${event.uuid}`}
+                  className={classes.register_button}
+                >
+                  Register
+                </Link>
+              </div>
             </div>
-            <button className={classes.bottom_pill}>RSVP</button>
-          </div>
-        </div>
-        <div className={classes.carousel_card}>
-          <img
-            alt="icon"
-            src={confirmCards}
-            className={classes.carousel_image}
-          />
-          <div className={classes.bottom_footer}>
-            <div className={classes.left_icons}>
-              <img alt="icon" src={carouselCtx} />
-            </div>
-            <button className={classes.bottom_pill}>RSVP</button>
-          </div>
-        </div>
-        <div className={classes.carousel_card}>
-          <img
-            alt="icon"
-            src={confirmCards}
-            className={classes.carousel_image}
-          />
-          <div className={classes.bottom_footer}>
-            <div className={classes.left_icons}>
-              <img alt="icon" src={carouselCtx} />
-            </div>
-            <button className={classes.bottom_pill}>RSVP</button>
-          </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 .main_container {
   background-color: #2ed365;
   min-height: 100vh;
+  padding-bottom: 10vh;
   background-size: cover;
   background-position: bottom;
 

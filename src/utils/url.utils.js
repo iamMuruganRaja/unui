@@ -1,6 +1,6 @@
 const BASE_URL =
-    process.env.REACT_API_URL ||
-    "https://19296028-bd19-458b-95f4-a715f739ba4a.mock.pstmn.io"
+  // "https://api.unmutex.in";
+  "https://19296028-bd19-458b-95f4-a715f739ba4a.mock.pstmn.io";
 
 // AUTH
 

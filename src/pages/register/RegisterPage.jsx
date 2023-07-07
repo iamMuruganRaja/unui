@@ -5,11 +5,9 @@ import logo from "../../assets/logo-white.svg";
 import whatsapp from "../../assets/whatsapp.svg";
 
 import classes from "./RegisterPage.module.css";
-import SubmitButton from "../../components/buttons/SubmitButton";
 import useForm from "../../components/hooks/useForm";
 import { loginorsignup } from "../../services/auth.services";
 import { useAuthContext } from "../../components/contexts/AuthContext";
-import OtpModal from "../../components/modal/OtpModal";
 import { toast } from "react-toastify";
 import MobileInput from "../../components/input/MobileInput";
 import OTPInput from "react-otp-input";
@@ -17,7 +15,6 @@ import OTPInput from "react-otp-input";
 const RegisterPage = () => {
   const { verifyOtp } = useAuthContext();
 
-  const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isYesSelected, setIsYesSelected] = useState(null);
   const [hash, setHash] = useState("");
   const { form, setKey } = useForm({ phone: "" });
@@ -32,11 +29,7 @@ const RegisterPage = () => {
       return toast.error("Invalid Mobile Number");
     }
 
-    setIsSendingOtp(true);
-
     const { data, error } = await loginorsignup({ phone: form.phone });
-
-    setIsSendingOtp(false);
 
     if (!!error) return;
 

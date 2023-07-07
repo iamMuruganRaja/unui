@@ -2,7 +2,8 @@
   width: 100vw;
   min-height: 100vh;
 
-  background-position: top;
-  background-size: contain;
+  background-position-x: center;
+  background-position-y: top;
+  background-size: 100vw auto;
   background-repeat: no-repeat;
 }

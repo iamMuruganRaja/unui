@@ -1,30 +1,32 @@
 import React, { useEffect, useState } from "react";
 
-import confirmHero from "../../assets/confirm-hero.svg";
-import checkCircle from "../../assets/check-circle.svg";
+import participants from "../../assets/card-icon.png";
+import confirmHero from "../../assets/confirm-hero.png";
 import confirmDownload from "../../assets/confirm-download.svg";
 import confirmEdit from "../../assets/confirm-edit.svg";
 import confirmShare from "../../assets/confirm-share.svg";
-import cardLogo from "../../assets/card-logo.svg";
-import cardIcon from "../../assets/card-icon.png";
-import confirmCards from "../../assets/confirm_cards.png";
-import carouselCtx from "../../assets/confirm_carousel_icons.svg";
 
 import classes from "./ConfirmationPage.module.css";
 import { Link, useSearchParams } from "react-router-dom";
-import { getEvent, registerForEvent } from "../../services/events.services";
+import {
+  getEvent,
+  getEvents,
+  registerForEvent,
+} from "../../services/events.services";
 import dayjs from "dayjs";
 import { useAuthContext } from "../../components/contexts/AuthContext";
 import RoleModal from "../../components/modal/RoleModal";
-import { toast } from "react-toastify";
 import LoadingComponent from "../../components/loading/LoadingComponent";
 
 const ConfirmationPage = () => {
   const { authData } = useAuthContext();
 
+  const [isConfirmationShowing, setIsConfirmationShowing] = useState(true);
+
   const [isRegistered, setIsRegistered] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
   const [eventDetails, setEventDetails] = useState(null);
+  const [upcoming, setUpcoming] = useState(null);
   const [searchParams] = useSearchParams();
 
   const handleRegister = async (role) => {
@@ -43,9 +45,9 @@ const ConfirmationPage = () => {
 
     if (!!error) return;
 
-    toast.success("Registered for event successfully");
-
     setIsRegistered(true);
+
+    setTimeout(() => setIsConfirmationShowing(false), 3000);
 
     localStorage.removeItem("event_id");
   };
@@ -62,6 +64,16 @@ const ConfirmationPage = () => {
     })();
   }, [searchParams]);
 
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await getEvents();
+
+      if (!!error) return;
+
+      setUpcoming(data.data);
+    })();
+  }, []);
+
   const handleShare = () => {
     if (!navigator?.share) return;
 
@@ -72,12 +84,12 @@ const ConfirmationPage = () => {
     });
   };
 
-  if (!eventDetails) return <LoadingComponent />;
+  if (!eventDetails || !upcoming) return <LoadingComponent />;
 
-  return (
-    <div className={classes.main_container}>
+  if (!isRegistered)
+    return (
       <RoleModal
-        isOpen={!isRegistered}
+        isOpen={true}
         handleSubmit={handleRegister}
         isButtonLoading={isRegistering}
         isUpdating={
@@ -86,104 +98,114 @@ const ConfirmationPage = () => {
             .indexOf(authData.userData.uuid) > -1
         }
       />
-      <img alt="icon" src={confirmHero} />
-      <img alt="icon" src={checkCircle} />
-      <div className={classes.card_container}>
-        <div className={classes.top_container}>
-          <img alt="icon" className={classes.card_image} src={cardIcon} />
-          <img alt="icon" className={classes.card_logo} src={cardLogo} />
-        </div>
-        <div className={classes.card_details_section}>
-          <div className={classes.card_details_item}>
-            <p className={classes.card_details_key}>Name</p>
-            <p className={classes.card_details_value}>{eventDetails?.name}</p>
-          </div>
-          <div className={classes.card_details_item}>
-            <p className={classes.card_details_key}>Role Selected</p>
-            <p className={classes.card_details_value}>
-              {eventDetails?.event_participants[0].role}
-            </p>
-          </div>
-          <div className={classes.card_details_item}>
-            <p className={classes.card_details_key}>Date & Time</p>
-            <p className={classes.card_details_value}>
-              {dayjs(eventDetails?.start_time).format("MMM D, YYYY h:mm A")}
-            </p>
-          </div>
-          <div className={classes.card_details_item}>
-            <p className={classes.card_details_key}>Theme</p>
-            <p className={classes.card_details_value}>{eventDetails?.genre}</p>
-          </div>
-          <div className={classes.card_details_item}>
-            <p className={classes.card_details_key}>Venue</p>
-            <p className={classes.card_details_value}>
-              {eventDetails?.platform}
-            </p>
-          </div>
-        </div>
-        <div className={classes.card_footer}>
-          <Link
-            className={classes.card_pill_button}
-            to={`/details/${eventDetails?.uuid}`}
-          >
-            Details
-          </Link>
-          <div className={classes.card_icons_container}>
-            <img alt="icon" className={classes.card_icon} src={confirmEdit} />
-            <img
-              alt="icon"
-              className={classes.card_icon}
-              src={confirmDownload}
-            />
-            <button className={classes.ctx_btns} onClick={handleShare}>
-              <img
-                alt="icon"
-                className={classes.card_icon}
-                src={confirmShare}
-              />
-            </button>
-          </div>
-        </div>
+    );
+
+  if (isConfirmationShowing)
+    return (
+      <div className={classes.confirmation_container}>
+        <h1>CONFIRMED!</h1>
+        <h2>You have successfully registered for the event!</h2>
       </div>
-      <div className={classes.bottom_carousel}>
-        <div className={classes.carousel_card}>
-          <img
-            alt="icon"
-            src={confirmCards}
-            className={classes.carousel_image}
-          />
-          <div className={classes.bottom_footer}>
-            <div className={classes.left_icons}>
-              <img alt="icon" src={carouselCtx} />
-            </div>
-            <button className={classes.bottom_pill}>RSVP</button>
+    );
+
+  return (
+    <div className={classes.main_container}>
+      <img src={confirmHero} />
+      <Link
+        className={classes.carousel_card_item}
+        to={`/details/${eventDetails.uuid}`}
+      >
+        <div className={classes.top_row}>
+          <div className={classes.left_container}>
+            <h3 className={classes.name_container}>{eventDetails.name}</h3>
+            <h4 className={classes.host_container}>Host: John Doe</h4>
+            <h4 className={classes.host_container}>
+              Time: {dayjs(eventDetails.start_time).format("hh:mm a")}
+            </h4>
+          </div>
+          <div className={classes.date_box}>
+            {dayjs(eventDetails.start_time).format("DD MMM")}
           </div>
         </div>
-        <div className={classes.carousel_card}>
-          <img
-            alt="icon"
-            src={confirmCards}
-            className={classes.carousel_image}
-          />
-          <div className={classes.bottom_footer}>
-            <div className={classes.left_icons}>
-              <img alt="icon" src={carouselCtx} />
-            </div>
-            <button className={classes.bottom_pill}>RSVP</button>
-          </div>
+        <div className={classes.middle_row}>{eventDetails.description}</div>
+        <div className={classes.bottom_row}>
+          <button className={classes.icon_button} onClick={handleShare}>
+            <img src={confirmEdit} />
+          </button>
+          <button className={classes.icon_button} onClick={handleShare}>
+            <img src={confirmDownload} />
+          </button>
+          <button className={classes.icon_button} onClick={handleShare}>
+            <img src={confirmShare} />
+          </button>
         </div>
-        <div className={classes.carousel_card}>
-          <img
-            alt="icon"
-            src={confirmCards}
-            className={classes.carousel_image}
-          />
-          <div className={classes.bottom_footer}>
-            <div className={classes.left_icons}>
-              <img alt="icon" src={carouselCtx} />
+      </Link>
+      <div className={classes.upcoming_container}>
+        <h1>Upcoming Events</h1>
+        <div className={classes.upcoming_carousel}>
+          {upcoming.map((event) => (
+            <div className={classes.carousel_card_item}>
+              <div className={classes.top_row}>
+                <div className={classes.participants}>
+                  {event.event_participants.length > 0 && (
+                    <img
+                      alt="icon"
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: 0 }}
+                    />
+                  )}
+                  {event.event_participants.length > 1 && (
+                    <img
+                      alt="icon"
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: -5 }}
+                    />
+                  )}
+                  {event.event_participants.length > 2 && (
+                    <img
+                      alt="icon"
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: -10 }}
+                    />
+                  )}
+                  {event.event_participants.length > 3 && (
+                    <img
+                      alt="icon"
+                      className={classes.participant_icon}
+                      src={participants}
+                      style={{ left: -15 }}
+                    />
+                  )}
+                  <p
+                    className={classes.participant_count}
+                    style={{
+                      left: 10 - 5 * (event.event_participants.length % 4),
+                    }}
+                  >
+                    {event.event_participants.length} Participants
+                  </p>
+                </div>
+                <div className={classes.date_box}>
+                  {dayjs(event.start_time).format("DD MMM")}
+                </div>
+              </div>
+              <div className={classes.bottom_row}>
+                <div className={classes.left_container}>
+                  <h3 className={classes.name_container}>{event.name}</h3>
+                  <h4 className={classes.host_container}>Host: John Doe</h4>
+                </div>
+                <Link
+                  to={`/event?event_id=${event.uuid}`}
+                  className={classes.register_button}
+                >
+                  Register
+                </Link>
+              </div>
             </div>
-            <button className={classes.bottom_pill}>RSVP</button>
-          </div>
+          ))}
         </div>
       </div>
     </div>
