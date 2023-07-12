@@ -36,7 +36,7 @@ const ExplorePage = () => {
     })();
   }, []);
 
-  if (!eventDetails) return <LoadingComponent />;
+  if (!eventDetails || !upcoming) return <LoadingComponent />;
 
   return (
     <div className={classes.main_container}>

@@ -76,9 +76,6 @@ function ParticipantsPage() {
               <div className={classes.details}>
                 <h2 className={classes.name}>
                   {participant.first_name} {participant.last_name}
-                  <Link to="/edit-profile" className={classes.edit_icon}>
-                    <img src={editImg} />
-                  </Link>
                 </h2>
                 <p className={classes.text}>Performer</p>
                 <p className={classes.text}>Link by user</p>

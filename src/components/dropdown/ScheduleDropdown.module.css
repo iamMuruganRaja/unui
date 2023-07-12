@@ -1,0 +1,78 @@
+.main_container {
+  position: relative;
+
+  width: 314px;
+  height: 50px;
+}
+
+.dropdown_container {
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+
+  width: 314px;
+  overflow: hidden;
+
+  display: inline;
+
+  border-radius: 30px;
+}
+
+.input_container {
+  width: 314px;
+  height: 50px;
+
+  border: none;
+
+  position: relative;
+
+  color: #fff;
+  text-align: left;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  z-index: 0;
+}
+
+.option_container {
+  position: relative;
+  padding: 20px;
+  width: 314px;
+  height: 50px;
+
+  background: none;
+  border: none;
+  background-color: white;
+
+  color: #fff;
+  text-align: left;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  text-align: center;
+  z-index: 2;
+}
+
+.ctx_icon {
+  position: absolute;
+
+  right: 35px;
+  top: 35px;
+}

@@ -1,6 +1,4 @@
 .main_container {
-  background: url("https://images.unsplash.com/photo-1607851552752-146106c26e37?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
-
   width: 100vw;
   min-height: 100vh;
   background-size: cover;
@@ -10,87 +8,66 @@
   flex-direction: column;
   justify-content: flex-start;
 
-  align-items: center;
+  align-items: stretch;
 
-  padding: 50px 0px;
+  padding-bottom: 50px;
 
   gap: 20px;
 }
 
-.schedule_container {
-  height: 60vh;
-  width: 80vw;
+.schedule_header {
+  padding: 0px 28px;
 
-  background: #8bbf6999;
-  border-radius: 15px;
-
-  padding: 10px;
-
-  overflow-y: scroll;
-}
-
-.bottom_buttons {
   display: flex;
   flex-direction: row;
+
+  align-items: flex-start;
   justify-content: space-between;
-
-  align-self: stretch;
-  padding: 0px 40px;
 }
 
-.bottom_button {
-  font-family: "Biryani";
+.schedule_title {
+  color: #30513e;
+  font-family: Montserrat;
+  font-size: 20px;
   font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-
-  text-align: center;
-
-  color: #2ed365;
-
-  width: 113.72px;
-  height: 26.32px;
-
-  background: #ffffff;
-  border-radius: 10px;
+  font-weight: 700;
+  line-height: normal;
 }
 
-.divider {
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.75);
-}
-
-.participant_item {
-  font-family: "Biryani";
+.schedule_date {
+  color: #939393;
+  font-family: Montserrat;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-
-  display: flex;
-  align-items: center;
-
-  color: #ffffff;
+  font-weight: 500;
+  line-height: normal;
 }
 
-.schedule_row {
+.schedule_list {
+  padding: 0px 16px;
+}
+
+.list_item {
+  margin-top: 16px;
+
   display: flex;
   flex-direction: row;
-
-  font-family: "Biryani";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-
-  color: #ffffff;
-
-  height: 40px;
 }
 
-.time {
-  width: 100px;
+.join_event_button {
+  width: 96px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #30513e;
+
+  color: #fff;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  margin-left: 20px;
 }

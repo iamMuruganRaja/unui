@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 
-import heroImg from "../../assets/schedule-logo.svg";
+import heroImg from "../../assets/details-hero.png";
+import editIcon from "../../assets/edit-icon.svg";
+import reorderIcon from "../../assets/reorder-icon.svg";
 
 import classes from "./SchedulePage.module.css";
 import { Link, useParams } from "react-router-dom";
 import { getEvent } from "../../services/events.services";
 import dayjs from "dayjs";
 import LoadingComponent from "../../components/loading/LoadingComponent";
+import ScheduleDropdown from "../../components/dropdown/ScheduleDropdown";
+import { ReactSortable } from "react-sortablejs";
 
 function SchedulePage() {
   const { eventId } = useParams();
 
   const [eventDetails, setEventDetails] = useState(null);
+  const [schedule, setSchedule] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -20,6 +25,11 @@ function SchedulePage() {
       if (!!error) return;
 
       setEventDetails(data.data);
+      setSchedule([
+        ...data.data.event_participants,
+        ...data.data.event_participants,
+        ...data.data.event_participants,
+      ]);
     })();
   }, [eventId]);
 
@@ -29,50 +39,36 @@ function SchedulePage() {
     <div className={classes.main_container}>
       <img alt="hero" src={heroImg} className={classes.hero_img} />
 
-      <div className={classes.schedule_container}>
-        <div className={classes.schedule_row}>
-          <h3 className={classes.participant_item}>SCHEDULE</h3>
+      <div className={classes.schedule_header}>
+        <div>
+          <h2 className={classes.schedule_title}>Today's Schedule</h2>
+          <h6 className={classes.schedule_date}>
+            {dayjs().format("dddd, D MMMM")}
+          </h6>
         </div>
-        <div className={classes.divider} />
-        {eventDetails && (
-          <>
-            <div className={classes.schedule_row}>
-              <div className={classes.time}>
-                {dayjs(eventDetails?.start_time).format("hh:mma")}
-              </div>
-              <div className={classes.performance}>Start</div>
-            </div>
-            <div className={classes.divider} />
-          </>
-        )}
-        {eventDetails &&
-          eventDetails.event_participants.map((participant, index) => (
-            <>
-              <div className={classes.schedule_row}>
-                <div className={classes.time}>
-                  {dayjs(participant.actual_slot_start_time).format("hh:mma")}
-                </div>
-                <div className={classes.performance}>
-                  Performance {index + 1}
-                </div>
-              </div>
-              <div className={classes.divider} />
-            </>
-          ))}
+        <img src={editIcon} />
       </div>
-
-      <div className={classes.bottom_buttons}>
-        <a
-          href={eventDetails.link}
-          target="_blank"
-          rel="noreferrer"
-          className={classes.bottom_button}
+      <div className={classes.schedule_list}>
+        <ReactSortable
+          list={schedule}
+          setList={setSchedule}
+          handle={classes.handle_img}
         >
-          Connect
-        </a>
-        <Link to={`/participants/${eventId}`} className={classes.bottom_button}>
-          Participants
-        </Link>
+          {schedule.map((item, ind) => (
+            <div key={item.id} className={classes.list_item}>
+              <ScheduleDropdown
+                selectedValue="Present"
+                range={`10:00AM-11:00AM`}
+                event={item.status}
+              />
+              <img className={classes.handle_img} src={reorderIcon} />
+            </div>
+          ))}
+        </ReactSortable>
+        <div className={classes.list_item}></div>
+      </div>
+      <div>
+        <button className={classes.join_event_button}>Join Event</button>
       </div>
     </div>
   );
