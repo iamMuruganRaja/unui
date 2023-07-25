@@ -33,8 +33,6 @@ function ParticipantsPage() {
     })();
   }, [eventId]);
 
-  console.log({ authData });
-
   if (!eventDetails) return <LoadingComponent />;
 
   return (
@@ -49,8 +47,7 @@ function ParticipantsPage() {
             />
             <div className={classes.details}>
               <h2 className={classes.name}>
-                {authData.userData.user.first_name}{" "}
-                {authData.userData.user.last_name}
+                {authData.userData.first_name} {authData.userData.last_name}
                 <Link to="/edit profile" className={classes.edit_icon}>
                   <img src={editImg} />
                 </Link>

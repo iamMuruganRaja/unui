@@ -25,11 +25,7 @@ function SchedulePage() {
       if (!!error) return;
 
       setEventDetails(data.data);
-      setSchedule([
-        ...data.data.event_participants,
-        ...data.data.event_participants,
-        ...data.data.event_participants,
-      ]);
+      setSchedule([...data.data.event_participants]);
     })();
   }, [eventId]);
 

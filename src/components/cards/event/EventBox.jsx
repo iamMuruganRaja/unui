@@ -1,4 +1,8 @@
-import participants from "../../assets/card-icon.png";
+import participants from "../../../assets/card-icon.png";
+import dayjs from "dayjs";
+
+import classes from "./EventBox.module.css";
+import { Link } from "react-router-dom";
 
 const EventBox = ({ event }) => {
   return (
@@ -11,30 +15,6 @@ const EventBox = ({ event }) => {
               className={classes.participant_icon}
               src={participants}
               style={{ left: 0 }}
-            />
-          )}
-          {event.event_participants.length > 1 && (
-            <img
-              alt="icon"
-              className={classes.participant_icon}
-              src={participants}
-              style={{ left: -5 }}
-            />
-          )}
-          {event.event_participants.length > 2 && (
-            <img
-              alt="icon"
-              className={classes.participant_icon}
-              src={participants}
-              style={{ left: -10 }}
-            />
-          )}
-          {event.event_participants.length > 3 && (
-            <img
-              alt="icon"
-              className={classes.participant_icon}
-              src={participants}
-              style={{ left: -15 }}
             />
           )}
           <p
@@ -52,7 +32,9 @@ const EventBox = ({ event }) => {
       </div>
       <div className={classes.bottom_row}>
         <div className={classes.left_container}>
-          <h3 className={classes.name_container}>{event.name}</h3>
+          <h3 className={classes.name_container}>
+            {event.name.substring(0, 10)}
+          </h3>
           <h4 className={classes.host_container}>Host: John Doe</h4>
         </div>
         <Link

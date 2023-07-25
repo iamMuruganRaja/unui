@@ -7,11 +7,21 @@
 
   background-color: #2ed365;
 
-  padding: 12px 24px;
+  padding: 0px 24px;
 
   display: flex;
   flex-direction: row;
 
   justify-content: space-between;
   align-items: center;
+}
+
+.hamburger_icon_active {
+  position: relative;
+
+  bottom: 24px;
+}
+
+.hamburger_icon {
+  padding: 12px;
 }

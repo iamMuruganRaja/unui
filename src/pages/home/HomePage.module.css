@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  padding-bottom: 70px;
+}
+
+.header {
+  color: #2ed365;
+  font-family: Montserrat;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  padding: 0px 24px;
+}
+
+.horizontal_scroll {
+  padding: 24px;
+
+  display: flex;
+  flex-direction: row;
+
+  gap: 24px;
+
+  overflow-x: scroll;
+}
+
+.card_container {
+  display: flex;
+
+  flex-direction: column;
+  gap: 24px;
+
+  border-radius: 30px;
+  background: #2ed365;
+
+  padding: 14px;
+}
+
+.top_card {
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25);
+
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  gap: 24px;
+}
+
+.top_upper_container {
+  display: flex;
+  flex-direction: row;
+
+  gap: 24px;
+
+  justify-content: space-between;
+}
+
+.details_container {
+  width: 120px;
+
+  color: #000;
+  font-family: Philosopher;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.top_lower_container {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+.event_icon {
+  width: 66px;
+  height: 65px;
+
+  border-radius: 50%;
+}
+
+.bottom_card {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 12px;
+
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 7px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.register_button {
+  width: 67px;
+  height: 20px;
+  flex-shrink: 0;
+
+  border-radius: 5px;
+  background: #fff;
+
+  color: #2ed365;
+  font-family: Montserrat;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

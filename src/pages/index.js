@@ -12,6 +12,9 @@ import ParticipantsPage from "./participants/ParticipantsPage";
 import SchedulePage from "./schedule/SchedulePage";
 import TopNav from "../components/navbar/TopNav";
 import BottomNav from "../components/navbar/BottomNav";
+import HomePage from "./home/HomePage";
+import ProfilePage from "./profile/ProfilePage";
+import MyEventsPage from "./my-events/MyEventsPage";
 
 function MainRouter() {
   const { authData, isAuthLoading } = useAuthContext();
@@ -36,6 +39,10 @@ function MainRouter() {
           <Routes>
             {authData.isAuthenticated ? (
               <>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/upcoming" element={<UpcomingPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/my-events" element={<MyEventsPage />} />
                 <Route path="/support" element={<SupportPage />} />
                 <Route path="/edit-profile" element={<EditProfilePage />} />
                 <Route path="/details/:eventId" element={<ExplorePage />} />

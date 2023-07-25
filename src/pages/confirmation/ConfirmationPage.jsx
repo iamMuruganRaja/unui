@@ -5,6 +5,7 @@ import confirmHero from "../../assets/confirm-hero.png";
 import confirmDownload from "../../assets/confirm-download.svg";
 import confirmEdit from "../../assets/confirm-edit.svg";
 import confirmShare from "../../assets/confirm-share.svg";
+import confirmGif from "../../assets/registration.gif";
 
 import classes from "./ConfirmationPage.module.css";
 import { Link, useSearchParams } from "react-router-dom";
@@ -103,6 +104,7 @@ const ConfirmationPage = () => {
   if (isConfirmationShowing)
     return (
       <div className={classes.confirmation_container}>
+        <img src={confirmGif} className={classes.gif} />
         <h1>CONFIRMED!</h1>
         <h2>You have successfully registered for the event!</h2>
       </div>

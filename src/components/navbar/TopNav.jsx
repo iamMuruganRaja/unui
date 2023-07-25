@@ -51,23 +51,8 @@ function TopNav() {
         <Link className={classes.nav_link} to="/">
           ABOUT US
         </Link>
-        <Link className={classes.nav_link} to="/">
+        <Link className={classes.nav_link} to="/upcoming">
           UPCOMING EVENTS
-        </Link>
-        <Link className={classes.nav_link} to="/">
-          GALLERY
-        </Link>
-        <Link className={classes.nav_link} to="/">
-          ROLES
-        </Link>
-        <Link className={classes.nav_link} to="/">
-          GROW TOGETHER
-        </Link>
-        <Link className={classes.nav_link} to="/">
-          RECENT HIGHLIGHTS
-        </Link>
-        <Link className={classes.nav_link} to="/">
-          REQUESTS
         </Link>
         {authData.isAuthenticated ? (
           <button className={classes.nav_link} onClick={logoutUser}>
