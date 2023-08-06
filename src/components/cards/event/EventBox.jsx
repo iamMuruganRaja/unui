@@ -5,8 +5,20 @@ import classes from "./EventBox.module.css";
 import { Link } from "react-router-dom";
 
 const EventBox = ({ event }) => {
+  const getAsset = (event, asset_key) => {
+    return event.event_assets.filter((asset) => asset_key === asset.key)[0];
+  };
+
   return (
-    <div className={classes.carousel_card_item}>
+    <div
+      className={classes.carousel_card_item}
+      style={{
+        backgroundImage: `url(${
+          getAsset(event, "background")?.value.link ||
+          "https://i.ibb.co/HtRrwPV/bg.png"
+        })`,
+      }}
+    >
       <div className={classes.top_row}>
         <div className={classes.participants}>
           {event.event_participants.length > 0 && (
@@ -37,11 +49,8 @@ const EventBox = ({ event }) => {
           </h3>
           <h4 className={classes.host_container}>Host: John Doe</h4>
         </div>
-        <Link
-          to={`/event?event_id=${event.uuid}`}
-          className={classes.register_button}
-        >
-          Register
+        <Link to={`/details/${event.uuid}`} className={classes.register_button}>
+          Details
         </Link>
       </div>
     </div>

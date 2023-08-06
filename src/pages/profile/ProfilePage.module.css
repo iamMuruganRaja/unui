@@ -1,0 +1,196 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.account_nav {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 24px;
+}
+
+.nav_button {
+  width: 35px;
+  height: 35px;
+
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.nav_button_icon {
+  width: 35px;
+  height: 35px;
+}
+
+.details_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 4px;
+}
+
+.account_avatar {
+  width: 130px;
+  height: 130px;
+  flex-shrink: 0;
+
+  border-radius: 130px;
+  background-color: #2ed365;
+  color: #ffffff;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 62px;
+}
+
+.account_name {
+  color: #939393;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.no_items_message {
+  color: #939393;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 32px 0px;
+}
+
+.account_role {
+  color: #939393;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.account_bio {
+  color: #939393;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.socials_container {
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-around;
+  margin: 24px;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.social_img {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+}
+
+.social_button {
+  width: 100px;
+  height: 30px;
+  flex-shrink: 0;
+
+  border-radius: 20px;
+  background: #2ed365;
+
+  outline: none;
+  border: none;
+
+  color: #fff;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.gallery_container {
+  align-self: stretch;
+  padding: 24px;
+}
+
+.gallery_header {
+  align-self: flex-start;
+  color: #2ed365;
+  font-family: Montserrat;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.gallery_icon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+}
+
+.gallery {
+  padding: 24px 0px;
+  display: grid;
+
+  grid-template-columns: repeat(3, 25vw);
+
+  column-gap: 20px;
+  row-gap: 20px;
+
+  justify-content: space-between;
+}
+
+.gallery_item {
+  width: 25vw;
+  height: 25vw;
+}

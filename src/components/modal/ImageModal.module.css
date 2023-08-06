@@ -1,0 +1,31 @@
+.modal_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #000000aa;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  outline: none;
+  border: none;
+}
+
+.main_container {
+  padding: 20px;
+
+  display: flex;
+  width: fit-content;
+}
+
+.image {
+  max-width: 300px;
+}

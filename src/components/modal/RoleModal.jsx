@@ -11,10 +11,10 @@ function RoleModal({ isOpen, handleSubmit, isButtonLoading, isUpdating }) {
 
   return (
     <div className={classes.modal_overlay}>
-      <div className={classes.main_container}>
-        <div>
+      {/* <div className={classes.main_container}> */}
+        {/* <div>
           <h2 className={classes.modal_title}>Select Role</h2>
-        </div>
+        </div> */}
 
         <DropdownInput
           options={["Host", "Performer", "Audience"]}
@@ -22,6 +22,7 @@ function RoleModal({ isOpen, handleSubmit, isButtonLoading, isUpdating }) {
           placeholder="Select Role"
           selectedValue={selectedValue}
         />
+        <br></br>
 
         <SubmitButton
           title={isUpdating ? "Update" : "Register"}
@@ -29,7 +30,8 @@ function RoleModal({ isOpen, handleSubmit, isButtonLoading, isUpdating }) {
           style={{ alignSelf: "center" }}
           loading={isButtonLoading}
         />
-      </div>
+        <></>
+      {/* </div> */}
     </div>
   );
 }

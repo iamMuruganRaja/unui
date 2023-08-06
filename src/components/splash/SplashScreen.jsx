@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 
 import classes from "./SplashScreen.module.css";
+import { useSplashContext } from "../contexts/SplashContext";
 
 const SPLASH_DURATION = process.env.REACT_SPLASH_DURATION || 5000;
 
 const SplashScreen = ({ children }) => {
+  const [isSplashDisabled, setIsSplashDisabled] = useSplashContext(false);
   const [isSplashShown, setIsSplashShown] = useState(false);
   const [random] = useState(() => Math.random());
 
   useEffect(() => {
     setTimeout(() => {
       setIsSplashShown(true);
+      setIsSplashDisabled(true);
     }, SPLASH_DURATION);
   }, []);
 
@@ -18,10 +21,12 @@ const SplashScreen = ({ children }) => {
     <div
       className={classes.main_container}
       style={{
-        backgroundImage: `url(${window.location.origin}/splash.gif?seed=${random})`,
+        backgroundImage: !isSplashDisabled
+          ? `url(${window.location.origin}/splash.gif?seed=${random})`
+          : undefined,
       }}
     >
-      {isSplashShown && children}
+      {(isSplashShown || isSplashDisabled) && children}
     </div>
   );
 };

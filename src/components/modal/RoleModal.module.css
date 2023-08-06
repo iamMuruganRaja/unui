@@ -1,12 +1,12 @@
 .modal_overlay {
-  position: fixed;
+  /* position: fixed; */
   top: 0px;
   left: 0px;
 
   width: 100vw;
   height: 100vh;
 
-  background-color: #000000aa;
+  background-color: #2ed365;
   z-index: 10;
 
   display: flex;
@@ -19,7 +19,7 @@
 }
 
 .main_container {
-  background-color: #8bbf69dd;
+  /* background-color: #8bbf69dd; */
 
   height: 30vh;
   width: 90vw;

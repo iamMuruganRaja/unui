@@ -8,7 +8,7 @@ import confirmShare from "../../assets/confirm-share.svg";
 import confirmGif from "../../assets/registration.gif";
 
 import classes from "./ConfirmationPage.module.css";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import {
   getEvent,
   getEvents,
@@ -18,6 +18,7 @@ import dayjs from "dayjs";
 import { useAuthContext } from "../../components/contexts/AuthContext";
 import RoleModal from "../../components/modal/RoleModal";
 import LoadingComponent from "../../components/loading/LoadingComponent";
+import * as htmlToImage from "html-to-image";
 
 const ConfirmationPage = () => {
   const { authData } = useAuthContext();
@@ -29,6 +30,8 @@ const ConfirmationPage = () => {
   const [eventDetails, setEventDetails] = useState(null);
   const [upcoming, setUpcoming] = useState(null);
   const [searchParams] = useSearchParams();
+
+  const navigate = useNavigate();
 
   const handleRegister = async (role) => {
     const eventId = searchParams.get("event_id");
@@ -61,9 +64,17 @@ const ConfirmationPage = () => {
 
       if (!!error) return;
 
+      if (
+        data.data.event_participants.filter(
+          (participant) => participant.user_uuid === authData.userData.uuid
+        ).length > 0
+      ) {
+        navigate(`/details/${eventId}`);
+      }
+
       setEventDetails(data.data);
     })();
-  }, [searchParams]);
+  }, [searchParams, authData, navigate]);
 
   useEffect(() => {
     (async () => {
@@ -76,13 +87,33 @@ const ConfirmationPage = () => {
   }, []);
 
   const handleShare = () => {
-    if (!navigator?.share) return;
+    try {
+      if (!navigator?.share) return;
 
-    navigator.share({
-      url: `https://unmutex.com/event?${eventDetails.uuid}`,
-      title: "Click on link to join to register for the event",
-      text: `Open the link below to join an interesting event, https://unmutex.com/event?${eventDetails.uuid}`,
-    });
+      navigator.share({
+        url: `https://unmutex.com/event?${eventDetails.uuid}`,
+        title: "Click on link to join to register for the event",
+        text: `Open the link below to join an interesting event, https://unmutex.com/event?${eventDetails.uuid}`,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDownload = () => {
+    htmlToImage
+      .toBlob(document.getElementById("card-to-download"))
+      .then(function (blob) {
+        var bloblink = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+
+        document.body.appendChild(link); // for Firefox
+
+        link.setAttribute("href", bloblink);
+        link.setAttribute("download", "image.png");
+        link.style.display = "none";
+        link.click();
+      });
   };
 
   if (!eventDetails || !upcoming) return <LoadingComponent />;
@@ -104,7 +135,7 @@ const ConfirmationPage = () => {
   if (isConfirmationShowing)
     return (
       <div className={classes.confirmation_container}>
-        <img src={confirmGif} className={classes.gif} />
+        <img src={confirmGif} className={classes.gif} alt="confirmed" />
         <h1>CONFIRMED!</h1>
         <h2>You have successfully registered for the event!</h2>
       </div>
@@ -112,11 +143,8 @@ const ConfirmationPage = () => {
 
   return (
     <div className={classes.main_container}>
-      <img src={confirmHero} />
-      <Link
-        className={classes.carousel_card_item}
-        to={`/details/${eventDetails.uuid}`}
-      >
+      <img src={confirmHero} alt="hero" />
+      <div className={classes.carousel_card_item} id="card-to-download">
         <div className={classes.top_row}>
           <div className={classes.left_container}>
             <h3 className={classes.name_container}>{eventDetails.name}</h3>
@@ -132,16 +160,16 @@ const ConfirmationPage = () => {
         <div className={classes.middle_row}>{eventDetails.description}</div>
         <div className={classes.bottom_row}>
           <button className={classes.icon_button} onClick={handleShare}>
-            <img src={confirmEdit} />
+            <img src={confirmEdit} alt="edit" />
+          </button>
+          <button className={classes.icon_button} onClick={handleDownload}>
+            <img src={confirmDownload} alt="download" />
           </button>
           <button className={classes.icon_button} onClick={handleShare}>
-            <img src={confirmDownload} />
-          </button>
-          <button className={classes.icon_button} onClick={handleShare}>
-            <img src={confirmShare} />
+            <img src={confirmShare} alt="share" />
           </button>
         </div>
-      </Link>
+      </div>
       <div className={classes.upcoming_container}>
         <h1>Upcoming Events</h1>
         <div className={classes.upcoming_carousel}>

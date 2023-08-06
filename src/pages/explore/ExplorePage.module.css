@@ -13,19 +13,12 @@
 }
 
 .card_container {
-  width: 280px;
-  height: 330px;
-
-  background: #28cf60;
-  border-radius: 15px;
-
-  margin-top: 30px;
-
   display: flex;
   flex-direction: column;
-
-  justify-content: space-evenly;
-  align-items: center;
+  gap: 24px;
+  border-radius: 30px;
+  border: 1px solid #2ed365; /* Add a 1px solid border with the desired color */
+  padding: 14px;
 }
 
 .top_container {
@@ -77,10 +70,9 @@
 }
 
 .card_footer {
-  padding: 0px 40px;
+  padding: 0px 10px;
   display: flex;
   flex-direction: row;
-
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
@@ -183,6 +175,8 @@
 
   outline: none;
   border: none;
+
+  min-width: 50px;
 }
 
 .details_text {
@@ -192,7 +186,7 @@
   font-size: 15px;
   line-height: 17px;
 
-  color: #000000;
+  color: #ffffff;
 }
 
 .top_icon_container {
@@ -398,4 +392,24 @@
 .icon_button {
   background: none;
   border: none;
+}
+
+.cta_button {
+  display: inline-block;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background-color: #2ed365;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.cta_button:hover {
+  background-color: #2ed365;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
 }

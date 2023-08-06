@@ -110,7 +110,7 @@
   height: 60px;
 
   border-radius: 10px;
-  background: #fffa;
+  background: #2ed365aa;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.35);
 
   display: grid;
@@ -130,7 +130,7 @@
   height: 25px;
 
   border-radius: 10px;
-  background: #fffa;
+  background: #2ed365aa;
 
   color: #fff;
   text-align: center;

@@ -6,10 +6,16 @@
   border-radius: 30px;
   background: #8bbf69;
 
-  color: #2ed365;
+  color: #ffffff;
   font-size: 16px;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.button_container:disabled,
+.button_container[disabled] {
+  background-color: #cccccc;
+  color: #666666;
 }

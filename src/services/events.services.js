@@ -1,8 +1,10 @@
 import { getRequest, postRequest } from "../utils/request.utils";
 import {
   GET_ALL_EVENTS,
+  GET_ALL_EVENT_CLIPS,
   GET_EVENT_URL,
   REGISTER_EVENT,
+  GET_MY_EVENTS,
 } from "../utils/url.utils";
 
 export const getEvents = () => {
@@ -21,5 +23,17 @@ export const registerForEvent = (data) => {
   return postRequest({
     url: REGISTER_EVENT,
     data: { data },
+  });
+};
+
+export const getAllEventClips = () => {
+  return getRequest({
+    url: GET_ALL_EVENT_CLIPS,
+  });
+};
+
+export const getMyEvents = () => {
+  return getRequest({
+    url: GET_MY_EVENTS,
   });
 };

@@ -7,9 +7,13 @@ import bottom3 from "../../assets/bottomnav-3.svg";
 import bottom3Active from "../../assets/bottomnav-3-active.svg";
 
 import classes from "./BottomNav.module.css";
+import { useAuthContext } from "../contexts/AuthContext";
 
 const BottomNav = () => {
   const { pathname } = useLocation();
+  const { authData } = useAuthContext();
+
+  if (pathname === "/register" || !authData.isAuthenticated) return <></>;
 
   return (
     <div className={classes.container}>

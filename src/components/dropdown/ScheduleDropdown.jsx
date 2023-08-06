@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 
 import classes from "./ScheduleDropdown.module.css";
 
-const options = ["Present", "Absent", "Upcoming Performance", "Live Now"];
+const options =
+  // = ["Present", "Absent", "Upcoming Performance", "Live Now"];
+  [];
 
 function DropdownInput({
   placeholder,

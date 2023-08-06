@@ -37,19 +37,20 @@ function ParticipantsPage() {
 
   return (
     <div className={classes.main_container}>
-      <img src={heroImg} />
+      <img src={heroImg} alt="hero" />
       <div className={classes.participants_container}>
         <div className={classes.participant_container}>
           <div className={classes.top_container}>
             <img
               className={classes.avatar}
               src="https://images.unsplash.com/photo-1616268164880-673b3ba611bb"
+              alt="avatar"
             />
             <div className={classes.details}>
               <h2 className={classes.name}>
                 {authData.userData.first_name} {authData.userData.last_name}
                 <Link to="/edit profile" className={classes.edit_icon}>
-                  <img src={editImg} />
+                  <img src={editImg} alt="edit" />
                 </Link>
               </h2>
               <p className={classes.text}>Performer</p>
@@ -57,9 +58,9 @@ function ParticipantsPage() {
             </div>
           </div>
           <div className={classes.bottom_container}>
-            <img src={twitterColor} />
-            <img src={instagramColor} />
-            <img src={facebookColor} />
+            <img src={twitterColor} alt="social" />
+            <img src={instagramColor} alt="social" />
+            <img src={facebookColor} alt="social" />
           </div>
         </div>
         <h1 className={classes.participants_header}>Participants</h1>
@@ -69,19 +70,40 @@ function ParticipantsPage() {
               <img
                 className={classes.avatar}
                 src="https://images.unsplash.com/photo-1616268164880-673b3ba611bb"
+                alt="avatar"
               />
               <div className={classes.details}>
                 <h2 className={classes.name}>
-                  {participant.first_name} {participant.last_name}
+                  {participant?.profile_info?.first_name}{" "}
+                  {participant?.profile_info?.last_name}
                 </h2>
-                <p className={classes.text}>Performer</p>
-                <p className={classes.text}>Link by user</p>
+                <p className={classes.text}>
+                  {participant?.profile_info?.role}
+                </p>
               </div>
             </div>
             <div className={classes.bottom_container}>
-              <img src={twitterMono} />
-              <img src={instagramMono} />
-              <img src={facebookMono} />
+              <a
+                href={participant?.profile_info?.social_media_link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={twitterMono} alt="social" />
+              </a>
+              <a
+                target="_blank"
+                href={participant?.profile_info?.social_media_link}
+                rel="noreferrer"
+              >
+                <img src={instagramMono} alt="social" />
+              </a>
+              <a
+                target="_blank"
+                href={participant?.profile_info?.social_media_link}
+                rel="noreferrer"
+              >
+                <img src={facebookMono} alt="social" />
+              </a>
             </div>
           </div>
         ))}

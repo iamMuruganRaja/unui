@@ -9,6 +9,9 @@ import { Link, useParams } from "react-router-dom";
 import { getEvent, getEvents } from "../../services/events.services";
 import dayjs from "dayjs";
 import LoadingComponent from "../../components/loading/LoadingComponent";
+import confirmShare from "../../assets/confirm-share.svg";
+import confirmDownload from "../../assets/confirm-download.svg";
+import * as htmlToImage from "html-to-image";
 
 const ExplorePage = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -38,47 +41,127 @@ const ExplorePage = () => {
 
   if (!eventDetails || !upcoming) return <LoadingComponent />;
 
+  const getAsset = (event, asset_key) => {
+    return event.event_assets.filter((asset) => asset_key === asset.key)[0];
+  };
+  const handleShare = () => {
+    try {
+      if (!navigator?.share) return;
+
+      navigator.share({
+        url: `https://unmutex.com/event?${eventDetails.uuid}`,
+        title: "Click on link to join to register for the event",
+        text: `Open the link below to join an interesting event, https://unmutex.com/event?${eventDetails.uuid}`,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDownload = () => {
+    htmlToImage
+      .toBlob(document.getElementById("card-to-download"))
+      .then(function (blob) {
+        var bloblink = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+
+        document.body.appendChild(link); // for Firefox
+
+        link.setAttribute("href", bloblink);
+        link.setAttribute("download", "image.png");
+        link.style.display = "none";
+        link.click();
+      });
+  };
+
   return (
     <div className={classes.main_container}>
       <img alt="icon" src={confirmHero} />
-      <div className={classes.card_container}>
-        <div className={classes.card_details_section}>
-          <div className={classes.card_details_horizontal}>
-            <img alt="icon" src={cardIcon} className={classes.round_img} />
-            <p className={classes.details_text}>
-              Date: {dayjs(eventDetails?.start_time).format("DD-MM-YY")}
-              <br />
-              Time: {dayjs(eventDetails?.start_time).format("hh:mm a")}
-              <br /> Theme: {eventDetails?.genre}
-            </p>
-          </div>
-          <div className={classes.card_details_horizontal}>
-            <p className={classes.details_text}>{eventDetails?.description}</p>
-            <img alt="icon" src={cardIcon} className={classes.round_img} />
-          </div>
-        </div>
-        <div className={classes.card_footer}>
-          <Link to={`/schedule/${eventId}`} className={classes.white_pill}>
-            Schedule
-          </Link>
-          <Link to={`/participants/${eventId}`} className={classes.white_pill}>
-            Participants
-          </Link>
-          <a
-            href={eventDetails.link}
-            target="_blank"
-            rel="noreferrer"
-            className={classes.white_pill}
-            disabled={dayjs().isAfter(
-              dayjs(eventDetails?.start_time).subtract(10, "minutes")
-            )}
+      {eventDetails.status !== "scheduled" && (
+        <div className={classes.card_container}>
+          <div
+            className={classes.card_details_section}
+            style={{
+              backgroundImage: `url(${
+                getAsset(eventDetails, "background")?.value.link ||
+                "https://i.ibb.co/HtRrwPV/bg.png"
+              })`,
+            }}
           >
-            Connect
-          </a>
+            <div className={classes.card_details_horizontal}>
+              <img
+                className={classes.round_img}
+                src={
+                  getAsset(eventDetails, "top-left")?.value?.link || cardIcon
+                }
+                alt="card-hero"
+              />
+              <p className={classes.details_text}>
+                Date: {dayjs(eventDetails?.start_time).format("DD-MM-YY")}
+                <br />
+                Time: {dayjs(eventDetails?.start_time).format("hh:mm a")}
+                <br /> Theme: {eventDetails?.genre}
+              </p>
+            </div>
+            <div className={classes.card_details_horizontal}>
+              <p className={classes.details_text}>
+                {eventDetails?.description}
+              </p>
+
+              <img
+                className={classes.round_img}
+                src={
+                  getAsset(eventDetails, "bottom-right")?.value?.link ||
+                  cardIcon
+                }
+                alt="card-hero"
+              />
+            </div>
+          </div>
+          <div className={classes.card_footer}>
+            <Link to={`/schedule/${eventId}`} className={classes.cta_button}>
+              Schedule
+            </Link>
+            <a href={eventDetails.link} className={classes.cta_button}>
+              Join
+            </a>
+            <Link
+              to={`/participants/${eventId}`}
+              className={classes.cta_button}
+            >
+              Participants
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
+      {eventDetails.status === "scheduled" && (
+        <div className={classes.carousel_card_item} id="card-to-download">
+          <div className={classes.top_row}>
+            <div className={classes.left_container}>
+              <h3 className={classes.name_container}>{eventDetails.name}</h3>
+              <h4 className={classes.host_container}>Host: John Doe</h4>
+              <h4 className={classes.host_container}>
+                Time: {dayjs(eventDetails.start_time).format("hh:mm a")}
+              </h4>
+            </div>
+            <div className={classes.date_box}>
+              {dayjs(eventDetails.start_time).format("DD MMM")}
+            </div>
+          </div>
+          <div className={classes.middle_row}>{eventDetails.description}</div>
+          <div className={classes.bottom_row}>
+            <button className={classes.icon_button} onClick={handleDownload}>
+              <img src={confirmDownload} alt="download" />
+            </button>
+            <button className={classes.icon_button} onClick={handleShare}>
+              <img src={confirmShare} alt="share" />
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className={classes.upcoming_container}>
-        <h1>Upcoming Events</h1>
+        <h1>Trendy Picks</h1>
         <div className={classes.upcoming_carousel}>
           {upcoming.map((event) => (
             <div className={classes.carousel_card_item}>

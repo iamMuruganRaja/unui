@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import headphone from "../../assets/headphone.png";
 import logo from "../../assets/logo-white.svg";
-import whatsapp from "../../assets/whatsapp.svg";
 
 import classes from "./RegisterPage.module.css";
 import useForm from "../../components/hooks/useForm";
@@ -11,18 +10,19 @@ import { useAuthContext } from "../../components/contexts/AuthContext";
 import { toast } from "react-toastify";
 import MobileInput from "../../components/input/MobileInput";
 import OTPInput from "react-otp-input";
+import Switch from "react-switch";
 
 const RegisterPage = () => {
   const { verifyOtp } = useAuthContext();
 
-  const [isYesSelected, setIsYesSelected] = useState(null);
+  const [areTermsAccepted, setAreTermsAccepted] = useState(true);
+
   const [hash, setHash] = useState("");
   const { form, setKey } = useForm({ phone: "" });
 
-  useEffect(() => {
-    if (!!form?.otp && form.otp.length >= 6) handleVerifyOtp();
-    // eslint-disable-next-line
-  }, [form]);
+  const isButtonDisabled = () => {
+    return !form?.otp || form.otp.length < 6 || !areTermsAccepted;
+  };
 
   const handleSendOtp = async () => {
     if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(form.phone)) {
@@ -44,45 +44,27 @@ const RegisterPage = () => {
 
   return (
     <h1 className={classes.main_container}>
-      <img src={headphone} />
-      <img src={logo} />
+      <div className={classes.hero_container}>
+        <img src={headphone} alt="hero" className={classes.hero} />
+      </div>
+      <img src={logo} alt="logo" />
       <h3 className={classes.title}>Join in the fun!</h3>
       {!hash ? (
         <>
           <MobileInput
             placeholder="Phone Number"
             value={form.phone}
-            onChange={(e) => setKey("phone", e.target.value)}
+            onChange={(e) => {
+              if (e.target.value.length <= 10) setKey("phone", e.target.value);
+            }}
             type="number"
           />
-          <div className={classes.subtitle}>
-            <p>Do you have WhatsApp?</p>
-            <img src={whatsapp} className={classes.whatsapp_icon} />
-            <div className={classes.button_group}>
-              <button
-                className={classes.button_group_item}
-                onClick={() => setIsYesSelected(true)}
-                style={isYesSelected ? { backgroundColor: "#939393" } : {}}
-              >
-                Yes
-              </button>
-              <button
-                className={classes.button_group_item}
-                onClick={() => setIsYesSelected(false)}
-                style={
-                  isYesSelected === false ? { backgroundColor: "#939393" } : {}
-                }
-              >
-                No
-              </button>
-            </div>
-          </div>
-          <button onClick={handleSendOtp} className={classes.bottom_button}>
-            {isYesSelected === null
-              ? "Sign in"
-              : isYesSelected
-              ? "Send OTP via WhatsApp"
-              : "Send OTP via SMS"}
+          <button
+            onClick={handleSendOtp}
+            className={classes.bottom_button}
+            disabled={form.phone.length !== 10}
+          >
+            Send OTP via WhatsApp
           </button>
         </>
       ) : (
@@ -105,8 +87,23 @@ const RegisterPage = () => {
             }}
           />
           <button className={classes.resend_button}>Resend OTP</button>
-          <button onClick={handleSendOtp} className={classes.bottom_button}>
-            Enter OTP
+          <p className={classes.terms_conditions}>
+            I accept terms and conditions
+            <Switch
+              onChange={setAreTermsAccepted}
+              checked={areTermsAccepted}
+              checkedIcon={false}
+              uncheckedIcon={false}
+              offColor="#939393"
+              onColor="#30513E"
+            />
+          </p>
+          <button
+            disabled={isButtonDisabled()}
+            onClick={handleVerifyOtp}
+            className={classes.bottom_button}
+          >
+            Verify OTP
           </button>
         </>
       )}

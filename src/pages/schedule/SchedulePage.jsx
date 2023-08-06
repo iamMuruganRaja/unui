@@ -5,7 +5,7 @@ import editIcon from "../../assets/edit-icon.svg";
 import reorderIcon from "../../assets/reorder-icon.svg";
 
 import classes from "./SchedulePage.module.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getEvent } from "../../services/events.services";
 import dayjs from "dayjs";
 import LoadingComponent from "../../components/loading/LoadingComponent";
@@ -18,6 +18,8 @@ function SchedulePage() {
   const [eventDetails, setEventDetails] = useState(null);
   const [schedule, setSchedule] = useState([]);
 
+  const [isEditOn, setIsEditOn] = useState(false);
+
   useEffect(() => {
     (async () => {
       const { data, error } = await getEvent(eventId);
@@ -28,6 +30,8 @@ function SchedulePage() {
       setSchedule([...data.data.event_participants]);
     })();
   }, [eventId]);
+
+  const updateEvent = () => {};
 
   if (!eventDetails) return <LoadingComponent />;
 
@@ -42,7 +46,6 @@ function SchedulePage() {
             {dayjs().format("dddd, D MMMM")}
           </h6>
         </div>
-        <img src={editIcon} />
       </div>
       <div className={classes.schedule_list}>
         <ReactSortable
@@ -54,10 +57,21 @@ function SchedulePage() {
             <div key={item.id} className={classes.list_item}>
               <ScheduleDropdown
                 selectedValue="Present"
-                range={`10:00AM-11:00AM`}
+                range={`${dayjs(item.slot_start_time).format(
+                  "hh:mm a"
+                )}-${dayjs(item.slot_end_time).format("hh:mm a")} | ${
+                  item.profile_info.first_name
+                }`}
                 event={item.status}
+                handleSelect={updateEvent}
               />
-              <img className={classes.handle_img} src={reorderIcon} />
+              {isEditOn && (
+                <img
+                  className={classes.handle_img}
+                  src={reorderIcon}
+                  alt="reorder"
+                />
+              )}
             </div>
           ))}
         </ReactSortable>

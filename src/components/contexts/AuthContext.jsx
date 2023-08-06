@@ -48,11 +48,26 @@ const AuthProvider = ({ children }) => {
 
   const isUserDataFilled = (userData) => {
     if (!userData.first_name) return false;
-    if (!userData.last_name) return false;
     if (!userData.social_media_link) return false;
+    if (!userData.role) return false;
 
     return true;
   };
+
+  const updateUserData = useCallback(async () => {
+    setIsAuthLoading(true);
+
+    const { data, error } = await getUserData();
+
+    setIsAuthLoading(false);
+
+    if (!!error) return console.log(error);
+
+    setAuthData({
+      isAuthenticated: true,
+      userData: { ...data.data.profile_info, ...data.data },
+    });
+  }, []);
 
   const handleVerifyOtp = useCallback(async (otp, otp_uuid) => {
     setIsAuthLoading(true);

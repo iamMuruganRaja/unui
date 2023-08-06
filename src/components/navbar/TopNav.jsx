@@ -25,6 +25,8 @@ function TopNav() {
     setIsOpen((i) => !i);
   };
 
+  if (location.pathname === "/profile") return <></>;
+
   return (
     <div className={classes.navbar}>
       <div></div>
@@ -48,7 +50,7 @@ function TopNav() {
         <Link className={classes.nav_link} to="/">
           HOME
         </Link>
-        <Link className={classes.nav_link} to="/">
+        <Link className={classes.nav_link} to="/about-us">
           ABOUT US
         </Link>
         <Link className={classes.nav_link} to="/upcoming">

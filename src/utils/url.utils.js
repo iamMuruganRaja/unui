@@ -1,8 +1,8 @@
 const BASE_URL =
-  // "https://19296028-bd19-458b-95f4-a715f739ba4a.mock.pstmn.io";
-  "https://api.unmutex.in";
+  // "https://0936-13-235-238-250.ngrok-free.app";
+  "https://e6bc-2405-201-d022-d859-f967-e9ab-650d-59b.ngrok-free.app";
 // "http://13.235.238.250:3000";
-// "https://api.unmutex.in/";
+// "https://api.unmutex.in";
 
 // AUTH
 
@@ -21,5 +21,9 @@ export const GET_REGISTERED_EVENTS = `${BASE_URL}/registered_events`;
 export const GET_EVENT_URL = `${BASE_URL}/events/$ID`;
 
 export const GET_ALL_EVENTS = `${BASE_URL}/events`;
+
+export const GET_MY_EVENTS = `${BASE_URL}/events?type=user`;
+
+export const GET_ALL_EVENT_CLIPS = `${BASE_URL}/event_clips`;
 
 export const UPDATE_USER_PROFILE = `${BASE_URL}/user_profiles/update`;
