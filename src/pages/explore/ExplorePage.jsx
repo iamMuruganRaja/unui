@@ -12,6 +12,9 @@ import LoadingComponent from "../../components/loading/LoadingComponent";
 import confirmShare from "../../assets/confirm-share.svg";
 import confirmDownload from "../../assets/confirm-download.svg";
 import * as htmlToImage from "html-to-image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock, faDoorOpen, faUsers } from "@fortawesome/free-solid-svg-icons";
+
 
 const ExplorePage = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -119,19 +122,16 @@ const ExplorePage = () => {
             </div>
           </div>
           <div className={classes.card_footer}>
-            <Link to={`/schedule/${eventId}`} className={classes.cta_button}>
-              Schedule
-            </Link>
-            <a href={eventDetails.link} className={classes.cta_button}>
-              Join
-            </a>
-            <Link
-              to={`/participants/${eventId}`}
-              className={classes.cta_button}
-            >
-              Participants
-            </Link>
-          </div>
+  <Link to={`/schedule/${eventId}`} className={`${classes.action_button} ${classes.schedule_button}`}>
+    <FontAwesomeIcon icon={faClock} className={classes.icon} />
+  </Link>
+  <a href={eventDetails.link} className={`${classes.action_button} ${classes.join_button}`}>
+    <FontAwesomeIcon icon={faDoorOpen} className={classes.icon} />
+  </a>
+  <Link to={`/participants/${eventId}`} className={`${classes.action_button} ${classes.participants_button}`}>
+    <FontAwesomeIcon icon={faUsers} className={classes.icon} />
+  </Link>
+</div>
         </div>
       )}
       {eventDetails.status === "scheduled" && (

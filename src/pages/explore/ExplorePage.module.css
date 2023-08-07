@@ -15,7 +15,6 @@
 .card_container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
   border-radius: 30px;
   border: 1px solid #2ed365; /* Add a 1px solid border with the desired color */
   padding: 14px;
@@ -412,4 +411,48 @@
   color: #fff;
   text-decoration: none;
   cursor: pointer;
+}
+/* Update your ExplorePage.module.css */
+.card_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.action_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 4px 4px 4px 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  color: #fff;
+  font-size: 16px;
+}
+
+.schedule_button {
+  background-color: #3498db;
+}
+
+.join_button {
+  background-color: #27ae60;
+}
+
+.participants_button {
+  background-color: #e74c3c;
+}
+
+.icon {
+  font-size: 24px; /* Adjust the size as needed */
+  margin-right: 10px;
+}
+
+.action_button:hover {
+  background-color: #333;
 }
