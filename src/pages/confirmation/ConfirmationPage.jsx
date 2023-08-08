@@ -30,6 +30,9 @@ const ConfirmationPage = () => {
   const [eventDetails, setEventDetails] = useState(null);
   const [upcoming, setUpcoming] = useState(null);
   const [searchParams] = useSearchParams();
+  const getHost = (event) => {
+    return event.event_participants.filter((part) => part.role === "Host")[0];
+  };
 
   const navigate = useNavigate();
 
@@ -148,7 +151,7 @@ const ConfirmationPage = () => {
         <div className={classes.top_row}>
           <div className={classes.left_container}>
             <h3 className={classes.name_container}>{eventDetails.name}</h3>
-            <h4 className={classes.host_container}>Host: John Doe</h4>
+            <h4 className={classes.host_container}>Host: {getHost(eventDetails)?.profile_info?.first_name}</h4>
             <h4 className={classes.host_container}>
               Time: {dayjs(eventDetails.start_time).format("hh:mm a")}
             </h4>
@@ -225,7 +228,7 @@ const ConfirmationPage = () => {
               <div className={classes.bottom_row}>
                 <div className={classes.left_container}>
                   <h3 className={classes.name_container}>{event.name}</h3>
-                  <h4 className={classes.host_container}>Host: John Doe</h4>
+                  <h4 className={classes.host_container}>Host: {getHost(eventDetails)?.profile_info?.first_name}</h4>
                 </div>
                 <Link
                   to={`/event?event_id=${event.uuid}`}

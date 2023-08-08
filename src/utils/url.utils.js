@@ -20,9 +20,9 @@ export const GET_REGISTERED_EVENTS = `${BASE_URL}/registered_events`;
 
 export const GET_EVENT_URL = `${BASE_URL}/events/$ID`;
 
-export const GET_ALL_EVENTS = `${BASE_URL}/events`;
+export const GET_ALL_EVENTS = `${BASE_URL}/events?type=upcoming`;
 
-export const GET_MY_EVENTS = `${BASE_URL}/events?type=user`;
+export const GET_MY_EVENTS = `${BASE_URL}/events?type=my_events`;
 
 export const GET_ALL_EVENT_CLIPS = `${BASE_URL}/event_clips`;
 

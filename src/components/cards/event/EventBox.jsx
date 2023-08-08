@@ -8,6 +8,9 @@ const EventBox = ({ event }) => {
   const getAsset = (event, asset_key) => {
     return event.event_assets.filter((asset) => asset_key === asset.key)[0];
   };
+  const getHost = (event) => {
+    return event.event_participants.filter((part) => part.role === "Host")[0];
+  };
 
   return (
     <div
@@ -47,7 +50,7 @@ const EventBox = ({ event }) => {
           <h3 className={classes.name_container}>
             {event.name.substring(0, 10)}
           </h3>
-          <h4 className={classes.host_container}>Host: John Doe</h4>
+          <h4 className={classes.host_container}>Host: {getHost(event)?.profile_info?.first_name}</h4>
         </div>
         <Link to={`/details/${event.uuid}`} className={classes.register_button}>
           Details

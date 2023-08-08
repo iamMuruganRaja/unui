@@ -55,7 +55,7 @@ const ProfilePage = () => {
         <h2 className={classes.account_name}>{userDetails.full_name}</h2>
         <p className={classes.account_bio}>{userDetails.bio || ""}</p>
 
-        <div className={classes.socials_container}>
+        {/* <div className={classes.socials_container}>
           <div className={classes.social}>
             <img
               src={twitterIcon}
@@ -83,7 +83,7 @@ const ProfilePage = () => {
 
             <button className={classes.social_button}>My Events</button>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={classes.gallery_container}>
         <h1 className={classes.gallery_header}>
@@ -96,7 +96,7 @@ const ProfilePage = () => {
         </h1>
 
         {galleryItems.length === 0 ? (
-          <div className={classes.no_items_message}>No Items to show</div>
+          <div className={classes.no_items_message}>Coming Soon</div>
         ) : (
           <div className={classes.gallery}>
             {galleryItems.map((item) => (
