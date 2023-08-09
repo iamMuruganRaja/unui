@@ -1,7 +1,7 @@
 const BASE_URL =
   // "https://0936-13-235-238-250.ngrok-free.app";
   // "https://4ea0-103-105-226-2.ngrok-free.app";
-  // "http://13.235.238.250:3000";
+  // "https://f0eb-103-105-226-2.ngrok-free.app";
   "https://api.unmutex.in";
 
 // AUTH
