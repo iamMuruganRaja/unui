@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import registerHero from "../../assets/edit-hero.png";
 import logo from "../../assets/logo-white.svg";
 import TextInput from "../../components/input/TextInput";
@@ -13,6 +14,7 @@ import SubmitButton from "../../components/buttons/SubmitButton";
 const EditProfilePage = () => {
   const { authData } = useAuthContext();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const userData = authData.userData;
 
@@ -36,32 +38,41 @@ const EditProfilePage = () => {
     navigate("/");
   };
 
+  // Determine if all fields should be enabled
+  const isEditProfile = location.pathname === "/edit-profile";
+
   return (
     <div className={classes.main_container}>
       <img src={registerHero} className={classes.hero_image} alt="Hero" />
       <img src={logo} alt="Logo" />
-      <h4 className={classes.subtitle}>Only one step away...</h4>
-      {!userData.first_name && (
+      <h4 className={classes.subtitle}>{isEditProfile ? "Update your profile ...":"Only one step away ..."}</h4>
+      {/* Conditionally render the Name TextInput */}
+      {(isEditProfile || !userData.first_name )&& (
         <TextInput
           placeholder="Name"
           value={form.first_name}
           onChange={(e) => setKey("first_name", e.target.value)}
         />
       )}
-      {!userData.social_media_link && (
+      
+      {/* Conditionally render the Social Media TextInput */}
+      {(isEditProfile || !userData.social_media_link )&& (
         <TextInput
-          placeholder="Instagram/Youtube handle"
+          placeholder="Instagram/Youtube link"
           value={form.social_media_link}
           onChange={(e) => setKey("social_media_link", e.target.value)}
         />
       )}
-      {!userData.role && (
+      
+      {/* Conditionally render the Role TextInput */}
+      {(isEditProfile || !userData.role) && (
         <TextInput
-          placeholder="Enter Bio"
+          placeholder="About you"
           value={form.role}
           onChange={(e) => setKey("role", e.target.value)}
         />
       )}
+      
       <SubmitButton title="Save" onClick={handleUpdateProfile} />{" "}
     </div>
   );

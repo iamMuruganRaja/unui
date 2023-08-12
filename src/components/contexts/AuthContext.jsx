@@ -94,7 +94,7 @@ const AuthProvider = ({ children }) => {
 
     const eventId = localStorage.getItem("event_id");
 
-    if (!isUserDataFilled(user)) return navigate("/edit-profile");
+    if (!isUserDataFilled(user)) return navigate("/complete-profile");
 
     if (!!eventId) return navigate(`/event?event_id=${eventId}`);
 

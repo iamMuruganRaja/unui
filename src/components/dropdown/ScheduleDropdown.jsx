@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import classes from "./ScheduleDropdown.module.css";
 
-const options = ["present", "absent", "upcoming_performance", "live"];
+const options = ["present", "absent", "upcoming_performance", "live", "performed"];
 
 function DropdownInput({
   placeholder,
@@ -49,6 +49,8 @@ function DropdownInput({
         return "#CB9E47";
       case "live":
         return "#A458D2";
+      case "performed":
+        return "#7477e3";
       default:
         return "#8BBF69";
     }

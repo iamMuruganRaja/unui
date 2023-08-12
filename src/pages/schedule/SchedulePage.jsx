@@ -69,6 +69,52 @@ function SchedulePage() {
     setIsUpdated(true);
   };
 
+
+  // Define a custom sorting function
+const customSort = (a, b) => {
+  // First priority: "live" items come first
+  if (a.status === "live" && b.status !== "live") return -1;
+  if (a.status !== "live" && b.status === "live") return 1;
+
+  // Second priority: "upcoming_performance" items come next
+  if (a.status === "upcoming_performance" && b.status !== "upcoming_performance") return -1;
+  if (a.status !== "upcoming_performance" && b.status === "upcoming_performance") return 1;
+
+  // Third priority: "performed" items come next
+  if (a.status === "performed" && b.status !== "performed") return -1;
+  if (a.status !== "performed" && b.status === "performed") return 1;
+
+  // Fourth priority: "present" items with a sequence come next (sorted by sequence)
+  if (a.status === "present" && a.sequence && !b.sequence) return -1;
+  if (!a.sequence && b.status === "present" && b.sequence) return 1;
+  if (a.status === "present" && a.sequence && b.status === "present" && b.sequence) {
+    return a.sequence - b.sequence;
+  }
+
+  // Fifth priority: "present" items without a sequence come next (sorted by sequence)
+  if (a.status === "present" && !a.sequence && b.status === "present" && !b.sequence) {
+    return a.sequence - b.sequence;
+  }
+  if (!a.sequence && b.status === "present" && !b.sequence) return -1;
+  if (a.status === "present" && a.sequence && b.status === "present" && !b.sequence) return -1;
+
+  // Sixth priority: "absent" items come last (sorted by sequence)
+  if (a.status === "absent" && b.status === "absent") {
+    if (a.sequence && b.sequence) return a.sequence - b.sequence;
+    if (!a.sequence && b.sequence) return -1;
+    if (a.sequence && !b.sequence) return 1;
+    return 0;
+  }
+  if (a.status === "absent") return 1;
+  if (b.status === "absent") return -1;
+
+  // Default: no change in order
+  return 0;
+};
+
+// Sort the sequence array using the custom sorting function
+  const sortedSequence = schedule.sort(customSort);
+
   if (!eventDetails) return <LoadingComponent />;
 
   return (
@@ -95,22 +141,11 @@ function SchedulePage() {
           />
         )}
       </div>
+      
 
           <div className={classes.schedule_list}>
       <ReactSortable list={schedule} setList={setSchedule} handle={classes.handle_img}>
-        {schedule
-          .sort((a, b) => {
-            if (a.sequence === null && b.sequence === null) {
-              return 0;
-            }
-            if (a.sequence === null) {
-              return 1;
-            }
-            if (b.sequence === null) {
-              return -1;
-            }
-            return a.sequence - b.sequence;
-          })
+        {sortedSequence
           .map((item, ind) => (
             <div key={item.id} className={classes.list_item}>
               <div onClick={() => toggleDropdown(ind)}>

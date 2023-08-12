@@ -43,10 +43,12 @@ function MainRouter() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/upcoming" element={<UpcomingPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/participant-profile" element={<ProfilePage />} />
                 <Route path="/my-events" element={<MyEventsPage />} />
                 <Route path="/support" element={<SupportPage />} />
                 <Route path="/about-us" element={<Aboutus />} />
 
+                <Route path="/complete-profile" element={<EditProfilePage />} />
                 <Route path="/edit-profile" element={<EditProfilePage />} />
                 <Route path="/details/:eventId" element={<ExplorePage />} />
                 <Route

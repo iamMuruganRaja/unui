@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom";
 import profileHero from "../../assets/account-hero.png";
 import backIcon from "../../assets/back-icon.svg";
 import settingsIcon from "../../assets/account-settings.png";
@@ -17,12 +18,14 @@ const ProfilePage = () => {
   } = useAuthContext();
 
   console.log({ userData });
+  const { pathname } = useLocation();
 
   const userDetails = useMemo(
     () => ({
       pfp: "https://images.unsplash.com/photo-1573554893531-5779992f6cd2",
-      full_name: `${userData?.first_name} ""}`,
+      full_name: `${userData?.first_name|| ""} `,
       bio: `${userData?.role || ""}`,
+      social_media_link: `${userData?.social_media_link || ""}`,
     }),
     [userData]
   );
@@ -54,9 +57,10 @@ const ProfilePage = () => {
 
         <h2 className={classes.account_name}>{userDetails.full_name}</h2>
         <p className={classes.account_bio}>{userDetails.bio || ""}</p>
+        
 
-        {/* <div className={classes.socials_container}>
-          <div className={classes.social}>
+        {<div className={classes.socials_container}>
+          {/* <div className={classes.social}>
             <img
               src={twitterIcon}
               alt="social"
@@ -64,26 +68,42 @@ const ProfilePage = () => {
             />
 
             <button className={classes.social_button}>Friends</button>
-          </div>
+          </div> */}
           <div className={classes.social}>
             <img
               src={instagramIcon}
               alt="social"
               className={classes.social_img}
             />
-
-            <button className={classes.social_button}>Messages</button>
+        <p className={classes.account_bio}>{userDetails.social_media_link || ""}</p>
+        <div className={classes.bottom_container}>
+  {userDetails?.social_media_link && (
+    <a
+      href={userDetails.social_media_link}
+      target="_blank"
+      rel="noreferrer"
+      className={classes.social_button_link}
+    >
+      <button className={classes.social_button}>Follow</button>
+    </a>
+  )}
+</div>
           </div>
-          <div className={classes.social}>
+          {/* <div className={classes.social}>
             <img
               src={facebookIcon}
               alt="social"
               className={classes.social_img}
             />
+<p className={classes.account_bio}>{". "}</p>
+          <Link to="/my-events">
+          <button className={classes.social_button}>Performance</button>
+          </Link>
 
-            <button className={classes.social_button}>My Events</button>
-          </div>
-        </div> */}
+
+            
+          </div> */}
+        </div> }
       </div>
       <div className={classes.gallery_container}>
         <h1 className={classes.gallery_header}>
@@ -92,11 +112,11 @@ const ProfilePage = () => {
             alt="gallery"
             className={classes.gallery_image}
           />
-          My Gallery
+          Gallery
         </h1>
 
         {galleryItems.length === 0 ? (
-          <div className={classes.no_items_message}>Coming Soon</div>
+          <div className={classes.no_items_message}>Coming Soon...</div>
         ) : (
           <div className={classes.gallery}>
             {galleryItems.map((item) => (
@@ -114,3 +134,4 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
