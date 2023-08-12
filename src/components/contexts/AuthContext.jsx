@@ -36,15 +36,15 @@ const AuthProvider = ({ children }) => {
     })();
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      await updateProfile({
-        last_connected_at: Date.now(),
-      });
-    }, 30000);
+  // useEffect(() => {
+  //   const interval = setInterval(async () => {
+  //     await updateProfile({
+  //       last_connected_at: Date.now(),
+  //     });
+  //   }, 30000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const isUserDataFilled = (userData) => {
     if (!userData.first_name) return false;

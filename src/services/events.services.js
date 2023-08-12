@@ -1,10 +1,11 @@
-import { getRequest, postRequest } from "../utils/request.utils";
+import { getRequest, postRequest, putRequest } from "../utils/request.utils";
 import {
   GET_ALL_EVENTS,
   GET_ALL_EVENT_CLIPS,
   GET_EVENT_URL,
   REGISTER_EVENT,
   GET_MY_EVENTS,
+  UPDATE_PARTICIPANT_INFO,
 } from "../utils/url.utils";
 
 export const getEvents = () => {
@@ -35,5 +36,12 @@ export const getAllEventClips = () => {
 export const getMyEvents = () => {
   return getRequest({
     url: GET_MY_EVENTS,
+  });
+};
+
+export const updateParticipantInfo = (data) => {
+  return putRequest({
+    url: UPDATE_PARTICIPANT_INFO,
+    data: { data },
   });
 };

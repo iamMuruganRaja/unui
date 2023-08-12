@@ -1,7 +1,7 @@
 const BASE_URL =
   // "https://0936-13-235-238-250.ngrok-free.app";
   // "https://4ea0-103-105-226-2.ngrok-free.app";
-  // "https://f0eb-103-105-226-2.ngrok-free.app";
+  // "http://localhost:3000";
   "https://api.unmutex.in";
 
 // AUTH
@@ -27,3 +27,5 @@ export const GET_MY_EVENTS = `${BASE_URL}/events?type=my_events`;
 export const GET_ALL_EVENT_CLIPS = `${BASE_URL}/event_clips`;
 
 export const UPDATE_USER_PROFILE = `${BASE_URL}/user_profiles/update`;
+
+export const UPDATE_PARTICIPANT_INFO = `${BASE_URL}/event_participants/host_mode`;

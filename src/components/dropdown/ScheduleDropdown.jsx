@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import classes from "./ScheduleDropdown.module.css";
 
-const options =
-  // = ["Present", "Absent", "Upcoming Performance", "Live Now"];
-  [];
+const options = ["present", "absent", "upcoming_performance", "live"];
 
 function DropdownInput({
   placeholder,
@@ -13,26 +12,42 @@ function DropdownInput({
   event,
   selectedValue,
   handleSelect,
+  isOpen,
   ...props
 }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isProgressBarVisible, setIsProgressBarVisible] = useState(false);
+  const [isProgressBarReset, setIsProgressBarReset] = useState(false);
 
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
 
   const handleOptionSelect = (value) => {
     toggleDropdown();
+    setIsProgressBarVisible(true); // Show progress bar when option is selected
+    setIsProgressBarReset(true); // Reset progress bar animation
     handleSelect(value);
+    
   };
+  useEffect(() => {
+    if (isProgressBarReset) {
+      // Reset progress bar animation after a short delay
+      const timer = setTimeout(() => {
+        setIsProgressBarVisible(false);
+        setIsProgressBarReset(false);
+      }, 5000); // Set the same duration as your animation
+      return () => clearTimeout(timer);
+    }
+  }, [isProgressBarReset]);
 
   const getColor = (value) => {
     switch (value) {
-      case "Preset":
+      case "present":
         return "#8BBF69";
-      case "Absent":
+      case "absent":
         return "#CB4747";
-      case "Upcoming Performance":
+      case "upcoming_performance":
         return "#CB9E47";
-      case "Live Now":
+      case "live":
         return "#A458D2";
       default:
         return "#8BBF69";
@@ -41,9 +56,14 @@ function DropdownInput({
 
   return (
     <div className={classes.main_container}>
+     {isProgressBarVisible && ( <div
+    className={classes.progress_bar}
+    style={{ width: false ? "100%" : 0 }} // Adjust the width based on isOpen
+  ></div>
+  )}
       <motion.div
         initial={{ height: 50 }}
-        animate={{ height: isDropdownOpen ? 50 * (options.length + 1) : 50 }}
+        animate={{ height: isOpen ? 50 * (options.length + 1) : 50 }} // Animate height based on isOpen
         className={classes.dropdown_container}
       >
         <button
@@ -55,7 +75,7 @@ function DropdownInput({
           <p>{range}</p>
           <p>{event}</p>
         </button>
-        {options.map((item) => (
+        { isOpen && options.map((item) => (
           <button
             key={item}
             className={classes.option_container}
@@ -65,6 +85,9 @@ function DropdownInput({
             {item}
           </button>
         ))}
+         {isProgressBarVisible && (
+          <div className={classes.progress_bar}></div>
+        )}
       </motion.div>
     </div>
   );

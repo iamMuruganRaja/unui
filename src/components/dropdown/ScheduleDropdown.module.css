@@ -76,3 +76,45 @@
   right: 35px;
   top: 35px;
 }
+.progress_bar {
+  border-radius: 30px;
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+
+  display: inline;
+  left: 0;
+  width: 0;
+  height: 50px;
+  background-color: #3498db;
+  animation: fillProgressBar 5s ease-in-out forwards,
+    resetProgressBar 5s ease-in-out forwards 5s;
+}
+
+@keyframes fillProgressBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes resetProgressBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+.progress_bar::before {
+  content: "Updating..."; /* Display the text */
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: rgb(239, 235, 17);
+}
