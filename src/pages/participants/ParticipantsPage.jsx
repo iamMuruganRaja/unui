@@ -48,8 +48,8 @@ function ParticipantsPage() {
             />
             <div className={classes.details}>
               <h2 className={classes.name}>
-                {authData.userData.first_name} {authData.userData.last_name}
-                <Link to="/edit profile" className={classes.edit_icon}>
+                {authData.userData.first_name}
+                <Link to="/edit-profile" className={classes.edit_icon}>
                   <img src={editImg} alt="edit" />
                 </Link>
               </h2>
@@ -88,21 +88,21 @@ function ParticipantsPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <img src={twitterMono} alt="social" />
+                <img src={twitterColor} alt="social" />
               </a>
               <a
                 target="_blank"
                 href={participant?.profile_info?.social_media_link}
                 rel="noreferrer"
               >
-                <img src={instagramMono} alt="social" />
+                <img src={instagramColor} alt="social" />
               </a>
               <a
                 target="_blank"
                 href={participant?.profile_info?.social_media_link}
                 rel="noreferrer"
               >
-                <img src={facebookMono} alt="social" />
+                <img src={facebookColor} alt="social" />
               </a>
             </div>
           </div>

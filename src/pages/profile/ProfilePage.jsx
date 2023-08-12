@@ -21,7 +21,7 @@ const ProfilePage = () => {
   const userDetails = useMemo(
     () => ({
       pfp: "https://images.unsplash.com/photo-1573554893531-5779992f6cd2",
-      full_name: `${userData?.first_name} ${userData?.last_name || ""}`,
+      full_name: `${userData?.first_name} ""}`,
       bio: `${userData?.role || ""}`,
     }),
     [userData]

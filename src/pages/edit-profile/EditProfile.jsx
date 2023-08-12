@@ -43,14 +43,14 @@ const EditProfilePage = () => {
       <h4 className={classes.subtitle}>Only one step away...</h4>
       {!userData.first_name && (
         <TextInput
-          placeholder="First Name"
+          placeholder="Name"
           value={form.first_name}
           onChange={(e) => setKey("first_name", e.target.value)}
         />
       )}
       {!userData.social_media_link && (
         <TextInput
-          placeholder="Social Media Link"
+          placeholder="Instagram/Youtube handle"
           value={form.social_media_link}
           onChange={(e) => setKey("social_media_link", e.target.value)}
         />
