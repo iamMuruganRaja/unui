@@ -71,3 +71,149 @@
 
   margin-left: 20px;
 }
+.participant_container_bottom {
+  position: relative; /* Add this */
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  width: 300px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 2px solid #f9f9f9;
+}
+
+.participant_container_bottom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.live_icon {
+  width: 50px;
+  height: 50px;
+  background-color: #ff3c64;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -25px; /* Adjust this to your preference */
+  right: -25px; /* Adjust this to your preference */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ff3c64;
+}
+
+.action_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: -25px; /* Adjust this to your preference */
+  right: -25px; /* Adjust this to your preference */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ff3c64;
+}
+
+.social_link {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 100px; /* Adjust this to your preference */
+  right: 25px; /* Adjust this to your preference */
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+.live_icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.avatar_container {
+  flex: 0 0 auto;
+  margin-right: 20px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 35%;
+  object-fit: cover;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 2px solid #f9f9f9;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.details {
+  flex: 1;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.text {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+.social_links {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.social_links img {
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.social_links img:hover {
+  transform: scale(1.1);
+}
+
+.progress_bar {
+  height: 5px;
+  background-color: #ccc;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background-color: #007bff; /* Set your desired color */
+  position: absolute;
+  animation: fillAndWait 5s linear forwards; /* Add the animation */
+}
+
+@keyframes fillAndWait {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.content_container {
+  position: relative;
+}

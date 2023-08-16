@@ -23,8 +23,8 @@ function DropdownInput({
 
   const handleOptionSelect = (value) => {
     toggleDropdown();
-    setIsProgressBarVisible(true); // Show progress bar when option is selected
-    setIsProgressBarReset(true); // Reset progress bar animation
+    // setIsProgressBarVisible(true); // Show progress bar when option is selected
+    // setIsProgressBarReset(true); // Reset progress bar animation
     handleSelect(value);
     
   };

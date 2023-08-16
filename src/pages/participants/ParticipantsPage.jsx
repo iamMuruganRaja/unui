@@ -83,52 +83,52 @@ function ParticipantsPage() {
         <h1 className={classes.participants_header}>Participants</h1>
         {eventDetails.event_participants.map((participant) => (
 
-<div className={classes.participant_container_bottom}>
-<div className={classes.top_container}>
-  {/* Add the "Live Now" icon here */}
-  {participant.status === "live" && (
-    <img
-      src={liveImg}
-      alt="Confirm"
-      width="50px"
-      height="50px"
-    />
-  )}
-  <img
-    className={classes.avatar}
-    src="https://images.unsplash.com/photo-1616268164880-673b3ba611bb"
-    alt="avatar"
-  />
-  <div className={classes.details}>
-    <h2 className={classes.name}>
-      {participant?.profile_info?.first_name}{" "}
-      {participant?.profile_info?.last_name}
-    </h2>
-    <p className={classes.text}>
-      {participant?.profile_info?.role}
-    </p>
-  </div>
-</div>
-<div className={classes.bottom_container}>
-  {participant?.profile_info?.social_media_link && (
-    <a
-      href={participant.profile_info.social_media_link}
-      target="_blank"
-      rel="noreferrer"
-    >
-      {participant.profile_info.social_media_link.includes("twitter") && (
-        <img src={twitterColor} alt="social" />
-      )}
-      {participant.profile_info.social_media_link.includes("instagram") && (
-        <img src={instagramColor} alt="social" />
-      )}
-      {participant.profile_info.social_media_link.includes("facebook") && (
-        <img src={facebookColor} alt="social" />
-      )}
-    </a>
-  )}
-</div>
-</div>
+    <div className={classes.participant_container_bottom}>
+            <div className={classes.top_container}>
+              {/* Add the "Live Now" icon here */}
+              {participant.status === "live" && (
+                <img
+                  src={liveImg}
+                  alt="Confirm"
+                  width="50px"
+                  height="50px"
+                />
+              )}
+              <img
+                className={classes.avatar}
+                src="https://images.unsplash.com/photo-1616268164880-673b3ba611bb"
+                alt="avatar"
+              />
+              <div className={classes.details}>
+                <h2 className={classes.name}>
+                  {participant?.profile_info?.first_name}{" "}
+                  {participant?.profile_info?.last_name}
+                </h2>
+                <p className={classes.text}>
+                  {participant?.profile_info?.role}
+                </p>
+              </div>
+            </div>
+              <div className={classes.bottom_container}>
+                {participant?.profile_info?.social_media_link && (
+                  <a
+                    href={participant.profile_info.social_media_link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {participant.profile_info.social_media_link.includes("twitter") && (
+                      <img src={twitterColor} alt="social" />
+                    )}
+                    {participant.profile_info.social_media_link.includes("instagram") && (
+                      <img src={instagramColor} alt="social" />
+                    )}
+                    {participant.profile_info.social_media_link.includes("facebook") && (
+                      <img src={facebookColor} alt="social" />
+                    )}
+                  </a>
+                )}
+              </div>
+    </div>
         ))}
         Thats all for this event.<br></br>
         <br></br>
