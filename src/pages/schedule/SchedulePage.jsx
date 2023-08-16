@@ -40,7 +40,7 @@ function SchedulePage() {
   const [isEditModeOn, setIsEditModeOn] = useState(false);
   const { authData } = useAuthContext();
   const [isEventLoading, setIsEventLoading] = useState(true);
-  const WS_URL = 'ws://free.blr2.piesocket.com/v3/adcdc209-143a-4ef5-7c3d-eb1099941fe9?api_key=BGupnu2fqynVG6ewQN4P9OKboKIXtr09SCZJv0Pz';
+  const WS_URL = 'wss://free.blr2.piesocket.com/v3/adcdc209-143a-4ef5-7c3d-eb1099941fe9?api_key=BGupnu2fqynVG6ewQN4P9OKboKIXtr09SCZJv0Pz';
 
   const { lastJsonMessage } = useWebSocket(WS_URL, {
     onOpen: () => {
