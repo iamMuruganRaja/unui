@@ -220,7 +220,7 @@ const customSort = (a, b) => {
   )}
           <div className={classes.schedule_list}>
           {/* <ReactSortable list={schedule} handle={classes.handle_img}> */}
-          <ReactSortable list={schedule} setList={setSchedule} handle={classes.handle_img}>
+          <ReactSortable disabled={true} list={schedule} setList={setSchedule} handle={classes.handle_img}>
           {sortedSequence.map((item, ind) => (
   <div key={item.id} className={`${classes.list_item}`}>
     {ind === 0 ? (
