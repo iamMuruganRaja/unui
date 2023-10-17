@@ -55,7 +55,7 @@ const MainArea = (props) => {
             <FontAwesomeIcon
               icon={faEdit}
               style={{
-                color: "#2ed365",
+                color: "#BF2B0B",
                 position: "absolute",
                 top: "10px",
                 right: "10px",

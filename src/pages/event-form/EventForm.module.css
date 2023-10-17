@@ -15,14 +15,6 @@
   border-radius: 20px; /* Rounded container */
 }
 
-.subtitle {
-  color: #fff;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 500;
-  margin-top: 10px;
-}
-
 /* Improve input field styles */
 .textInput,
 .textareaInput,
@@ -143,4 +135,35 @@
 }
 .error {
   border: 1px solid red;
+}
+
+.disabledButton {
+  background-color: #ccc; /* Grayed out background color */
+  color: #888; /* Text color for disabled button */
+  cursor: not-allowed; /* Change cursor to not-allowed */
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+}
+
+/* Back arrow styles */
+.backArrow {
+  font-size: 24px; /* Adjust the font size as needed */
+  color: #2ed365; /* Set the color you prefer */
+  cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
+  margin-right: 10px; /* Add margin to the right for spacing */
+}
+
+/* Hover effect for the back arrow */
+.backArrow:hover {
+  color: #45a049; /* Change the color on hover */
+}
+
+/* Subtitle styles */
+.subtitle {
+  color: #4caf50;
+  font-size: 20px;
+  font-weight: 500;
 }

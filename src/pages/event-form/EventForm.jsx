@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import TextInput from "../../components/input/TextInput";
 import DropdownInput from "../../components/input/DropdownInput";
 import useForm from "../../components/hooks/useForm";
@@ -7,6 +7,8 @@ import SubmitButton from "../../components/buttons/SubmitButton";
 import classes from "./EventForm.module.css";
 import SplashScreen from "../../components/splash/SplashScreen";
 import { updateEvent, createEvent } from "../../services/events.services";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const EventForm = () => {
   const location = useLocation();
@@ -16,24 +18,32 @@ const EventForm = () => {
     description: "",
     start_time: "",
     end_time: "",
-    bg_image: "",
+    bg_image_url: "",
     genre: "",
     mode: "online",
     link: "",
     location: "",
   });
+  const initialValidation = {
+    name: !form.description,
+    description: !form.description,
+    start_time: !form.start_time,
+    end_time: !form.end_time,
+    bg_image_url: !form.bg_image_url,
+    link: !form.link,
+  };
 
-  const [validation, setValidation] = useState({
-    name: true,
-    description: true,
-    start_time: true,
-    end_time: true,
-    bg_image: true,
-    link: true,
-  });
+  const [validation, setValidation] = useState(initialValidation);
+  const isFormValid = Object.values(validation).every((isValid) => isValid);
+
+  const getAsset = (event, asset_key) => {
+    return event.event_assets.filter((asset) => asset_key === asset.key)[0];
+  };
+
 
   useEffect(() => {
     const eventToUpdate = location.state ? location.state.event : null;
+    
     if (eventToUpdate) {
       setFormFields(eventToUpdate);
     }
@@ -44,7 +54,7 @@ const EventForm = () => {
     setKey("description", event.description);
     setKey("start_time", event.start_time);
     setKey("end_time", event.end_time);
-    setKey("bg_image", event.bg_image);
+    setKey("bg_image_url", getAsset(event, "background")?.value.link);
     setKey("genre", event.genre);
     setKey("mode", event.mode);
     setKey("link", event.link);
@@ -60,50 +70,48 @@ const EventForm = () => {
       [property]: !!value,
     });
   };
-
+  
   const handleEventSubmit = async () => {
-    const eventToUpdate = location.state ? location.state.event : null;
     
+    const eventToUpdate = location.state ? location.state.event : null;
+
     if (eventToUpdate) {
-      
       const eventId = eventToUpdate.uuid;
       const updatedEvent = {
-     //   ...eventToUpdate,
         name: form.name,
         description: form.description,
         start_time: form.start_time,
         end_time: form.end_time,
-        bg_image_url: form.bg_image,
+        bg_image_url: form.bg_image_url,
         genre: form.genre,
         mode: form.mode,
         link: form.link,
-        
       };
-      
+
       const { error } = await updateEvent(eventId, updatedEvent);
-    
-        if (!!error) return;
-    
-      // Handle update logic
+
+      if (!!error) return;
     } else {
-      // Handle creation logic
       const eventToBeCreated = {
-        //   ...eventToUpdate,
-           name: form.name,
-           description: form.description,
-           start_time: form.start_time,
-           end_time: form.end_time,
-           bg_image_url: form.bg_image,
-           genre: form.genre,
-           mode: form.mode,
-           link: form.link,
-           
-         };
-      createEvent(eventToBeCreated)
+        name: form.name,
+        description: form.description,
+        start_time: form.start_time,
+        end_time: form.end_time,
+        bg_image_url: form.bg_image_url,
+        genre: form.genre,
+        mode: form.mode,
+        link: form.link,
+      };
+      createEvent(eventToBeCreated);
     }
+    location.state.event=null
 
     navigate("/upcoming");
-    
+  };
+
+  const handleCancel = async () => {
+    navigate(-1)
+    location.state.event=null
   };
 
   const validateForm = () => {
@@ -113,11 +121,18 @@ const EventForm = () => {
 
   return (
     <SplashScreen>
+       
       <div className={classes.eventForm}>
-        <h4 className={classes.subtitle}>
-          {location.state ? "Update Event Details" : "Create a New Event"}
-        </h4>
-        Event Name
+      <div className={classes.titleContainer}>
+  <Link to="/upcoming">
+    <FontAwesomeIcon icon={faArrowLeft} className={classes.backArrow} />
+  </Link>
+  <h5 className={classes.subtitle}>
+    {location.state.event ? "Update Event Details" : "Create a New Event"}
+  </h5>
+</div>
+        
+        Name
         <div className={classes.formGroup}>
           <TextInput
             placeholder="Name your event"
@@ -139,15 +154,16 @@ const EventForm = () => {
             }}
           />
         </div>
+        Mode
         <div className={classes.formGroup}>
-            <DropdownInput
-              options={["Online", "Offline"]}
-              placeholder="Mode"
-              className={classes.dropdownInput}
-              selectedValue={form.genre}
-              handleSelect={(value) => handleInputChange("mode", value)}
-            />
-          </div>
+          <DropdownInput
+            options={["Online", "Offline"]}
+            placeholder="Mode"
+            className={classes.dropdownInput}
+            selectedValue={form.genre}
+            handleSelect={(value) => handleInputChange("mode", value)}
+          />
+        </div>
         Start Time
         <div className={classes.formGroup}>
           <TextInput
@@ -172,16 +188,15 @@ const EventForm = () => {
             }}
           />
         </div>
-        
         <div className={classes.formGroup}>
           Event Card Image
           <TextInput
-            placeholder="Enter the URL of image"
+            placeholder="Enter the URL of the image"
             className={classes.textInput}
-            value={form.bg_image}
-            onChange={(e) => handleInputChange("bg_image", e.target.value)}
+            value={form.bg_image_url}
+            onChange={(e) => handleInputChange("bg_image_url", e.target.value)}
             style={{
-              borderColor: validation.bg_image ? "#2ed365" : "red",
+              borderColor: validation.bg_image_url ? "#2ed365" : "red",
             }}
           />
         </div>
@@ -209,22 +224,27 @@ const EventForm = () => {
             />
           </div>
         </div>
+        
         <div className={classes.submitButtonContainer}>
+        
+<SubmitButton
+  title="Save"
+  className={`${classes.submitButton} ${!Object.values(validation).every((isValid) => isValid) ? classes.disabledButton : ''}`}
+  onClick={handleEventSubmit}
+  
+/>
+          <div className={classes.buttonSpacing}></div>
           <SubmitButton
-            title="Save"
+            title="Back"
             className={classes.submitButton}
-            onClick={handleEventSubmit}
+            onClick={handleCancel}
+            disabled={!Object.values(validation).every((isValid) => isValid)}
           />
-         <div className={classes.buttonSpacing}></div>
-          <SubmitButton
-            title="Cancel"
-            className={classes.submitButton}
-            onClick={handleEventSubmit}
-          />
+          
         </div>
-        <br />
-        <br />
-        <br />
+        <br></br>
+        <br></br>
+        
         <br></br>
       </div>
     </SplashScreen>
