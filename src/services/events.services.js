@@ -6,6 +6,8 @@ import {
   REGISTER_EVENT,
   GET_MY_EVENTS,
   UPDATE_PARTICIPANT_INFO,
+  CREATE_EVENT_URL,
+  EVENT_COMMUNICATION_URL,
 } from "../utils/url.utils";
 
 export const getEvents = () => {
@@ -17,6 +19,26 @@ export const getEvents = () => {
 export const getEvent = (eventId) => {
   return getRequest({
     url: GET_EVENT_URL.replace("$ID", eventId),
+  });
+};
+export const updateEvent = (eventId, data) => {
+  return putRequest({
+    url: GET_EVENT_URL.replace("$ID", eventId),
+    data: { data },
+  });
+};
+
+export const createEvent = (data) => {
+  return postRequest({
+    url: CREATE_EVENT_URL,
+    data: { data },
+  });
+};
+
+export const sendCommunication = (eventId, data) => {
+  return postRequest({
+    url: EVENT_COMMUNICATION_URL.replace("$ID", eventId),
+    data: { data },
   });
 };
 

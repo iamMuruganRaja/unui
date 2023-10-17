@@ -1,4 +1,5 @@
-import classes from "./MyEventsPage.module.css";
+
+
 
 import React, { useEffect, useState } from "react";
 
@@ -6,11 +7,13 @@ import SplashScreen from "../../components/splash/SplashScreen";
 
 import participants from "../../assets/card-icon.png";
 
+import classes from "./MyEventsPage.module.css";
 import { getMyEvents } from "../../services/events.services";
 import LoadingComponent from "../../components/loading/LoadingComponent";
 import { useAuthContext } from "../../components/contexts/AuthContext";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+import EventCard from "../../components/cards/event/EventCard";
 
 const MyEventsPage = () => {
   const [events, setEvents] = useState(null);
@@ -27,23 +30,7 @@ const MyEventsPage = () => {
     })();
   }, []);
 
-  const getAsset = (event, asset_key) => {
-    return event.event_assets.filter((asset) => asset_key === asset.key)[0];
-  };
-
-  const isUserAParticipant = (event) => {
-    if (!authData.isAuthenticated) return false;
-
-    return (
-      event.event_participants.filter(
-        (part) => part.user_uuid === authData.userData.uuid
-      ).length > 0
-    );
-  };
-
-  const getHost = (event) => {
-    return event.event_participants.filter((part) => part.role === "Host")[0];
-  };
+  
 
   return (
     <SplashScreen>
@@ -55,91 +42,16 @@ const MyEventsPage = () => {
             <LoadingComponent fill={false} />
           ) : (
             events.map((event) => (
-              <div
-                className={classes.carousel_card_item}
-                style={{
-                  backgroundImage: `url(${
-                    getAsset(event, "background")?.value.link ||
-                    "https://i.ibb.co/HtRrwPV/bg.png"
-                  })`,
-                }}
-              >
-                <div className={classes.top_row}>
-                  <div className={classes.participants}>
-                    {event.event_participants.length > 0 && (
-                      <img
-                        alt="icon"
-                        className={classes.participant_icon}
-                        src={participants}
-                        style={{ left: 0 }}
-                      />
-                    )}
-                    {event.event_participants.length > 1 && (
-                      <img
-                        alt="icon"
-                        className={classes.participant_icon}
-                        src={participants}
-                        style={{ left: -5 }}
-                      />
-                    )}
-                    {event.event_participants.length > 2 && (
-                      <img
-                        alt="icon"
-                        className={classes.participant_icon}
-                        src={participants}
-                        style={{ left: -10 }}
-                      />
-                    )}
-                    {event.event_participants.length > 3 && (
-                      <img
-                        alt="icon"
-                        className={classes.participant_icon}
-                        src={participants}
-                        style={{ left: -15 }}
-                      />
-                    )}
-                    <p
-                      className={classes.participant_count}
-                      style={{
-                        left: 10 - 5 * (event.event_participants.length % 4),
-                      }}
-                    >
-                      {event.event_participants.length} Participants
-                    </p>
-                  </div>
-                  <div className={classes.date_box}>
-                    {dayjs(event.start_time).format("DD MMM")}
-                  </div>
-                </div>
-                <div className={classes.bottom_row}>
-                  <div className={classes.left_container}>
-                    <h3 className={classes.name_container}>{event.name}</h3>
-                    <h4 className={classes.host_container}>
-                      Host: {getHost(event)?.profile_info?.first_name}
-                    </h4>
-                  </div>
-                  {isUserAParticipant(event) ? (
-                    <Link
-                      to={`/details?event_id=${event.uuid}`}
-                      className={classes.register_button}
-                    >
-                      Details
-                    </Link>
-                  ) : (
-                    <Link
-                      to={`/event?event_id=${event.uuid}`}
-                      className={classes.register_button}
-                    >
-                      Register
-                    </Link>
-                  )}
-                </div>
-              </div>
+              <EventCard event={event}/>
             ))
           )}
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
-    </SplashScreen>
+      </SplashScreen>
+    
   );
 };
 

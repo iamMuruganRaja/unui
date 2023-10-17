@@ -1,0 +1,399 @@
+/* Common styles for both mobile and desktop */
+.PageContainer {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Responsive styles for mobile screens */
+@media (max-width: 768px) {
+  .PageContainer {
+    padding: 10px; /* Adjust the padding for mobile */
+  }
+}
+
+/* Responsive styles for desktop screens */
+@media (min-width: 769px) {
+  .PageContainer {
+    padding: 40px; /* Adjust the padding for desktop */
+  }
+}
+
+.CardContainer {
+  width: 330px;
+  height: 350px;
+  perspective: 1000px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform ease 500ms;
+}
+
+.CardContainer.flipped {
+  transform: rotateY(180deg);
+}
+
+.Front,
+.Back {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px rgba(95, 77, 99, 0.2);
+  padding: 10px;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform ease 500ms;
+}
+
+.Back {
+  transform: rotateY(180deg);
+  z-index: 1; /* Add this line */
+}
+
+.ImageContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  margin-bottom: 10px;
+  overflow: hidden; /* Add this line to hide overflowing content */
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #333;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px 10px 0 0;
+}
+
+.MainArea {
+  margin-top: 10px;
+}
+
+.blog-post {
+  .date {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #555;
+  }
+
+  .read-more {
+    font-size: 18px;
+    text-align: right;
+    color: #007bff;
+    cursor: pointer;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form label,
+.form select,
+.form textarea {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.form-button.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white; /* Text color on the overlay */
+  padding: 20px; /* Adjust padding as needed */
+  border-radius: 10px;
+}
+.actions {
+  display: flex;
+  justify-content: center; /* Horizontally center align icons */
+  align-items: center; /* Vertically center align icons */
+}
+
+.action-icon {
+  margin: 0 10px; /* Add some spacing between icons */
+  font-size: 18px; /* Adjust the icon size as needed */
+  cursor: pointer;
+}
+/* Dropdown styles */
+.dropdown {
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 8px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* Form group styles */
+.form-group {
+  margin-bottom: 16px;
+}
+
+/* Custom message textarea styles */
+.custom-message {
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Button styles */
+.form-button {
+  cursor: pointer;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Check icon styles */
+.check-icon {
+  color: #2ed365;
+  margin-right: 8px;
+}
+
+/* Cancel icon styles */
+.cancel-icon {
+  color: #ff6b6b;
+  margin-right: 8px;
+}
+
+/* Button hover effect */
+.form-button:hover {
+  background-color: #f0f0f0;
+}
+/* App.css or your existing CSS file */
+
+/* Apply these styles to all select elements */
+select {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: white;
+  color: #333;
+  padding: 10px;
+}
+
+/* Apply these styles to all option elements within select */
+select option {
+  background-color: white;
+  color: #333;
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* Apply these styles when an option is hovered */
+select option:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+.date_box {
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background: #2ed365;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.35);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.card_container {
+  display: flex; /* Use flexbox to align horizontally */
+  justify-content: space-between; /* Space evenly between cards */
+  flex-wrap: wrap; /* Allow cards to wrap to the next row on small screens */
+  margin: -10px; /* Negative margin to counteract padding on individual cards */
+}
+
+/* Add this CSS for each EventCard component (if needed) */
+.EventCard {
+  margin: 10px; /* Adjust margin to control space between cards */
+}
+
+.participants {
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  left: 10px; /* Adjust the right position as needed */
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background: #2ed365;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.35);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.participant_icon {
+  width: 15px;
+  height: 15px;
+
+  border-radius: 50%;
+
+  position: relative;
+}
+
+.participant_count {
+  color: #fff;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  margin-left: 4px;
+}
+
+.host {
+  padding-top: 10px;
+  padding-left: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-weight: normal;
+  font-family: Montserrat;
+  max-width: 40%;
+}
+
+.theme {
+  padding-top: 10px;
+  padding-right: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-weight: normal;
+  font-family: Montserrat;
+}
+.circular_button {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  right: 10px;
+  font-weight: normal;
+  font-family: Montserrat;
+
+  border-radius: 10px;
+  background: #2ed365;
+
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+  display: grid;
+  place-items: center;
+  position: absolute;
+}
+
+.card-description {
+  padding: 10px;
+  position: absolute;
+  bottom: 60px;
+  left: 10px;
+  font-weight: normal;
+  font-family: Montserrat;
+  color: #afffaaeb;
+  font-weight: bolder;
+}
+
+.location-icon {
+  position: absolute;
+  /*  bottom: 20px; Adjust the top position as needed */
+
+  left: 50px;
+}
+
+.blog-post {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between; /* Add this line to create space between icons and button */
+  /* ... (other styles for .actions) */
+}
+
+.circular_button {
+  background-color: #2ed365;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}

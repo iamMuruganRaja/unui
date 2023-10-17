@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import classes from "./EventBox.module.css";
 import { Link } from "react-router-dom";
 
+
 const EventBox = ({ event }) => {
   const getAsset = (event, asset_key) => {
     return event.event_assets.filter((asset) => asset_key === asset.key)[0];

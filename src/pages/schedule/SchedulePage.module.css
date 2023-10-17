@@ -72,7 +72,7 @@
   margin-left: 20px;
 }
 .participant_container_bottom {
-  position: relative; /* Add this */
+  position: relative;
   display: flex;
   align-items: center;
   padding: 20px;
@@ -81,8 +81,36 @@
   width: 300px;
   margin-bottom: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   border: 2px solid #d60a0a;
+  overflow: hidden; /* Hide overflowing progress bar */
+}
+
+/* Create a pseudo-element for the progress bar */
+.participant_container_bottom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Start with full width */
+  height: 10px; /* Set the height of the progress bar */
+  background-color: green; /* Change to green */
+  animation: progress 60s linear forwards; /* Animation duration, timing function, fill mode */
+  z-index: -1; /* Behind the content */
+}
+
+/* Define the progress animation */
+@keyframes progress {
+  0% {
+    width: 100%; /* Starting width */
+  }
+  100% {
+    width: 0%; /* Ending width (fully filled) */
+  }
+}
+
+/* Add a class to start the progress */
+.participant_container_bottom.active::before {
+  animation-play-state: running; /* Start the animation */
 }
 
 .participant_container_bottom:hover {

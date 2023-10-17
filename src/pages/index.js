@@ -8,6 +8,7 @@ import UpcomingPage from "./upcoming/UpcomingPage";
 import { useAuthContext } from "../components/contexts/AuthContext";
 import LoadingComponent from "../components/loading/LoadingComponent";
 import EditProfilePage from "./edit-profile/EditProfile";
+import EventForm from "./event-form/EventForm";
 import ParticipantsPage from "./participants/ParticipantsPage";
 import SchedulePage from "./schedule/SchedulePage";
 import TopNav from "../components/navbar/TopNav";
@@ -16,6 +17,7 @@ import HomePage from "./home/HomePage";
 import ProfilePage from "./profile/ProfilePage";
 import MyEventsPage from "./my-events/MyEventsPage";
 import Aboutus from "./aboutus/AboutUs";
+import LandingPage from "./landingpage/LandingPage";
 
 function MainRouter() {
   const { authData, isAuthLoading } = useAuthContext();
@@ -46,10 +48,12 @@ function MainRouter() {
                 <Route path="/participant-profile" element={<ProfilePage />} />
                 <Route path="/my-events" element={<MyEventsPage />} />
                 <Route path="/support" element={<SupportPage />} />
-                <Route path="/about-us" element={<Aboutus />} />
+                <Route path="/about-us" element={<LandingPage />} />
+                <Route path="/landing-page" element={<LandingPage />} />
 
                 <Route path="/complete-profile" element={<EditProfilePage />} />
                 <Route path="/edit-profile" element={<EditProfilePage />} />
+                <Route path="/events" element={<EventForm />} />
                 <Route path="/details/:eventId" element={<ExplorePage />} />
                 <Route
                   path="/participants/:eventId"

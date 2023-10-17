@@ -1,0 +1,146 @@
+/* EventForm.module.css */
+
+.mainContainer {
+  background-color: #2ed365;
+  min-height: 100vh;
+  padding-bottom: 10vh;
+  background-size: cover;
+  background-position: bottom;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px; /* Rounded container */
+}
+
+.subtitle {
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* Improve input field styles */
+.textInput,
+.textareaInput,
+.datetimeInput,
+.numberInput,
+.dropdownInput {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #4caf50; /* Update border */
+  border-radius: 10px; /* Rounded input fields */
+  font-size: 16px;
+  background-color: transparent;
+  color: #333;
+  margin-bottom: 20px;
+  background-color: #fff; /* Set a white background color */
+  border-radius: 20px; /* Rounded input fields */
+}
+
+.textareaInput {
+  height: 150px; /* Increase height for textarea */
+  background-color: #fff; /* Set a white background color */
+  resize: none; /* Disable textarea resizing */
+}
+
+/* Update radio button styles */
+.radioContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+  border-radius: 20px; /* Rounded input fields */
+  margin-bottom: 20px;
+}
+
+.radioLabel {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.radioGroup {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #fff;
+}
+
+/* Improve submit button styles */
+.submitButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Increase padding for a larger button */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px; /* Rounded button */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.submitButton:hover {
+  background-color: #45a049;
+}
+
+.textInput {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #4caf50; /* Update border */
+  border-radius: 20px; /* Rounded input fields */
+  font-size: 16px;
+  background-color: #fff; /* Set a white background color */
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.textInput {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #4caf50; /* Update border */
+  border-radius: 20px; /* Rounded input fields */
+  font-size: 16px;
+  background-color: #fff; /* Set a white background color */
+  color: #333;
+  margin-bottom: 20px;
+}
+/* Add this CSS to your EventForm.css */
+.sideBySideDropdowns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sideBySideDropdowns .dropdownInput {
+  width: 100%; /* Adjust the width as needed */
+  margin: 0;
+  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+.eventForm {
+  padding-top: 100px;
+  width: 80%;
+
+  padding-left: 10%;
+}
+
+.submitButtonContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 10%;
+  padding-left: 20%;
+}
+
+.buttonSpacing {
+  width: 15px;
+  padding: 10px;
+  position: inherit;
+}
+.error {
+  border: 1px solid red;
+}
