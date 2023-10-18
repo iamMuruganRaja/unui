@@ -9,6 +9,7 @@ import SplashScreen from "../../components/splash/SplashScreen";
 import { updateEvent, createEvent } from "../../services/events.services";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { format } from "date-fns";
 
 const EventForm = () => {
   const location = useLocation();
@@ -24,7 +25,16 @@ const EventForm = () => {
     link: "",
     location: "",
   });
-  const initialValidation = {
+  const createEventValidation = {
+    name: !!form.description,
+    description: !!form.description,
+    start_time: !!form.start_time,
+    end_time: !!form.end_time,
+    bg_image_url: !!form.bg_image_url,
+    link: !!form.link,
+  };
+
+  const updateEventValidation = {
     name: !form.description,
     description: !form.description,
     start_time: !form.start_time,
@@ -33,32 +43,41 @@ const EventForm = () => {
     link: !form.link,
   };
 
-  const [validation, setValidation] = useState(initialValidation);
+  const [validation, setValidation] = useState(createEventValidation);
   const isFormValid = Object.values(validation).every((isValid) => isValid);
 
   const getAsset = (event, asset_key) => {
     return event.event_assets.filter((asset) => asset_key === asset.key)[0];
   };
 
-
   useEffect(() => {
     const eventToUpdate = location.state ? location.state.event : null;
     
     if (eventToUpdate) {
       setFormFields(eventToUpdate);
+      setValidation(updateEventValidation)
+    }
+    else{
+    
+      setValidation(createEventValidation)
     }
   }, [location.state]);
 
   const setFormFields = (event) => {
     setKey("name", event.name);
     setKey("description", event.description);
-    setKey("start_time", event.start_time);
-    setKey("end_time", event.end_time);
+    setKey("start_time", format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm"));
+    setKey("end_time", format(new Date(event.end_time), "yyyy-MM-dd'T'HH:mm"));
     setKey("bg_image_url", getAsset(event, "background")?.value.link);
     setKey("genre", event.genre);
     setKey("mode", event.mode);
     setKey("link", event.link);
     setKey("location", event.location);
+
+    const originalDate = new Date(event.start_time);
+
+// Format the date in your desired format
+const formattedDateStr = format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm");
   };
 
   const handleInputChange = (property, value) => {
@@ -70,9 +89,8 @@ const EventForm = () => {
       [property]: !!value,
     });
   };
-  
+
   const handleEventSubmit = async () => {
-    
     const eventToUpdate = location.state ? location.state.event : null;
 
     if (eventToUpdate) {
@@ -104,14 +122,13 @@ const EventForm = () => {
       };
       createEvent(eventToBeCreated);
     }
-    location.state.event=null
-
+    location.state.event = null;
     navigate("/upcoming");
   };
 
   const handleCancel = async () => {
-    navigate(-1)
-    location.state.event=null
+    navigate(-1);
+    location.state.event = null;
   };
 
   const validateForm = () => {
@@ -121,29 +138,31 @@ const EventForm = () => {
 
   return (
     <SplashScreen>
-       
       <div className={classes.eventForm}>
-      <div className={classes.titleContainer}>
-  <Link to="/upcoming">
-    <FontAwesomeIcon icon={faArrowLeft} className={classes.backArrow} />
-  </Link>
-  <h5 className={classes.subtitle}>
-    {location.state.event ? "Update Event Details" : "Create a New Event"}
-  </h5>
-</div>
-        
-        Name
+        <div className={classes.titleContainer}>
+          <Link to="/upcoming">
+            <FontAwesomeIcon icon={faArrowLeft} className={classes.backArrow} />
+          </Link>
+          <h5 className={classes.subtitle}>
+            {location.state.event ? "Update Event Details" : "Create a New Event"}
+          </h5>
+        </div>
+
         <div className={classes.formGroup}>
+          <label className={classes.formLabel}>Name</label>
           <TextInput
             placeholder="Name your event"
             className={classes.textInput}
             value={form.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
             style={{
-              borderColor: validation.name ? "#2ed365" : "red",
+              borderColor: validation.name ? "#4caf50" : "red",
             }}
           />
-          Description
+        </div>
+
+        <div className={classes.formGroup}>
+          <label className={classes.formLabel}>Description</label>
           <TextInput
             placeholder="Description of the event"
             className={classes.textareaInput}
@@ -154,18 +173,20 @@ const EventForm = () => {
             }}
           />
         </div>
-        Mode
+
         <div className={classes.formGroup}>
+          <label className={classes.formLabel}>Mode</label>
           <DropdownInput
             options={["Online", "Offline"]}
             placeholder="Mode"
             className={classes.dropdownInput}
-            selectedValue={form.genre}
+            selectedValue={form.mode}
             handleSelect={(value) => handleInputChange("mode", value)}
           />
         </div>
-        Start Time
+
         <div className={classes.formGroup}>
+          <label className={classes.formLabel}>Start Time</label>
           <TextInput
             placeholder="Start Time"
             type="datetime-local"
@@ -173,10 +194,13 @@ const EventForm = () => {
             value={form.start_time}
             onChange={(e) => handleInputChange("start_time", e.target.value)}
             style={{
-              borderColor: validation.start_time ? "#2ed365" : "red",
+              borderColor: validation.start_time ? "#4caf50" : "red",
             }}
           />
-          End Time
+        </div>
+
+        <div className={classes.formGroup}>
+          <label className={classes.formLabel}>End Time</label>
           <TextInput
             placeholder="End Time"
             type="datetime-local"
@@ -184,67 +208,68 @@ const EventForm = () => {
             value={form.end_time}
             onChange={(e) => handleInputChange("end_time", e.target.value)}
             style={{
-              borderColor: validation.end_time ? "#2ed365" : "red",
+              borderColor: validation.end_time ? "#4caf50" : "red",
             }}
           />
         </div>
+
         <div className={classes.formGroup}>
-          Event Card Image
+          <label className={classes.formLabel}>Event Card Image</label>
           <TextInput
             placeholder="Enter the URL of the image"
             className={classes.textInput}
             value={form.bg_image_url}
             onChange={(e) => handleInputChange("bg_image_url", e.target.value)}
             style={{
-              borderColor: validation.bg_image_url ? "#2ed365" : "red",
+              borderColor: validation.bg_image_url ? "#4caf50" : "red",
             }}
           />
         </div>
-        Link of the event
+
         <div className={classes.formGroup}>
+          <label className={classes.formLabel}>Link of the event</label>
           <TextInput
             placeholder="Zoom Link"
             className={classes.textInput}
             value={form.link}
             onChange={(e) => handleInputChange("link", e.target.value)}
             style={{
-              borderColor: validation.link ? "#2ed365" : "red",
+              borderColor: validation.link ? "#4caf50" : "red",
             }}
           />
         </div>
+
         <div className={`${classes.formGroup} ${classes.sideBySideDropdowns}`}>
-          <div className={classes.formGroup}>
-            Genre
-            <DropdownInput
-              options={["Comedy", "Cricket", "Poetry", "Mixed"]}
-              placeholder="Genre"
-              className={classes.dropdownInput}
-              selectedValue={form.genre}
-              handleSelect={(value) => handleInputChange("genre", value)}
-            />
-          </div>
+          <label className={classes.formLabel}>Genre</label>
+          <DropdownInput
+            options={["Comedy", "Cricket", "Poetry", "Mixed"]}
+            placeholder="Genre"
+            className={classes.dropdownInput}
+            selectedValue={form.genre}
+            handleSelect={(value) => handleInputChange("genre", value)}
+          />
         </div>
-        
+
         <div className={classes.submitButtonContainer}>
-        
-<SubmitButton
-  title="Save"
-  className={`${classes.submitButton} ${!Object.values(validation).every((isValid) => isValid) ? classes.disabledButton : ''}`}
-  onClick={handleEventSubmit}
-  
-/>
+          <SubmitButton
+            title="Save"
+            className={`${classes.submitButton} ${
+              !Object.values(validation).every((isValid) => isValid)
+                ? classes.disabledButton
+                : ""
+            }`}
+            onClick={handleEventSubmit}
+          />
           <div className={classes.buttonSpacing}></div>
           <SubmitButton
-            title="Back"
+            title="Cancel"
             className={classes.submitButton}
             onClick={handleCancel}
             disabled={!Object.values(validation).every((isValid) => isValid)}
           />
-          
         </div>
         <br></br>
         <br></br>
-        
         <br></br>
       </div>
     </SplashScreen>

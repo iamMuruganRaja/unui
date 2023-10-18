@@ -24,7 +24,7 @@
   width: 100%;
   padding: 15px;
   border: 2px solid #4caf50; /* Update border */
-  border-radius: 10px; /* Rounded input fields */
+  border-radius: 20px; /* Rounded input fields */
   font-size: 16px;
   background-color: transparent;
   color: #333;
@@ -81,27 +81,6 @@
   background-color: #45a049;
 }
 
-.textInput {
-  width: 100%;
-  padding: 15px;
-  border: 2px solid #4caf50; /* Update border */
-  border-radius: 20px; /* Rounded input fields */
-  font-size: 16px;
-  background-color: #fff; /* Set a white background color */
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.textInput {
-  width: 100%;
-  padding: 15px;
-  border: 2px solid #4caf50; /* Update border */
-  border-radius: 20px; /* Rounded input fields */
-  font-size: 16px;
-  background-color: #fff; /* Set a white background color */
-  color: #333;
-  margin-bottom: 20px;
-}
 /* Add this CSS to your EventForm.css */
 .sideBySideDropdowns {
   display: flex;
@@ -114,10 +93,10 @@
   margin-bottom: 10px;
   margin-bottom: 20px;
 }
+
 .eventForm {
   padding-top: 100px;
   width: 80%;
-
   padding-left: 10%;
 }
 
@@ -133,6 +112,7 @@
   padding: 10px;
   position: inherit;
 }
+
 .error {
   border: 1px solid red;
 }
@@ -165,5 +145,16 @@
 .subtitle {
   color: #4caf50;
   font-size: 20px;
-  font-weight: 500;
+
+  padding-left: 10%;
+  font-family: system-ui;
+  /* font-palette: dark; */
+  /* font-variant: historical-ligatures; */
+  /* font-kerning: auto; */
+  font-weight: 100;
+}
+
+.formLabel {
+  font-weight: bold;
+  margin-bottom: 5px;
 }
