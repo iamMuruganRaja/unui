@@ -11,15 +11,16 @@ function RoleModal({ isOpen, handleSubmit, isButtonLoading, isUpdating }) {
 
   return (
     <div className={classes.modal_overlay}>
-      {/* <div className={classes.main_container}> */}
-        {/* <div>
-          <h2 className={classes.modal_title}>Select Role</h2>
-        </div> */}
+      { <div className={classes.main_container}>
+        { <div>
+          <h2 className={classes.modal_title}>Please select your role for the event...</h2>
+          
+        </div> }
 
         <DropdownInput
           options={["Host", "Performer", "Audience"]}
           handleSelect={(e) => setSelectedValue(e)}
-          placeholder="Select Role"
+          placeholder="Select"
           selectedValue={selectedValue}
         />
         <br></br>
@@ -27,11 +28,11 @@ function RoleModal({ isOpen, handleSubmit, isButtonLoading, isUpdating }) {
         <SubmitButton
           title={isUpdating ? "Update" : "Register"}
           onClick={() => handleSubmit(selectedValue)}
-          style={{ alignSelf: "center" }}
+          style={{ alignSelf: "center",paddingLeft:"20px" }}
           loading={isButtonLoading}
         />
         <></>
-      {/* </div> */}
+      </div>}
     </div>
   );
 }

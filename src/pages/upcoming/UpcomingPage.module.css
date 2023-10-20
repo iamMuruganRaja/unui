@@ -5,11 +5,26 @@ body {
   padding: 0;
   background-color: #f0f0f0;
 }
+.container {
+  display: flex;
+  flex-direction: column;
 
-.main_container {
-  width: 100%;
-  padding: 100px 0px 0;
+  gap: 20px;
+
+  padding-bottom: 70px;
 }
+
+.header {
+  color: #2ed365;
+  font-family: Montserrat;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  padding: 0px 24px;
+}
+
 
 .page_title {
   font-style: normal;

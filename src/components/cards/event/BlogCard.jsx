@@ -61,14 +61,14 @@ const BlogCard = ({ event }) => {
     // Add your API call here
 
     // Reset the form and hide it
-    setSelectedCommunication("Reminder1");
+    setSelectedCommunication("Reminder_1");
     setCustomMessage("");
     setShowForm(false);
   };
 
   const handleCancelCommunication = () => {
     // Handle form cancellation here
-    setSelectedCommunication("Reminder1");
+    setSelectedCommunication("Reminder_1");
     setCustomMessage("");
     setShowForm(false);
   };

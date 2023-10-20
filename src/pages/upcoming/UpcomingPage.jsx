@@ -6,6 +6,7 @@ import participants from "../../assets/card-icon.png";
 import classes from "./UpcomingPage.module.css";
 import { getEvents } from "../../services/events.services";
 import LoadingComponent from "../../components/loading/LoadingComponent";
+import heroImg from "../../assets/common-hero.svg";
 import { useAuthContext } from "../../components/contexts/AuthContext";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
@@ -33,7 +34,8 @@ const UpcomingPage = () => {
   
   return (
     <SplashScreen>
-      <div className={classes.main_container}>
+      <div className={classes.container}>
+      <img className={classes.hero} src={heroImg} alt="img" />
         <h1 className={classes.page_title}>
           <span>Upcoming Events</span>
           <FontAwesomeIcon

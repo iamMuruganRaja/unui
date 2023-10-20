@@ -11,6 +11,7 @@ import galleryItem from "../../assets/account-hero.png";
 import classes from "./ProfilePage.module.css";
 import { useMemo, useState } from "react";
 import { useAuthContext } from "../../components/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const {
@@ -29,8 +30,11 @@ const ProfilePage = () => {
     }),
     [userData]
   );
-
+  const navigate = useNavigate();
   const [galleryItems, setGalleryItems] = useState([]);
+  const handleSettingClick =() =>{
+    navigate("/edit-profile");
+  }
 
   return (
     <div
@@ -46,6 +50,7 @@ const ProfilePage = () => {
             className={classes.nav_button_icon}
             src={settingsIcon}
             alt="settings"
+            onClick={handleSettingClick}
           />
         </button>
       </nav>

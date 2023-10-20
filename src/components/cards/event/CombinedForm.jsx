@@ -61,7 +61,7 @@ const CombinedForm = (props) => {
 
       const communication_details = {
         //   ...eventToUpdate,
-           communication_tye: selectedCommunicationValue,
+           communication_type: selectedCommunicationValue,
            message:customMessage}
            
          
@@ -108,8 +108,8 @@ const CombinedForm = (props) => {
       >
         <option value="">Send Communication</option>
         <option value="event_scheduled">Event Scheduled</option>
-        <option value="reminder1">Reminder1</option>
-        <option value="reminder2">Reminder2</option>
+        <option value="reminder_1">Reminder 1</option>
+        <option value="reminder_2">Reminder 2</option>
         <option value="custom">Custom</option>
       </select>
       {selectedCommunicationValue === "custom" && (

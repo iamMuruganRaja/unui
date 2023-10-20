@@ -42,7 +42,7 @@ function MainRouter() {
           <Routes>
             {authData.isAuthenticated ? (
               <>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<LandingPage />} />
                 <Route path="/upcoming" element={<UpcomingPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/participant-profile" element={<ProfilePage />} />
@@ -66,13 +66,15 @@ function MainRouter() {
             ) : (
               <>
                 <Route path="/register" element={<RegisterPage />} />
+                <Route path="/upcoming" element={<UpcomingPage />} />
                 <Route
                   path="*"
                   element={<Navigate to="/register" replace={true} />}
                 />
               </>
             )}
-            <Route path="/" element={<UpcomingPage />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/upcoming" element={<UpcomingPage />} />
           </Routes>
         </>
       )}

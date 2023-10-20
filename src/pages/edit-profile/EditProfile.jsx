@@ -19,7 +19,7 @@ const EditProfilePage = () => {
   const userData = authData.userData;
 
   const { form, setKey } = useForm({
-    name: userData.name || "",
+    first_name: userData.first_name || "",
     social_media_link: userData.social_media_link || "",
     role: userData.role || "",
   });
@@ -35,7 +35,7 @@ const EditProfilePage = () => {
 
     if (!!eventId) return navigate(`/event?event_id=${eventId}`);
 
-    navigate("/");
+    // navigate("/");
   };
 
   // Determine if all fields should be enabled
