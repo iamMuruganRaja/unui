@@ -96,7 +96,7 @@ const ConfirmationPage = () => {
       navigator.share({
         url: `https://unmutex.com/event?${eventDetails.uuid}`,
         title: "Click on link to join to register for the event",
-        text: `Open the link below to join an interesting event, https://unmutex.com/event?${eventDetails.uuid}`,
+        text: `🚀 UnmuteX's event is the place to be! Click the link below for a mind-blowing experience.\n, https://unmutex.com/event?${eventDetails.uuid}`,
       });
     } catch (err) {
       console.log(err);
