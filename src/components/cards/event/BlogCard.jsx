@@ -114,6 +114,10 @@ const BlogCard = ({ event }) => {
               }}
             />
           </div>
+          <div style={{ textAlign: "center", fontWeight: "bold", color: "#2ed365" }}>
+      Event - {event.name}
+    </div>
+          
           <CombinedForm
             selectedCommunication={selectedCommunication}
             handleCommunicationChange={handleCommunicationChange}

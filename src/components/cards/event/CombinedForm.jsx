@@ -86,11 +86,12 @@ const CombinedForm = (props) => {
 
   return (
     <div className="form">
+      Update Event State
       <select
         value={eventState}
         onChange={(e) => setEventState(e.target.value)}
       >
-        <option value="">Event State</option>
+        
         <option value="draft">Draft</option>
         <option value="created">Created</option>
         <option value="on_hold">On Hold</option>
@@ -99,14 +100,14 @@ const CombinedForm = (props) => {
         <option value="live">Live</option>
         <option value="cancelled">Cancelled</option>
       </select>
-
+      Send Communication
       <select
         value={selectedCommunicationValue}
         onChange={handleCommunicationChange}
         className="select"
         style={{ borderColor: "#2ed365" }}
       >
-        <option value="">Send Communication</option>
+        
         <option value="event_scheduled">Event Scheduled</option>
         <option value="reminder_1">Reminder 1</option>
         <option value="reminder_2">Reminder 2</option>

@@ -35,7 +35,7 @@ const EditProfilePage = () => {
 
     if (!!eventId) return navigate(`/event?event_id=${eventId}`);
 
-    // navigate("/");
+    navigate("/upcoming");
   };
 
   // Determine if all fields should be enabled
