@@ -24,6 +24,7 @@ const EventForm = () => {
     mode: "online",
     link: "",
     location: "",
+    status: "",
   });
   const createEventValidation = {
     name: !!form.description,
@@ -49,6 +50,8 @@ const EventForm = () => {
   const getAsset = (event, asset_key) => {
     return event.event_assets.filter((asset) => asset_key === asset.key)[0];
   };
+  const getShortUrl = () => location.state.event && location.state.event.short_url !== null ? location.state.event.short_url : null;
+
 
   useEffect(() => {
     const eventToUpdate = location.state ? location.state.event : null;
@@ -72,6 +75,7 @@ const EventForm = () => {
     setKey("genre", event.genre);
     setKey("mode", event.mode);
     setKey("link", event.link);
+    setKey("status", event.status);
     setKey("location", event.location);
 
     const originalDate = new Date(event.start_time);
@@ -104,6 +108,7 @@ const formattedDateStr = format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm"
         genre: form.genre,
         mode: form.mode,
         link: form.link,
+        status: form.status,
       };
 
       const { error } = await updateEvent(eventId, updatedEvent);
@@ -119,6 +124,7 @@ const formattedDateStr = format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm"
         genre: form.genre,
         mode: form.mode,
         link: form.link,
+        status: form.status,
       };
       createEvent(eventToBeCreated);
     }
@@ -147,6 +153,19 @@ const formattedDateStr = format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm"
             {location.state.event ? "Update Event Details" : "Create a New Event"}
           </h5>
         </div>
+        {getShortUrl()?
+        <div>
+        <br></br>
+        <label className={classes.formLabel}>Link<br></br></label>
+        <a href={getShortUrl()} >
+  <label className={classes.formLabel}>{getShortUrl()}</label>
+</a>
+<br></br>
+<br></br>
+</div>:
+<></>
+}
+
 
         <div className={classes.formGroup}>
           <label className={classes.formLabel}>Name</label>
@@ -160,6 +179,7 @@ const formattedDateStr = format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm"
             }}
           />
         </div>
+
 
         <div className={classes.formGroup}>
           <label className={classes.formLabel}>Description</label>
@@ -178,13 +198,23 @@ const formattedDateStr = format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm"
           <label className={classes.formLabel}>Mode</label>
           <DropdownInput
             options={["Online", "Offline"]}
-            placeholder="Mode"
+            placeholder="Online"
             className={classes.dropdownInput}
             selectedValue={form.mode}
             handleSelect={(value) => handleInputChange("mode", value)}
           />
         </div>
 
+        <div className={classes.formGroup}>
+          <label className={classes.formLabel}>Status</label>
+          <DropdownInput
+            options={["draft", "created","on_hold","published","scheduled","live","cancelled"]}
+            placeholder="Select"
+            className={classes.dropdownInput}
+            selectedValue={form.status}
+            handleSelect={(value) => handleInputChange("status", value)}
+          />
+        </div>
         <div className={classes.formGroup}>
           <label className={classes.formLabel}>Start Time</label>
           <TextInput
@@ -239,11 +269,11 @@ const formattedDateStr = format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm"
           />
         </div>
 
-        <div className={`${classes.formGroup} ${classes.sideBySideDropdowns}`}>
+        <div className={classes.formGroup}>
           <label className={classes.formLabel}>Genre</label>
           <DropdownInput
             options={["Comedy", "Cricket", "Poetry", "Mixed"]}
-            placeholder="Genre"
+            placeholder="Comedy"
             className={classes.dropdownInput}
             selectedValue={form.genre}
             handleSelect={(value) => handleInputChange("genre", value)}

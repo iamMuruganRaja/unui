@@ -18,6 +18,7 @@ import ProfilePage from "./profile/ProfilePage";
 import MyEventsPage from "./my-events/MyEventsPage";
 import Aboutus from "./aboutus/AboutUs";
 import LandingPage from "./landingpage/LandingPage";
+import DetailsPage from "./event-details/DetailsPage";
 
 function MainRouter() {
   const { authData, isAuthLoading } = useAuthContext();
@@ -56,6 +57,10 @@ function MainRouter() {
                 <Route path="/events" element={<EventForm />} />
                 <Route path="/details/:eventId" element={<ExplorePage />} />
                 <Route
+                  path="/event-details/:eventId"
+                  element={<DetailsPage />}
+                />
+                <Route
                   path="/participants/:eventId"
                   element={<ParticipantsPage />}
                 />
@@ -68,6 +73,10 @@ function MainRouter() {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/upcoming" element={<UpcomingPage />} />
                 <Route
+                  path="/event-details/:eventId"
+                  element={<DetailsPage />}
+                />
+                <Route
                   path="*"
                   element={<Navigate to="/register" replace={true} />}
                 />
@@ -75,6 +84,7 @@ function MainRouter() {
             )}
             <Route path="/" element={<LandingPage />} />
             <Route path="/upcoming" element={<UpcomingPage />} />
+            <Route path="/about-us" element={<LandingPage />} />
           </Routes>
         </>
       )}

@@ -29,7 +29,7 @@ const ImageArea = ({ event }) => {
         alt="Blog Post"
       />
       <div className="image-overlay">
-        <p className="card-description">{event.description}</p>
+        <p className="card-description">{event.name}</p>
         <p className="theme">Theme: {event.genre}</p>
         <p className="host">Host: {getHost(event)?.profile_info?.first_name}</p>
         <div className="date_box">

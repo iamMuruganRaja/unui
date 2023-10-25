@@ -13,12 +13,12 @@ const BottomNav = () => {
   const { pathname } = useLocation();
   const { authData } = useAuthContext();
 
-  if (pathname === "/register" || !authData.isAuthenticated) return <></>;
+  // if (pathname === "/register" ) return <></>;
 
   return (
     <div className={classes.container}>
-      <Link to="/register">
-        {pathname === "/" ? (
+      <Link to="/upcoming">
+        {pathname === "/upcoming" ? (
           <img
             alt="icon"
             src={bottom1Active}

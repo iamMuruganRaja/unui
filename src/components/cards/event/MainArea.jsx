@@ -7,11 +7,17 @@ import {
   faBell,
   faLocationDot,
   faEdit,
-  faPlus
+  faPlus,
+  faShareAlt,
+  faDownload
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuthContext } from "../../../components/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+
+import confirmShare from "../../../assets/confirm-share.svg";
+import confirmDownload from "../../../assets/confirm-download.svg";
+import * as htmlToImage from "html-to-image";
 
 
 const MainArea = (props) => {
@@ -39,11 +45,45 @@ const MainArea = (props) => {
     );
   };
 
+  const isUserEventCreator = (event) => {
+    if (!authData.isAuthenticated) return false;
+    return  event.created_by===authData.userData.uuid
+  };
+
   const handleRedirectToEventForm = () => {
     // Navigate to the EventForm component with any necessary data
     navigate("/events", { state: { event: event } });
 
   
+  };
+  const handleDownload = () => {
+    htmlToImage
+      .toBlob(document.getElementById("card-to-download"))
+      .then(function (blob) {
+        var bloblink = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+
+        document.body.appendChild(link); // for Firefox
+
+        link.setAttribute("href", bloblink);
+        link.setAttribute("download", "image.png");
+        link.style.display = "none";
+        link.click();
+      });
+  };
+
+  const handleShare = () => {
+    try {
+      if (!navigator?.share) return;
+
+      navigator.share({
+        url: `https://unmutex.com/event?${event.uuid}`,
+        title: "Click on link to join to register for the event",
+        text: `Watch me performing live on Unmutex \n\n, https://unmutex.com/event?${event.uuid}`,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
 
@@ -51,7 +91,7 @@ const MainArea = (props) => {
     <div className="MainArea">
       <div className="blog-post">
         <div className="actions">
-          <div className="action-icon" onClick={handleRedirectToEventForm}>
+        {isUserEventCreator(event) ? (<div className="action-icon" onClick={handleRedirectToEventForm}>
             <FontAwesomeIcon
               icon={faEdit}
               style={{
@@ -62,9 +102,11 @@ const MainArea = (props) => {
                 size:"xl",
               }}
             />
-          </div>
+          </div>):
+          <></>
+        }
           
-
+          <FontAwesomeIcon icon="fal fa-share-alt" />
           <div className="location-icon">
             <FontAwesomeIcon
               icon={faLocationDot}
@@ -73,7 +115,7 @@ const MainArea = (props) => {
             />{" "}
             Zoom
           </div>
-
+          {isUserEventCreator(event) ? (
           <div className="bell-icon" onClick={flipCard}>
             <FontAwesomeIcon
               icon={faBell}
@@ -81,17 +123,24 @@ const MainArea = (props) => {
               style={{ color: "#2ed365" }}
             />{" "}
             
-          </div>
-
+            </div>):
+          <div className="bell-icon" onClick={handleShare}>
+          <FontAwesomeIcon
+            icon={faShareAlt}
+            size="xl"
+            style={{ color: "#2ed365" }}
+          />{" "}
+          
+          </div>}
           {isUserAParticipant(event) ? (
                     <Link
-                      to={`/details?event_id=${event.uuid}`}
+                      to={`/event-details/${event.uuid}`}
                       className="circular_button">
                     
                       Details
                     </Link>
                   ) : (
-                    <Link to={`/event?event_id=${event.uuid}`} className="circular_button">
+                    <Link to={`/event-details/${event.uuid}`} className="circular_button">
             Register
           </Link>
                   )}

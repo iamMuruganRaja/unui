@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { sendCommunication,updateEvent } from "../../../services/events.services";
+import classes from "./EventBox.module.css";
 
 const CombinedForm = (props) => {
   const {
@@ -10,19 +11,12 @@ const CombinedForm = (props) => {
     event, // Pass the event object as a prop
   } = props;
 
-  const [eventState, setEventState] = useState(""); // Default state is "draft"
+
   const [selectedCommunicationValue, setSelectedCommunicationValue] = useState("");
-  const [eventStateValueChanged, setEventStateValueChanged] = useState(false);
   const [communicationValueChanged, setCommunicationValueChanged] = useState(false);
   const [customMessage, setCustomMessage] = useState("");
 
-  useEffect(() => {
-    if (event.state !== eventState) {
-      setEventStateValueChanged(true);
-    } else {
-      setEventStateValueChanged(false);
-    }
-  }, [event.state, eventState]);
+
 
   useEffect(() => {
     if (selectedCommunicationValue !== "") {
@@ -32,21 +26,7 @@ const CombinedForm = (props) => {
     }
   }, [selectedCommunicationValue]);
 
-  const handleUpdateEventState = () => {
-    if (eventStateValueChanged) {
-      // Call your update event state API here with event.uuid and eventState
-      // Example:
-      // updateEventState(event.uuid, eventState);
 
-      const updatedEventState = {
-        //   ...eventToUpdate,
-          status:eventState
-           
-         };
-      
-      updateEvent(event.uuid, updatedEventState);
-    }
-  };
 
   const handleCommunicationChange = (e) => {
     setSelectedCommunicationValue(e.target.value);
@@ -79,27 +59,16 @@ const CombinedForm = (props) => {
         toast.success("Reminder sent successfully");
       }
     }
-    setEventState(event.state);
     setSelectedCommunicationValue("");
     setCustomMessage("");
   };
 
   return (
     <div className="form">
-      Update Event State
-      <select
-        value={eventState}
-        onChange={(e) => setEventState(e.target.value)}
-      >
-        
-        <option value="draft">Draft</option>
-        <option value="created">Created</option>
-        <option value="on_hold">On Hold</option>
-        <option value="published">Published</option>
-        <option value="staged">Staged</option>
-        <option value="live">Live</option>
-        <option value="cancelled">Cancelled</option>
-      </select>
+      <div>
+      <br/><br/>
+      
+      </div>
       Send Communication
       <select
         value={selectedCommunicationValue}
@@ -107,7 +76,7 @@ const CombinedForm = (props) => {
         className="select"
         style={{ borderColor: "#2ed365" }}
       >
-        
+        <option value="">Select</option> {/* Placeholder */}
         <option value="event_scheduled">Event Scheduled</option>
         <option value="reminder_1">Reminder 1</option>
         <option value="reminder_2">Reminder 2</option>
@@ -127,7 +96,6 @@ const CombinedForm = (props) => {
           icon={faCheck}
           style={{ color: "#2ed365", marginRight: "10px" }}
           onClick={() => {
-            handleUpdateEventState();
             handleSendCommunication();
           }}
         />
