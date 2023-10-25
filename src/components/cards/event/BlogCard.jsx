@@ -11,8 +11,8 @@ import CombinedForm from "./CombinedForm";
 import dayjs from "dayjs";
 import EventForm from "../../../pages/event-form/EventForm";
 import { useNavigate } from "react-router-dom";
-import { faCog, faBell, faComment } from '@fortawesome/free-solid-svg-icons'; 
-
+import { faCog, faBell, faComment, faDownload } from '@fortawesome/free-solid-svg-icons'; 
+import * as htmlToImage from "html-to-image";
 
 const CardContainer = styled.div`
   // Your styling for the card container
@@ -52,6 +52,21 @@ const BlogCard = ({ event }) => {
 
   
   };
+  const handleDownload = () => {
+    htmlToImage
+      .toBlob(document.getElementById("card-to-download"))
+      .then(function (blob) {
+        var bloblink = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+
+        document.body.appendChild(link); // for Firefox
+
+        link.setAttribute("href", bloblink);
+        link.setAttribute("download", "image.png");
+        link.style.display = "none";
+        link.click();
+      });
+  };
 
   const handleSubmitCommunication = () => {
     // Handle form submission here
@@ -76,11 +91,20 @@ const BlogCard = ({ event }) => {
   return (
     <CardContainer className={`CardContainer ${flipped ? "flipped" : ""}`}>
       
-      <div className="Front">
+      <div className="Front" id="card-to-download">
         <br></br>
-        <div className="cta-button" onClick={handleRedirectToEventForm}>
-        
-          </div>
+        {/* <div className="cta-button"  onClick={handleDownload}>
+            <FontAwesomeIcon
+              icon={faDownload}
+              style={{
+                color: "#2ed365",
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                size:"xl"
+              }}
+            />
+          </div> */}
       
         <ImageArea event={event} />
         <MainArea
@@ -115,8 +139,8 @@ const BlogCard = ({ event }) => {
             />
           </div>
           <div style={{ textAlign: "center", fontWeight: "bold", color: "#2ed365" }}>
-      Event - {event.name}
-    </div>
+           Event - {event.name}
+            </div>
           
           <CombinedForm
             selectedCommunication={selectedCommunication}

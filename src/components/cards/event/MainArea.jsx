@@ -77,9 +77,9 @@ const MainArea = (props) => {
       if (!navigator?.share) return;
 
       navigator.share({
-        url: `https://unmutex.com/event?${event.uuid}`,
+        url: `${event.short_url}`||`https://unmutex.com/event?${event.uuid}`+`\n\n`,
         title: "Click on link to join to register for the event",
-        text: `Watch me performing live on Unmutex \n\n, https://unmutex.com/event?${event.uuid}`,
+        text: `Watch me performing live on Unmutex \n\n`,
       });
     } catch (err) {
       console.log(err);
@@ -89,7 +89,7 @@ const MainArea = (props) => {
 
   return (
     <div className="MainArea">
-      <div className="blog-post">
+      <div className="blog-post" id="card-to-download">
         <div className="actions">
         {isUserEventCreator(event) ? (<div className="action-icon" onClick={handleRedirectToEventForm}>
             <FontAwesomeIcon
