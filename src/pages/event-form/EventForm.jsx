@@ -273,7 +273,7 @@ const formattedDateStr = format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm"
           <label className={classes.formLabel}>Genre</label>
           <DropdownInput
             options={["Comedy", "Cricket", "Poetry", "Mixed"]}
-            placeholder="Comedy"
+            placeholder="Genre"
             className={classes.dropdownInput}
             selectedValue={form.genre}
             handleSelect={(value) => handleInputChange("genre", value)}
