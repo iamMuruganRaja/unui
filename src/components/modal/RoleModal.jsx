@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import classes from "./RoleModal.module.css";
 import SubmitButton from "../buttons/SubmitButton";
 import DropdownInput from "../input/DropdownInput";
@@ -7,15 +6,16 @@ import DropdownInput from "../input/DropdownInput";
 function RoleModal({ isOpen, handleSubmit, isButtonLoading, isUpdating }) {
   const [selectedValue, setSelectedValue] = useState("");
 
-  if (!isOpen) return <></>;
+  if (!isOpen) return null;
 
   return (
     <div className={classes.modal_overlay}>
-      { <div className={classes.main_container}>
-        { <div>
-          <h2 className={classes.modal_title}>Please select your role for the event...</h2>
-          
-        </div> }
+      <div className={classes.main_container}>
+        <div>
+          <h2 className={classes.modal_title}>
+            Please select your role for the event...
+          </h2>
+        </div>
 
         <DropdownInput
           options={["Host", "Performer", "Audience"]}
@@ -23,16 +23,13 @@ function RoleModal({ isOpen, handleSubmit, isButtonLoading, isUpdating }) {
           placeholder="Select"
           selectedValue={selectedValue}
         />
-        <br></br>
 
         <SubmitButton
           title={isUpdating ? "Update" : "Register"}
           onClick={() => handleSubmit(selectedValue)}
-          style={{ alignSelf: "center",paddingLeft:"20px" }}
           loading={isButtonLoading}
         />
-        <></>
-      </div>}
+      </div>
     </div>
   );
 }

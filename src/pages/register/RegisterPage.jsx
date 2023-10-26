@@ -78,12 +78,12 @@ const RegisterPage = () => {
             renderSeparator={<span>&nbsp;&nbsp;</span>}
             renderInput={(props) => <input {...props} />}
             inputStyle={{
-              marginTop: 40,
+              marginTop: 10,
               width: 40,
               height: 40,
               background: "transparent",
               border: "none",
-              borderBottom: "1px solid #fff",
+              borderBottom: "2px solid #fff",
             }}
           />
           <button className={classes.resend_button}>Resend OTP</button>

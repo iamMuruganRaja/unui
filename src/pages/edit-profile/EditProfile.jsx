@@ -49,7 +49,7 @@ const EditProfilePage = () => {
       {/* Conditionally render the Name TextInput */}
       {(isEditProfile || !userData.first_name )&& (
         <TextInput
-          placeholder="Name"
+          placeholder="Your Name"
           value={form.first_name}
           onChange={(e) => setKey("first_name", e.target.value)}
         />
@@ -58,7 +58,7 @@ const EditProfilePage = () => {
       {/* Conditionally render the Social Media TextInput */}
       {(isEditProfile || !userData.social_media_link )&& (
         <TextInput
-          placeholder="Instagram/Youtube link"
+          placeholder="Instagram Id"
           value={form.social_media_link}
           onChange={(e) => setKey("social_media_link", e.target.value)}
         />
@@ -73,7 +73,7 @@ const EditProfilePage = () => {
         />
       )}
       
-      <SubmitButton title="Save" onClick={handleUpdateProfile} />{" "}
+      <SubmitButton title="Save" onClick={handleUpdateProfile}  disabled={!form.first_name} />{" "}
     </div>
   );
 };

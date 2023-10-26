@@ -1,56 +1,113 @@
+/* Use CSS variables for colors and common styles */
+:root {
+  --primary-color: #2ed365;
+  --secondary-color: #ee8802;
+  --text-color: #fff;
+  --light-text-color: #d9d9d9;
+  --dark-text-color: #333;
+}
+
+/* Reset default margin and padding for the entire page */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
+}
+
+/* Apply a background gradient for better aesthetics */
 .main_container {
-  padding-bottom: 10vh;
   min-height: 100vh;
-  background-size: contain;
-  background-position: top;
-  background-repeat: no-repeat;
+  background: linear-gradient(to bottom, var(--primary-color), #fff);
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   align-items: center;
-
-  gap: 20px;
-  background-color: #2ed365;
-}
-
-.title {
-  color: #fff;
-  font-size: 32px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.subtitle {
-  color: #fff;
-  font-size: 14px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-
-  display: flex;
-  flex-direction: row;
-
-  align-items: center;
+  padding: 20px;
   gap: 10px;
 }
 
-.button_group {
-  display: flex;
-  flex-direction: row;
-
-  align-items: center;
+.title {
+  color: var(--text-color);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #2ed365;
 }
 
-.button_group_item {
-  background: #d9d9d9;
-  padding: 4px;
+/* Use more specific class names for improved styling */
+.mobile-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid var(--dark-text-color);
+  border-radius: 5px;
+}
 
-  border: 1px solid #000;
+.button {
+  min-width: 167px;
+  height: 50px;
+  border: 0;
+  border-radius: 30px;
+  background: var(--secondary-color);
+  padding: 0 20px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button:disabled,
+.button[disabled] {
+  background-color: #aaaaaa;
+  color: #dddddd;
+  cursor: not-allowed;
+}
+.resend_button {
+  align-self: flex-start;
+  margin-left: 35px;
+
+  background: none;
+  text-decoration: underline;
+  color: #2ed365;
+  border: none;
+}
+
+.terms_conditions {
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #2ed365;
+}
+
+.hero_container {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50px 50px 200px 200px;
+  padding: 40px;
+}
+
+.hero {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .main_container {
+    padding: 10vh 20px;
+  }
 }
 
 .bottom_button {
@@ -76,47 +133,4 @@
 .bottom_button[disabled] {
   background-color: #aaaaaa;
   color: #dddddd;
-}
-
-.resend_button {
-  align-self: flex-start;
-  margin-left: 35px;
-
-  background: none;
-  text-decoration: underline;
-  color: white;
-  border: none;
-}
-
-.terms_conditions {
-  color: #fff;
-  font-size: 14px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  gap: 12px;
-}
-
-.hero_container {
-  width: 100%;
-  background-color: white;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-
-  border-radius: 0px 0px 200px 200px;
-
-  padding: 40px;
-}
-
-.hero {
-  height: 35vh;
 }

@@ -393,6 +393,13 @@ select option:hover {
   left: 50px;
 }
 
+.confirmed-icon {
+  position: absolute;
+  /*  bottom: 20px; Adjust the top position as needed */
+
+  right: 50px;
+}
+
 .blog-post {
   display: flex;
   flex-direction: column;

@@ -6,6 +6,7 @@ import {
   faCog,
   faBell,
   faLocationDot,
+  faCheckDouble,
   faEdit,
   faPlus,
   faShareAlt,
@@ -18,6 +19,8 @@ import { useNavigate } from "react-router-dom";
 import confirmShare from "../../../assets/confirm-share.svg";
 import confirmDownload from "../../../assets/confirm-download.svg";
 import * as htmlToImage from "html-to-image";
+import { useLocation } from "react-router-dom";
+
 
 
 const MainArea = (props) => {
@@ -34,6 +37,7 @@ const MainArea = (props) => {
     event,
   } = props;
   const navigate = useNavigate();
+  const location = useLocation();
   const { authData } = useAuthContext();
   const isUserAParticipant = (event) => {
     if (!authData.isAuthenticated) return false;
@@ -85,6 +89,7 @@ const MainArea = (props) => {
       console.log(err);
     }
   };
+  const isEventDetailsPage = location.pathname.includes("/event-details/");
 
 
   return (
@@ -133,17 +138,31 @@ const MainArea = (props) => {
           
           </div>}
           {isUserAParticipant(event) ? (
-                    <Link
-                      to={`/event-details/${event.uuid}`}
-                      className="circular_button">
-                    
-                      Details
-                    </Link>
-                  ) : (
-                    <Link to={`/event-details/${event.uuid}`} className="circular_button">
-            Register
-          </Link>
-                  )}
+                  // If the user is a participant
+                  isEventDetailsPage  ? (
+                    // and not on 'details_page', show "Details" button
+                    <div className="confirmed-icon" >
+            <FontAwesomeIcon
+              icon={faCheckDouble}
+              beatFade
+              size="xl"
+              style={{ color: "#2ed365" }}
+            />{" "}
+            
+            </div>
+            
+
+
+                  ) : <Link to={`/event-details/${event.uuid}`} className="circular_button">
+                  Details
+                  </Link>
+                ) : 
+                <Link to={`/event?event_id=${event.uuid}`} className="circular_button">
+                Register
+</Link>}
+
+
+
 
          
           <br></br>
