@@ -55,7 +55,7 @@ function MainRouter() {
                 <Route path="/complete-profile" element={<EditProfilePage />} />
                 <Route path="/edit-profile" element={<EditProfilePage />} />
                 <Route path="/events" element={<EventForm />} />
-                <Route path="/details/:eventId" element={<ExplorePage />} />
+                <Route path="/details/:eventId" element={<DetailsPage />} />
                 <Route
                   path="/event-details/:eventId"
                   element={<DetailsPage />}

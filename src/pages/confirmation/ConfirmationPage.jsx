@@ -19,6 +19,7 @@ import { useAuthContext } from "../../components/contexts/AuthContext";
 import RoleModal from "../../components/modal/RoleModal";
 import LoadingComponent from "../../components/loading/LoadingComponent";
 import * as htmlToImage from "html-to-image";
+import EventCard from "../../components/cards/event/EventCard";
 
 const ConfirmationPage = () => {
   const { authData } = useAuthContext();
@@ -147,34 +148,15 @@ const ConfirmationPage = () => {
   return (
     <div className={classes.main_container}>
       <img src={confirmHero} alt="hero" />
-      <div className={classes.carousel_card_item} id="card-to-download">
-        <div className={classes.top_row}>
-          <div className={classes.left_container}>
-            <h3 className={classes.name_container}>{eventDetails.name}</h3>
-            <h4 className={classes.host_container}>Host: {getHost(eventDetails)?.profile_info?.first_name}</h4>
-            <h4 className={classes.host_container}>
-              Time: {dayjs(eventDetails.start_time).format("hh:mm a")}
-            </h4>
-          </div>
-          <div className={classes.date_box}>
-            {dayjs(eventDetails.start_time).format("DD MMM")}
-          </div>
-        </div>
-        <div className={classes.middle_row}>{eventDetails.description}</div>
-        <div className={classes.bottom_row}>
-          <button className={classes.icon_button} onClick={handleShare}>
-            <img src={confirmEdit} alt="edit" />
-          </button>
-          <button className={classes.icon_button} onClick={handleDownload}>
-            <img src={confirmDownload} alt="download" />
-          </button>
-          <button className={classes.icon_button} onClick={handleShare}>
-            <img src={confirmShare} alt="share" />
-          </button>
+      <EventCard event={eventDetails} />
+      <div className={classes.upcoming_container}>
+        <h1>Details</h1>
+        <div className={classes.upcoming_carousel}>
+       {eventDetails.description}
         </div>
       </div>
       <div className={classes.upcoming_container}>
-        <h1>Upcoming Events</h1>
+      <h1>You may also like</h1>
         <div className={classes.upcoming_carousel}>
           {upcoming.map((event) => (
             <div className={classes.carousel_card_item}>

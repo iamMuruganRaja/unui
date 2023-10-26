@@ -79,11 +79,11 @@ const MainArea = (props) => {
   const handleShare = () => {
     try {
       if (!navigator?.share) return;
+      const url= event.short_url || (`https://www.unmutex.in/event-details/${event.uuid}`)
 
       navigator.share({
-        url: `${event.short_url}`||`https://unmutex.com/event?${event.uuid}`+`\n\n`,
-        title: "Click on link to join to register for the event",
-        text: `Watch me performing live on Unmutex \n\n`,
+        title: "Join me at the Unmutex event!\n\n",
+        text: `Hey there! 🎉 I'm excited to share this amazing Unmutex event with you. It's going to be fantastic! 🚀\n\nClick the link below to register and secure your spot:\n${url}`,
       });
     } catch (err) {
       console.log(err);
