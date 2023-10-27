@@ -16,6 +16,7 @@
   text-align: center;
 
   border: none;
+  align-self: center;
 }
 
 .main_container::placeholder {

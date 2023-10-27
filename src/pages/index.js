@@ -11,7 +11,7 @@ import EditProfilePage from "./edit-profile/EditProfile";
 import EventForm from "./event-form/EventForm";
 import ParticipantsPage from "./participants/ParticipantsPage";
 import SchedulePage from "./schedule/SchedulePage";
-import TopNav from "../components/navbar/TopNav";
+import TopNav from "../components/topbar/Headers";
 import BottomNav from "../components/navbar/BottomNav";
 import HomePage from "./home/HomePage";
 import ProfilePage from "./profile/ProfilePage";
@@ -35,7 +35,7 @@ function MainRouter() {
 
   return (
     <>
-      <TopNav />
+      {/* <TopNav /> */}
       {isAuthLoading ? (
         <LoadingComponent />
       ) : (

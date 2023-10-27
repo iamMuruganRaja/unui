@@ -22,7 +22,7 @@ const SplashScreen = ({ children }) => {
       className={classes.main_container}
       style={{
         backgroundImage: !isSplashDisabled
-          ? `url(${window.location.origin}/splash.gif?seed=${random})`
+          ? undefined
           : undefined,
       }}
     >

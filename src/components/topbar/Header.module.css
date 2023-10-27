@@ -22,6 +22,7 @@
   align-items: center;
   padding: 60px 0;
   gap: 64px;
+  background-color: #2ed365;
 }
 
 /* Add this CSS for positioning the hamburger menu on the right */
@@ -31,8 +32,8 @@
   outline: none;
   border: none;
   position: absolute;
-  right: 20px; /* Adjust the right position as needed */
-  top: 20px; /* Adjust the top position as needed */
+  right: 0px; /* Adjust the right position as needed */
+  top: 0px; /* Adjust the top position as needed */
 }
 
 .nav_link {
@@ -60,6 +61,6 @@
 /* Media queries for desktop responsiveness */
 @media (min-width: 768px) {
   .sidebar {
-    padding: 60px 0; /* Restore padding for desktop */
+    padding: 160px 0; /* Restore padding for desktop */
   }
 }

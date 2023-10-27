@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import MobileInput from "../../components/input/MobileInput";
 import OTPInput from "react-otp-input";
 import Switch from "react-switch";
+import Header from "../../components/topbar/Headers";
 
 const RegisterPage = () => {
   const { verifyOtp } = useAuthContext();
@@ -41,18 +42,35 @@ const RegisterPage = () => {
   const handleVerifyOtp = async () => {
     await verifyOtp(form.otp, hash);
   };
+  const resetHash = () =>{
+    setHash("")
+    form.phone=""
+  }
 
   return (
     <h1 className={classes.main_container}>
+      {/* <Header/> */}
+     
       <div className={classes.hero_container}>
+      {hash?(
+      <div className={classes.back_button} onClick={resetHash}>
+      <svg fill="none" viewBox="0 0 32.2979 27" xmlns="http://www.w3.org/2000/svg" x="0" y="0">
+        <g id='ð¦ icon "arrow left"' xmlns="http://www.w3.org/2000/svg">
+          <path id="Vector" d="M30.7979,13.5h-29.2979" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
+          <path id="Vector_2" d="M16.1489,25.5l-14.6489,-12l14.6489,-12" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
+        </g>
+      </svg>
+    </div>):<></>}
         <img src={headphone} alt="hero" className={classes.hero} />
       </div>
-      <img src={logo} alt="logo" />
+      <img src={logo} alt="logo" className={classes.logo} />
+     
       <h3 className={classes.title}>Join in the fun!</h3>
+      
       {!hash ? (
         <>
           <MobileInput
-            placeholder="Phone Number"
+            placeholder="Mobile Number"
             value={form.phone}
             onChange={(e) => {
               if (e.target.value.length <= 10) setKey("phone", e.target.value);

@@ -1,5 +1,5 @@
 .main_container {
-  background: linear-gradient(to bottom, var(--primary-color), #fff);
+  background: #2ed365;
   min-height: 100vh;
   padding-bottom: 10vh;
   background-size: cover;

@@ -18,14 +18,13 @@ html {
 /* Apply a background gradient for better aesthetics */
 .main_container {
   min-height: 100vh;
-  background: linear-gradient(to bottom, var(--primary-color), #fff);
+  background: #2ed365;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  padding: 20px;
-  gap: 10px;
+
+  gap: 20px;
 }
 
 .title {
@@ -33,9 +32,30 @@ html {
   font-size: 32px;
   font-weight: 500;
   line-height: 1.2;
-  color: #2ed365;
+  color: #f8fdfa;
+  text-align: center;
 }
 
+.logo {
+  box-sizing: border-box;
+  display: block;
+  flex: 0 0 auto;
+  width: 50px;
+  max-width: initial;
+  height: 63px;
+  border: none;
+  object-fit: cover;
+  align-self: center;
+}
+.back_button {
+  position: absolute;
+  top: 19px;
+  left: 18.5px;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  color: rgba(46, 211, 101, 1);
+}
 /* Use more specific class names for improved styling */
 .mobile-input {
   width: 100%;
@@ -84,7 +104,8 @@ html {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #2ed365;
+  color: #f8fdfa;
+  align-self: center;
 }
 
 .hero_container {
@@ -93,7 +114,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 50px 50px 200px 200px;
+  border-radius: 0px 0px 200px 200px;
   padding: 40px;
 }
 
@@ -106,7 +127,6 @@ html {
 /* Media queries for responsive design */
 @media (max-width: 768px) {
   .main_container {
-    padding: 10vh 20px;
   }
 }
 
@@ -127,6 +147,7 @@ html {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  align-self: center;
 }
 
 .bottom_button:disabled,

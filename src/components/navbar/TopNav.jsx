@@ -29,7 +29,6 @@ function TopNav() {
 
   return (
     <div className={classes.navbar}>
-      <div></div>
       <button
         className={classes.hamburger_icon_container}
         onClick={toggleSidebar}
@@ -43,8 +42,8 @@ function TopNav() {
 
       <motion.div
         className={classes.sidebar}
-        initial={{ x: window.innerWidth }}
-        animate={{ x: isOpen ? 0 : window.innerWidth }}
+        initial={{ x: isOpen ? "0%" : "100%" }} /* Completely hide sidebar initially */
+        animate={{ x: isOpen ? "0%" : "100%" }} /* Show/hide sidebar by moving it */
         transition={{ bounce: 0 }}
       >
         <Link className={classes.nav_link} to="/">

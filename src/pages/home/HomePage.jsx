@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import LoadingComponent from "../../components/loading/LoadingComponent";
 import ImageModal from "../../components/modal/ImageModal";
+import Header from "../../components/topbar/Headers";
 
 const HomePage = () => {
   const [registeredEvents, setRegisteredEvents] = useState();
@@ -63,7 +64,7 @@ const HomePage = () => {
 
   return (
     <div className={classes.container}>
-      <img className={classes.hero} src={heroImg} alt="img" />
+      <Header /> 
       <section>
         <h1 className={classes.header}>Get Ready for Action!</h1>
         <div className={classes.horizontal_scroll}>

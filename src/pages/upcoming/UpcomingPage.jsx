@@ -12,6 +12,7 @@ import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import EventCard from "../../components/cards/event/EventCard";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/topbar/Headers";
 
 const UpcomingPage = () => {
   const [events, setEvents] = useState(null);
@@ -33,9 +34,9 @@ const UpcomingPage = () => {
 
   
   return (
-    <SplashScreen>
+    
       <div className={classes.container}>
-      <img className={classes.hero} src={heroImg} alt="img" />
+     <Header /> 
         <h1 className={classes.page_title}>
           <span>Upcoming Events</span>
           <FontAwesomeIcon
@@ -57,7 +58,7 @@ const UpcomingPage = () => {
         <br />
         <br />
       </div>
-    </SplashScreen>
+    
   );
 };
 

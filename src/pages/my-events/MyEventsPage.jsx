@@ -14,6 +14,7 @@ import { useAuthContext } from "../../components/contexts/AuthContext";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import EventCard from "../../components/cards/event/EventCard";
+import Header from "../../components/topbar/Headers";
 
 const MyEventsPage = () => {
   const [events, setEvents] = useState(null);
@@ -33,8 +34,10 @@ const MyEventsPage = () => {
   
 
   return (
-    <SplashScreen>
+    <div className={classes.container}>
+    <Header /> 
       <div className={classes.main_container}>
+      
         <h1 className={classes.page_title}>My Events</h1>
 
         <div className={classes.card_carousel}>
@@ -50,7 +53,8 @@ const MyEventsPage = () => {
         <br></br>
         <br></br>
       </div>
-      </SplashScreen>
+      </div>
+      
     
   );
 };
