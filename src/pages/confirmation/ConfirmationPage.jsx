@@ -205,7 +205,7 @@ const ConfirmationPage = () => {
                   </p>
                 </div>
                 <div className={classes.date_box}>
-                  {dayjs(event.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
+                  {dayjs(event.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
                 </div>
               </div>
               <div className={classes.bottom_row}>

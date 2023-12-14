@@ -34,7 +34,7 @@ const ImageArea = ({ event }) => {
         <p className="theme">Theme: {event.genre}</p>
         <p className="host">Host: {getHost(event)?.profile_info?.first_name}</p>
         <div className="date_box">
-          {dayjs(event.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
+          {dayjs(event.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
         </div>
         <div className="participants">
           <p className="participant_count">

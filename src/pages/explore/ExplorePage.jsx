@@ -104,9 +104,9 @@ const ExplorePage = () => {
                 alt="card-hero"
               />
               <p className={classes.details_text}>
-                Date: {dayjs(eventDetails?.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD-MM-YY")}
+                Date: {dayjs(eventDetails?.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD-MM-YY")}
                 <br />
-                Time: {dayjs(eventDetails?.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}
+                Time: {dayjs(eventDetails?.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}
                 <br /> Theme: {eventDetails?.genre}
               </p>
             </div>
@@ -146,11 +146,11 @@ const ExplorePage = () => {
               <h4 className={classes.host_container}>Host: {getHost(eventDetails)?.profile_info?.first_name}</h4>
               
               <h4 className={classes.host_container}>
-                Time: {dayjs(eventDetails.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}
+                Time: {dayjs(eventDetails.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}
               </h4>
             </div>
             <div className={classes.date_box}>
-              {dayjs(eventDetails.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
+              {dayjs(eventDetails.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
             </div>
           </div>
           <div className={classes.middle_row}>{eventDetails.description}</div>
@@ -214,7 +214,7 @@ const ExplorePage = () => {
                   </p>
                 </div>
                 <div className={classes.date_box}>
-                  {dayjs(event.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
+                  {dayjs(event.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
                 </div>
               </div>
               <div className={classes.bottom_row}>

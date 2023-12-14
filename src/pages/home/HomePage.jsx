@@ -79,8 +79,8 @@ const HomePage = () => {
                     alt="card-hero"
                   />
                   <div className={classes.details_container}>
-                    <p>Date: {dayjs(Date.now()).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD/MM/YY")}</p>
-                    <p>Time: {dayjs(event.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}</p>
+                    <p>Date: {dayjs(Date.now()).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD/MM/YY")}</p>
+                    <p>Time: {dayjs(event.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}</p>
                     <p>Theme: {event.genre}</p>
                   </div>
                 </div>
