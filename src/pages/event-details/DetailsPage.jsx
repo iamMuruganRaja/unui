@@ -15,6 +15,7 @@ import * as htmlToImage from "html-to-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faDoorOpen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import EventCard from "../../components/cards/event/EventCard";
+import {TIMZONE_OFFSET_IN_MINS_INDIA} from "../../config/constants";
 
 
 const DetailsPage = () => {
@@ -104,9 +105,9 @@ const DetailsPage = () => {
                 alt="card-hero"
               />
               <p className={classes.details_text}>
-                Date: {dayjs(eventDetails?.start_time).format("DD-MM-YY")}
+                Date: {dayjs(eventDetails?.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD-MM-YY")}
                 <br />
-                Time: {dayjs(eventDetails?.start_time).format("hh:mm a")}
+                Time: {dayjs(eventDetails?.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}
                 <br /> Theme: {eventDetails?.genre}
               </p>
             </div>
@@ -197,7 +198,7 @@ const DetailsPage = () => {
                   </p>
                 </div>
                 <div className={classes.date_box}>
-                  {dayjs(event.start_time).format("DD MMM")}
+                  {dayjs(event.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
                 </div>
               </div>
               <div className={classes.bottom_row}>

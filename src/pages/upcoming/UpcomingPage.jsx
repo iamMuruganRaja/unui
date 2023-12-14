@@ -41,11 +41,14 @@ const UpcomingPage = () => {
           <span>Upcoming Events</span>
           <FontAwesomeIcon
             icon={faPlusCircle}
-            style={{ color: "#2ed365" }}
+            style={{ color: "#ff623e" }}
             className={classes.plusIcon}
+            size="2xl"
+            
             onClick={handleRedirectToEventForm} // Call the function on click
           />
         </h1>
+       
 
         <div className={classes.card_carousel}>
           {!events ? (

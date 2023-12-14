@@ -14,6 +14,7 @@ import dayjs from "dayjs";
 import LoadingComponent from "../../components/loading/LoadingComponent";
 import ImageModal from "../../components/modal/ImageModal";
 import Header from "../../components/topbar/Headers";
+import {TIMZONE_OFFSET_IN_MINS_INDIA} from "../../config/constants";
 
 const HomePage = () => {
   const [registeredEvents, setRegisteredEvents] = useState();
@@ -78,8 +79,8 @@ const HomePage = () => {
                     alt="card-hero"
                   />
                   <div className={classes.details_container}>
-                    <p>Date: {dayjs(event.start_time).format("DD/MM/YY")}</p>
-                    <p>Time: {dayjs(event.start_time).format("hh:mm a")}</p>
+                    <p>Date: {dayjs(Date.now()).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD/MM/YY")}</p>
+                    <p>Time: {dayjs(event.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}</p>
                     <p>Theme: {event.genre}</p>
                   </div>
                 </div>

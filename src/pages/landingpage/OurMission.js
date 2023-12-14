@@ -1,9 +1,9 @@
 // AboutUs.js
 import React from "react";
-import classes from "./AboutUs.module.css";
-import heroImg from "../../assets/common-hero.svg";
-import ourMission from "../../assets/our-mission.png";
-import aboutUsTop from "../../assets/about-us-top.svg";
+// import classes from "./AboutUs.module.css";
+// import heroImg from "../../assets/common-hero.svg";
+// // import ourMission from "../../assets/our-mission.png";
+// import aboutUsTop from "../../assets/about-us-top.svg";
 
 import styles from "./OurMission.module.css";
 
@@ -20,7 +20,9 @@ const OurMission = () => {
           irrespective of their location, language, or background.
           <img
             className={styles.image_bottom}
-            src={ourMission}
+            src={
+              "https://ik.imagekit.io/unmutex/unmutex-website-public/our-mission.png?updatedAt=1701972450288"
+            }
             alt="alt text"
           />
           In the digital age, we are committed to facilitating the free flow of

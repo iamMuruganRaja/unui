@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 
 import classes from "./EventBox.module.css";
 import { Link } from "react-router-dom";
+import {TIMZONE_OFFSET_IN_MINS_INDIA} from "../../../config/constants";
 
 
 const EventBox = ({ event }) => {
@@ -43,7 +44,7 @@ const EventBox = ({ event }) => {
           </p>
         </div>
         <div className={classes.date_box}>
-          {dayjs(event.start_time).format("DD MMM")}
+          {dayjs(event.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
         </div>
       </div>
       <div className={classes.bottom_row}>

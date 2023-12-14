@@ -1,0 +1,1 @@
+export const TIMZONE_OFFSET_IN_MINS_INDIA = 330 

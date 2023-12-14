@@ -1,9 +1,9 @@
 // AboutUs.js
 import React from "react";
-import classes from "./AboutUs.module.css";
-import heroImg from "../../assets/common-hero.svg";
-import getInvolved from "../../assets/get-involved.png";
-import aboutUsTop from "../../assets/about-us-top.svg";
+// import classes from "./AboutUs.module.css";
+// import heroImg from "../../assets/common-hero.svg";
+// // import getInvolved from "../../assets/get-involved.png";
+// import aboutUsTop from "../../assets/about-us-top.svg";
 
 import styles from "./GetInvolved.module.css";
 
@@ -23,7 +23,9 @@ const GetInvolved = () => {
           that's redefining the boundaries of expression.
           <img
             className={styles.image_bottom}
-            src={getInvolved}
+            src={
+              "https://ik.imagekit.io/unmutex/unmutex-website-public/get-involved.png?updatedAt=1701972450358"
+            }
             alt="alt text"
           />
           <br></br>

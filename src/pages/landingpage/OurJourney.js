@@ -1,9 +1,9 @@
 // AboutUs.js
 import React from "react";
-import classes from "./AboutUs.module.css";
-import heroImg from "../../assets/common-hero.svg";
-import ourJourney from "../../assets/our-journey.png";
-import aboutUsTop from "../../assets/about-us-top.svg";
+// import classes from "./AboutUs.module.css";
+// import heroImg from "../../assets/common-hero.svg";
+// // import ourJourney from "../../assets/our-journey.png";
+// import aboutUsTop from "../../assets/about-us-top.svg";
 
 import styles from "./OurJourney.module.css";
 
@@ -20,7 +20,9 @@ const OurJourney = () => {
           monumental steps towards achieving our vision.
           <img
             className={styles.image_bottom}
-            src={ourJourney}
+            src={
+              "https://ik.imagekit.io/unmutex/unmutex-website-public/our-journey.png?updatedAt=1701972450139"
+            }
             alt="alt text"
           />
           With over 200+ online open mic events, we've witnessed the emergence

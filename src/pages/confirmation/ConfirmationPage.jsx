@@ -20,6 +20,7 @@ import RoleModal from "../../components/modal/RoleModal";
 import LoadingComponent from "../../components/loading/LoadingComponent";
 import * as htmlToImage from "html-to-image";
 import EventCard from "../../components/cards/event/EventCard";
+import {TIMZONE_OFFSET_IN_MINS_INDIA} from "../../config/constants";
 
 const ConfirmationPage = () => {
   const { authData } = useAuthContext();
@@ -204,7 +205,7 @@ const ConfirmationPage = () => {
                   </p>
                 </div>
                 <div className={classes.date_box}>
-                  {dayjs(event.start_time).format("DD MMM")}
+                  {dayjs(event.start_time).add(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
                 </div>
               </div>
               <div className={classes.bottom_row}>
