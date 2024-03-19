@@ -43,7 +43,8 @@ function MainRouter() {
           <Routes>
             {authData.isAuthenticated ? (
               <>
-                <Route path="/" element={<LandingPage />} />
+                <Route path="/" element={<UpcomingPage />} />
+                <Route path="/landing" element={<LandingPage />} />
                 <Route path="/upcoming" element={<UpcomingPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/participant-profile" element={<ProfilePage />} />
@@ -82,7 +83,8 @@ function MainRouter() {
                 />
               </>
             )}
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<UpcomingPage />} />
+            <Route path="/landing" element={<LandingPage />} />
             <Route path="/upcoming" element={<UpcomingPage />} />
             <Route path="/about-us" element={<LandingPage />} />
           </Routes>
