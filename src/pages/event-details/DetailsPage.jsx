@@ -146,6 +146,13 @@ const DetailsPage = () => {
       <div className={classes.upcoming_container}>
         <h1>Details</h1>
         <div className={classes.upcoming_carousel}>
+        
+        <br></br>
+        <a href={eventDetails.link} >
+  <label className={classes.formLabel}>{eventDetails.link}</label>
+</a>
+</div>
+<div className={classes.upcoming_carousel}>
        {eventDetails.description}
         </div>
       </div>
