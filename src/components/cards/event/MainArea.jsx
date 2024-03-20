@@ -11,7 +11,8 @@ import {
   faEdit,
   faPlus,
   faShareAlt,
-  faDownload
+  faDownload,
+  faMicrophoneLines,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuthContext } from "../../../components/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";

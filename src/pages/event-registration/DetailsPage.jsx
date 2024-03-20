@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faDoorOpen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import EventCard from "../../components/cards/event/EventCard";
 import { useLocation } from "react-router-dom";
-import {TIMZONE_OFFSET_IN_MINS_INDIA} from "../../config/constants";
+import { dateFormatter, timeFormatter } from "../../utils/formatter.utils";
 
 
 const DetailsPage = () => {
@@ -144,7 +144,7 @@ const DetailsPage = () => {
                   </p>
                 </div>
                 <div className={classes.date_box}>
-                  {dayjs(event.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
+                {dateFormatter(event.start_time)}
                 </div>
               </div>
               <div className={classes.bottom_row}>

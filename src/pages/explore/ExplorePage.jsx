@@ -14,7 +14,7 @@ import confirmDownload from "../../assets/confirm-download.svg";
 import * as htmlToImage from "html-to-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faDoorOpen, faUsers } from "@fortawesome/free-solid-svg-icons";
-import {TIMZONE_OFFSET_IN_MINS_INDIA} from "../../config/constants";
+import { dateFormatter, timeFormatter  } from "../../utils/formatter.utils";
 
 
 const ExplorePage = () => {
@@ -104,9 +104,10 @@ const ExplorePage = () => {
                 alt="card-hero"
               />
               <p className={classes.details_text}>
-                Date: {dayjs(eventDetails?.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD-MM-YY")}
+                
+                Date: {dateFormatter(eventDetails.start_time)}
                 <br />
-                Time: {dayjs(eventDetails?.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}
+                Time:  {timeFormatter(eventDetails.start_time)}
                 <br /> Theme: {eventDetails?.genre}
               </p>
             </div>
@@ -146,11 +147,11 @@ const ExplorePage = () => {
               <h4 className={classes.host_container}>Host: {getHost(eventDetails)?.profile_info?.first_name}</h4>
               
               <h4 className={classes.host_container}>
-                Time: {dayjs(eventDetails.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}
+                Time: {timeFormatter(eventDetails.start_time)}
               </h4>
             </div>
             <div className={classes.date_box}>
-              {dayjs(eventDetails.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
+            {dateFormatter(eventDetails.start_time)}
             </div>
           </div>
           <div className={classes.middle_row}>{eventDetails.description}</div>
@@ -214,7 +215,7 @@ const ExplorePage = () => {
                   </p>
                 </div>
                 <div className={classes.date_box}>
-                  {dayjs(event.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
+                {dateFormatter(event.start_time)}
                 </div>
               </div>
               <div className={classes.bottom_row}>

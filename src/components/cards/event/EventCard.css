@@ -386,6 +386,18 @@ select option:hover {
   font-weight: bolder;
 }
 
+.time-description {
+  padding-top: 10px;
+  padding-right: 10px;
+  position: absolute;
+  bottom: 30px;
+  right: 10px;
+  font-weight: normal;
+  font-family: Montserrat;
+  color: #afffaaeb;
+  font-weight: bolder;
+}
+
 .location-icon {
   position: absolute;
   /*  bottom: 20px; Adjust the top position as needed */

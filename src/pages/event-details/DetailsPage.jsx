@@ -15,8 +15,8 @@ import * as htmlToImage from "html-to-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faDoorOpen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import EventCard from "../../components/cards/event/EventCard";
-import {TIMZONE_OFFSET_IN_MINS_INDIA} from "../../config/constants";
-
+import { dateFormatter, timeFormatter } from "../../utils/formatter.utils";
+import ParticipantsPage from "../participants/ParticipantsPage";
 
 const DetailsPage = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -85,77 +85,28 @@ const DetailsPage = () => {
   return (
     <div className={classes.main_container} id="card-to-download">
       <img alt="icon" src={confirmHero} />
-      {eventDetails.status !== "scheduled" && (
-        <div className={classes.card_container}>
-          <div
-            className={classes.card_details_section}
-            style={{
-              backgroundImage: `url(${
-                getAsset(eventDetails, "background")?.value.link ||
-                "https://i.ibb.co/HtRrwPV/bg.png"
-              })`,
-            }}
-          >
-            <div className={classes.card_details_horizontal}>
-              <img
-                className={classes.round_img}
-                src={
-                  getAsset(eventDetails, "top-left")?.value?.link || cardIcon
-                }
-                alt="card-hero"
-              />
-              <p className={classes.details_text}>
-                Date: {dayjs(eventDetails?.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD-MM-YY")}
-                <br />
-                Time: {dayjs(eventDetails?.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("hh:mm a")}
-                <br /> Theme: {eventDetails?.genre}
-              </p>
-            </div>
-            <div className={classes.card_details_horizontal}>
-              <p className={classes.details_text}>
-                {eventDetails?.description}
-              </p>
-
-              <img
-                className={classes.round_img}
-                src={
-                  getAsset(eventDetails, "bottom-right")?.value?.link ||
-                  cardIcon
-                }
-                alt="card-hero"
-              />
-            </div>
-          </div>
-          <div className={classes.card_footer}>
-  <Link to={`/schedule/${eventId}`} className={`${classes.action_button} ${classes.schedule_button}`}>
-    <FontAwesomeIcon icon={faClock} className={classes.icon} />
-  </Link>
-  <a href={eventDetails.link} className={`${classes.action_button} ${classes.join_button}`}>
-    <FontAwesomeIcon icon={faDoorOpen} className={classes.icon} />
-  </a>
-  <Link to={`/participants/${eventId}`} className={`${classes.action_button} ${classes.participants_button}`}>
-    <FontAwesomeIcon icon={faUsers} className={classes.icon} />
-  </Link>
-</div>
-        </div>
-      )}
-      {eventDetails.status === "scheduled" && (
+      
+      {eventDetails.status != null && (
        <EventCard event={eventDetails} />
       )}
 
       <div className={classes.upcoming_container}>
-        <h1>Details</h1>
-        <div className={classes.upcoming_carousel}>
+        {/* <h1>Details</h1> */}
+        {/* <div className={classes.upcoming_carousel}>
         
-        <br></br>
-        <a href={eventDetails.link} >
-  <label className={classes.formLabel}>{eventDetails.link}</label>
-</a>
-</div>
+        
+  
+</div> */}
 <div className={classes.upcoming_carousel}>
        {eventDetails.description}
         </div>
+        
       </div>
+      
+      <a href={eventDetails.link} >
+  <label >Zoom Link</label>
+</a>
+      <ParticipantsPage/>
       <div className={classes.upcoming_container}>
         <h1>You may also like</h1>
         <div className={classes.upcoming_carousel}>
@@ -205,7 +156,7 @@ const DetailsPage = () => {
                   </p>
                 </div>
                 <div className={classes.date_box}>
-                  {dayjs(event.start_time).subtract(TIMZONE_OFFSET_IN_MINS_INDIA, "minute").format("DD MMM")}
+                {dateFormatter(event.start_time)}
                 </div>
               </div>
               <div className={classes.bottom_row}>
