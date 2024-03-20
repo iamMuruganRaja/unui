@@ -30,6 +30,10 @@
   cursor: pointer;
   transform-style: preserve-3d;
   transition: transform ease 500ms;
+
+  /* Centering the element within itself, if needed, for 3D transformations */
+  margin: auto;
+  position: relative; /* Adjust if necessary for your layout */
 }
 
 .CardContainer.flipped {

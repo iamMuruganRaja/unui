@@ -17,6 +17,13 @@ import { faClock, faDoorOpen, faUsers } from "@fortawesome/free-solid-svg-icons"
 import EventCard from "../../components/cards/event/EventCard";
 import { dateFormatter, timeFormatter } from "../../utils/formatter.utils";
 import ParticipantsPage from "../participants/ParticipantsPage";
+import Header from "../../components/topbar/Headers";
+
+
+const zoomLink = {
+  alignItems: "center",
+};
+
 
 const DetailsPage = () => {
   const [eventDetails, setEventDetails] = useState(null);
@@ -84,7 +91,8 @@ const DetailsPage = () => {
 
   return (
     <div className={classes.main_container} id="card-to-download">
-      <img alt="icon" src={confirmHero} />
+      {/* <img alt="icon" src={confirmHero} /> */}
+      <Header></Header>
       
       {eventDetails.status != null && (
        <EventCard event={eventDetails} />
@@ -102,10 +110,11 @@ const DetailsPage = () => {
         </div>
         
       </div>
-      
-      <a href={eventDetails.link} >
-  <label >Zoom Link</label>
-</a>
+      <div class="centered-link-container">
+    <a href={eventDetails.link}>
+        <label>Zoom Link</label>
+    </a>
+</div>
       <ParticipantsPage/>
       <div className={classes.upcoming_container}>
         <h1>You may also like</h1>

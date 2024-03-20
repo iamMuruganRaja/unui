@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
+import logowhite from "../../assets/logo-white.svg";
 
 const sidebarVariants = {
   open: {
@@ -95,7 +96,7 @@ const Header = () => {
               style={{
                 color: "#f0f2f5",
                 position: "absolute",
-                top: "10px",
+                top: "20px",
                 right: "10px",
                 size:"fa-2xl"
                 
@@ -113,6 +114,7 @@ const Header = () => {
             damping: 40, // Adjust the damping for the spring effect
           }}
       >
+         <img id="small-logo" src={topLeftLogo} alt="Small Logo" />
         <Link className={classes.nav_link} to="/">
           HOME
         </Link>

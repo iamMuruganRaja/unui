@@ -9,6 +9,7 @@ import classes from "./TopNav.module.css";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../../utils/storage.utils";
 
+
 function TopNav() {
   const { isAuthLoading, authData } = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
@@ -46,6 +47,8 @@ function TopNav() {
         animate={{ x: isOpen ? "0%" : "100%" }} /* Show/hide sidebar by moving it */
         transition={{ bounce: 0 }}
       >
+        
+        
         <Link className={classes.nav_link} to="/">
           HOME
         </Link>
