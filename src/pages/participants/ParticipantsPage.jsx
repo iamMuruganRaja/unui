@@ -42,6 +42,58 @@ function ParticipantsPage() {
     participant.role === "Performer"
   );
 
+  const standardizeInstagramURL = (input) => {
+    // Return null or an empty string if the input is falsy (including null)
+    if (!input) {
+      return null; // or return ""; based on how you want to handle it
+    }
+  
+    const baseInstagramURL = "https://www.instagram.com/";
+  
+    // Check if input is already in the desired format
+    if (input.startsWith(baseInstagramURL)) {
+      return input; // No changes needed
+    }
+  
+    // Remove '@' prefix if present
+    const cleanInput = input.startsWith("@") ? input.slice(1) : input;
+  
+    // Construct the full Instagram URL
+    return `${baseInstagramURL}${cleanInput}`;
+  };
+
+
+  const standardizeInstagramHandle = (input) => {
+    // Return null or an empty string if the input is falsy (including null)
+    if (!input) {
+      return null; // or return ""; based on how you want to handle it
+    }
+  
+    const baseInstagramURL = "https://www.instagram.com/";
+  
+    // Check if input is already in the desired format
+    if (input.startsWith(baseInstagramURL)) {
+      return input; // No changes needed
+    }
+  
+    // Remove '@' prefix if present
+    const cleanInput = input.startsWith("@") ? input.slice(1) : input;
+  
+    // Construct the full Instagram URL
+    return `${cleanInput}`;
+  };
+  const getAvatorUrl= (name) =>{
+
+    const baseAvatorURL = "https://ui-avatars.com/api/?name="
+    const default_name = "Not Available"
+    if (!name) {
+      name= default_name
+    }
+  
+    return `${baseAvatorURL}${name}`;
+  }
+  
+
   return (
     <div className={classes.main_container}>
      
@@ -65,38 +117,41 @@ function ParticipantsPage() {
               )}
               <img
                 className={classes.avatar}
-                src="https://images.unsplash.com/photo-1616268164880-673b3ba611bb"
+                src={getAvatorUrl(performer?.profile_info?.first_name)}
                 alt="avatar"
               />
               <div className={classes.details}>
                 <h2 className={classes.name}>
-                  {performer?.profile_info?.first_name}{" "}
-                  {performer?.profile_info?.last_name}
+                  {performer?.profile_info?.first_name} {performer?.profile_info?.last_name}
                 </h2>
                 <p className={classes.text}>
                   {performer?.profile_info?.role}
                 </p>
-              </div>
-            </div>
-              <div className={classes.bottom_container}>
                 {performer?.profile_info?.social_media_link && (
-                  <a
-                    href={performer.profile_info.social_media_link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {performer.profile_info.social_media_link.includes("twitter") && (
-                      <img src={twitterColor} alt="social" />
-                    )}
-                    {performer.profile_info.social_media_link.includes("instagram") && (
-                      <img src={instagramColor} alt="social" />
-                    )}
-                    {performer.profile_info.social_media_link.includes("facebook") && (
-                      <img src={facebookColor} alt="social" />
-                    )}
-                  </a>
+                  <p className={classes.text}>
+                    <a
+                      href={standardizeInstagramURL(performer.profile_info.social_media_link)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {standardizeInstagramHandle(performer.profile_info.social_media_link)}
+                    </a>
+                  </p>
                 )}
               </div>
+
+            </div>
+            <div className={classes.bottom_container}>
+  {performer?.profile_info?.social_media_link ? (
+    <a
+      href={standardizeInstagramURL(performer.profile_info.social_media_link)}
+      target="_blank"
+      rel="noreferrer"
+    >
+      <img src={instagramColor} alt="social" />
+    </a>
+  ) : null}
+</div>
     </div>
         ))}
         {/* Thats all for this event.<br></br>

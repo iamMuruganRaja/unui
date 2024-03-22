@@ -54,3 +54,24 @@ export const timeFormatter = (input) => {
 
   return formattedDateTime;
 };
+
+export const timeInIST = (input) => {
+  // Parse the input UTC datetime string as UTC
+  const dateTimeUTC = DateTime.fromFormat(input, "yyyy-MM-dd HH:mm:ss 'UTC'", {
+    zone: "utc",
+  });
+
+  // Convert the datetime to 'Asia/Kolkata' timezone
+  const dateTimeInKolkata = dateTimeUTC.setZone("Asia/Kolkata");
+
+  // Subtract 5 hours and 30 minutes from the 'Asia/Kolkata' datetime
+  // This is an unusual step since 'Asia/Kolkata' is already IST (+5:30 UTC)
+  // Only do this if you have a specific reason to adjust the time manually
+  const adjustedDateTime = dateTimeInKolkata.minus({ hours: 5, minutes: 30 });
+
+  // Format the adjusted datetime object to the desired output format
+  const formattedDateTime =
+    adjustedDateTime.toFormat("yyyy-MM-dd HH:mm:ss") + " 'IST'";
+
+  return formattedDateTime;
+};

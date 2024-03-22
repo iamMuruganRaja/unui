@@ -10,6 +10,7 @@ import { updateEvent, createEvent } from "../../services/events.services";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
+import { timeInIST  } from "../../utils/formatter.utils";
 
 const EventForm = () => {
   const location = useLocation();
@@ -69,8 +70,8 @@ const EventForm = () => {
   const setFormFields = (event) => {
     setKey("name", event.name);
     setKey("description", event.description);
-    setKey("start_time", format(new Date(event.start_time), "yyyy-MM-dd'T'HH:mm"));
-    setKey("end_time", format(new Date(event.end_time), "yyyy-MM-dd'T'HH:mm"));
+    setKey("start_time", timeInIST(event.start_time));
+    setKey("end_time", timeInIST(event.end_time));
     setKey("bg_image_url", getAsset(event, "background")?.value.link);
     setKey("genre", event.genre);
     setKey("mode", event.mode);
